@@ -1,0 +1,85 @@
+\chapter{Implementacja symulatora}
+
+\par{
+W poprzednich rozdziałach opisano generalne zasady wg. których powinien funkcjonować symulator środowiska miejskiego przystosowany do współpracy z systemem fuzji danych. Wskazano czym powinien się cechować by dobrze spełniać stawiane przed nim zadania - w szczególności być w stanie zapewnić dane użyteczne z punktu widzenia prowadzenia badań nad systemem fuzji danych.
+}
+\par{
+W tym zostanie omówiona implementacja takiego symulatora by pokać jak w praktyce można spełnić wymaganiastawiane tego rodzaju aplikacjom, jakie problemy mogą zostać napotkane i jak można sobie z nimi radzić a także jakiego rodzaju technologie można zastosować do uzyskania określonych celów.
+}
+\par{
+W dalszej części rozdziału zostana omówione ograniczenia tego rodzaju symulacji ze szczególnym uwzględnieniem ograniczeń wydajnościowych. Autor postara się zwrócić uwagę na największe ograniczenia takich systemów - czyli miejsca potencjalnej optymalizacji sposobu działania systemu jednocześnie zwracając uwagę na miejsca, które choć mogą wydawać się krytyczne z punktu widzenia symulacji przy konieczności współpracy z systemem fuzji danych przestają w ogóle odgrywać rolę z punktu widzenia wydajności.
+}
+
+\section[Wymagania][Wymagania]{Wymagania}
+
+\par{
+Tak jak i inne systemy informatyczne tak i ten, choć projektowany w ramach pracy inżynierskiej musiał spełniać pewne wymagania wynikające z możliwości jego późniejszego zastosowania do badań naukowych a w szczególności do pracy Pana Macieja Grzybka dotyczącej śledzenia obiektów w systemie fuzji danych (temat pracy: "Implementacja algorytmu sledzenia obiektów w systemie fuzji danych").
+}
+\par{
+Poniżej opisano postawione systemowi wymagania:
+\begin{itemize}
+	\item System powinien dostarczać informacje z czujników w mieście w formie wstępnie przetworzonej (na potrzeby fuzji informacji[?]).
+	\item System powinien posiadać przynajmniej jeden typ czujnika, który dostarcza informacji w formie zawierającej co najmniej informację na temat współrzędnych geograficznych obiektu obserwowanego.
+	\item System powinien udostępniać odczyty z czujników przy użyciu uzgodnionego schematu bazy danych dynamicznych (podział na bazę statyczną i dynamiczną wyjaśniony w rozdziale "Projekt bazy danych").
+	\item System powinien mieć możliwość dodania implementacji bardziej zaawansowanych rodzajów czujników w szczególności posiadających inne właściwości obserwacji, dostarczające innych informacji czy też dzia    łające z określonym zaszumieniem.
+	\item System powinien prezentować symulację w formie graficznej tak, by można było obserwować jej przebieg i konfrontować go organoleptycznie z wynikami dalszej analizy danych wyjściowych symulacji (ułatwi    enie dla wstępnej fazy prowadzenia badań).
+	\item System powinien operować na danych dt. środowiska miejskiego pobranych z odpowiednio zdefiniowanej struktury bazy danych (wczytywanie map).
+	\item System powinien umożliwiać regulację natężenia ruchu lub pozwalać na łatwe doimplementowanie tego rodzaju funkcjonalności w przyszłości.
+	\item System powinien umożliwiać regulację szybkości symulacji względem czasu rzeczywistego (przyśpieszenie, spowolnienie).
+	\item System poiwinien pozwalać na czasowe wstrzymanie symulacji.
+\end{itemize}
+}
+
+\section[Metodyka symulacji][Metodyka symulacji]{Metodyka symulacji}
+\par{ Treść... }
+\subsection{Skala symulacji}
+\subsection{Upływ czasu}
+
+\section[Dobór technologii][Dobór technologii]{Dobór technologii}
+\par{ Treść... }
+\subsection{Wydajność}
+\subsection{Rozszerzalność}
+\subsection{Dostępność}
+
+\section[Projekt bazy danych][Projekt bazy danych]{Projekt bazy danych}
+\par{ Treść... }
+
+\section[Architektura systemu][Architektura systemu]{Architektura systemu}
+\par{ Treść... }
+\subsection{Model MVC}
+\subsubsection{O modelu}
+\subsubsection{Zastosowanie w aplikacji}
+\subsection{Wielowątkowość}
+\subsubsection{Biblioteka boost::thread}
+\subsubsection{Problemy synchronizacji}
+
+\section[Architektura modelu][Architektura modelu]{Architektura modelu}
+\par{ Treść... }
+\subsection{Obiekty świata}
+\subsection{Interakcja między obiektami}
+\subsubsection{Wzorzec wizytatora}
+\subsection{Upływ czasu}
+\subsubsection{Biblioteka boost::chrono}
+\subsubsection{Wzorzec obserwatora}
+\subsection{Połączenie z bazą danych}
+\subsubsection{Biblioteka pqxx}
+\subsubsection{ORM}
+\subsection{Komunikacja ze światem (API)}
+\subsubsection{Metody publiczne}
+\subsubsection{Wołania asynchroniczne}
+\subsubsection{Obserwacja stanu symulacji}
+
+\section[Architektura widoku][Architektura widoku]{Architektura widoku}
+\par{ Treść... }
+\subsection{Biblioteka Qt}
+\subsubsection{Wymagania biblioteki}
+\subsubsection{QGraphicsLibrary}
+\subsubsection{Architektura sygnał-slot}
+\subsection{Projektowanie interfejsu graficznego}
+\subsubsection{Tworzenie własnych widżetów}
+
+\section[Architektura kontrolera][Architektura kontrolera]{Architektura kontrolera}
+\par{ Treść... }
+\subsection{Odcięcie od biblioteki Qt}
+\subsection{Klasy zdarzeń i ich obsługa}
+\subsection{Kolejki a architektura sygnał-slot}
