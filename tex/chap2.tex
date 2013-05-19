@@ -4,10 +4,10 @@
 W poprzednich rozdziałach opisano generalne zasady wg. których powinien funkcjonować symulator środowiska miejskiego przystosowany do współpracy z systemem fuzji danych. Wskazano czym powinien się cechować by dobrze spełniać stawiane przed nim zadania - w szczególności być w stanie zapewnić dane użyteczne z punktu widzenia prowadzenia badań nad systemem fuzji danych.
 }
 \par{
-W tym zostanie omówiona implementacja takiego symulatora by pokać jak w praktyce można spełnić wymaganiastawiane tego rodzaju aplikacjom, jakie problemy mogą zostać napotkane i jak można sobie z nimi radzić a także jakiego rodzaju technologie można zastosować do uzyskania określonych celów.
+W tym rozdziale zostanie omówiona implementacja takiego symulatora by pokać jak w praktyce można spełnić wymagania stawiane tego rodzaju aplikacjom, jakie problemy mogą zostać napotkane i jak można sobie z nimi radzić a także jakiego rodzaju technologie można zastosować do uzyskania określonych celów.
 }
 \par{
-W dalszej części rozdziału zostana omówione ograniczenia tego rodzaju symulacji ze szczególnym uwzględnieniem ograniczeń wydajnościowych. Autor postara się zwrócić uwagę na największe ograniczenia takich systemów - czyli miejsca potencjalnej optymalizacji sposobu działania systemu jednocześnie zwracając uwagę na miejsca, które choć mogą wydawać się krytyczne z punktu widzenia symulacji przy konieczności współpracy z systemem fuzji danych przestają w ogóle odgrywać rolę z punktu widzenia wydajności.
+W dalszej części rozdziału zostana omówione ograniczenia tego rodzaju symulacji ze szczególnym uwzględnieniem ograniczeń wydajnościowych. Autor postara się zwrócić uwagę na największe ograniczenia takich systemów - czyli miejsca potencjalnej optymalizacji jednocześnie zwracając uwagę na miejsca, które choć mogą wydawać się krytyczne z punktu widzenia symulacji przy konieczności współpracy z systemem fuzji danych przestają w ogóle odgrywać rolę z punktu widzenia wydajności.
 }
 
 \section[Wymagania][Wymagania]{Wymagania}
@@ -26,14 +26,97 @@ Poniżej opisano postawione systemowi wymagania:
 	\item System powinien operować na danych dt. środowiska miejskiego pobranych z odpowiednio zdefiniowanej struktury bazy danych (wczytywanie map).
 	\item System powinien umożliwiać regulację natężenia ruchu lub pozwalać na łatwe doimplementowanie tego rodzaju funkcjonalności w przyszłości.
 	\item System powinien umożliwiać regulację szybkości symulacji względem czasu rzeczywistego (przyśpieszenie, spowolnienie).
-	\item System poiwinien pozwalać na czasowe wstrzymanie symulacji.
+	\item System powinien pozwalać na czasowe wstrzymanie symulacji.
 \end{itemize}
 }
 
 \section[Metodyka symulacji][Metodyka symulacji]{Metodyka symulacji}
-\par{ Treść... }
-\subsection{Skala symulacji}
+\subsection{Przedmiot symulacji}
+\par{
+Jak wspomiano w poprzednim rozdziale, dobranie skali integracji symulacji do wybranego zagadnienia jest istotne z puntku widzenia osiągnięcia zamierzonych rezulatatów. Wybranie skali zbyt wysokiej ogranicza możliwości zastosowania symulacji i jej rozszerzalność. Wybranie skali zbyt niskiej skutkuje natomiast utrudnieniami implementacyjnymi, wzrostem złożoności obliczeniowej i skomplikowaniem ogólnej zasady działania symulacji bez rekompensaty w postaci użytecznych możliwości.
+}
+\par{
+Dobranie odpowiedniej skali integracji powinno przede wszystkim uwzględniać skalę w jakiej obserowany będzie symulowany układ, tak by w tej skali zachowywał się on realistycznie z punktu widzenia celu symulacji[?]. I tak w przypadku przedstawianego w pracy symulatora obserowane obiekty są obserwowane w stosunkowo wysokiej skali integracji - jako samochody, piesi i inne elementy makroświata.
+}
+\par{
+Mając na względzie te potrzeby wydaje się więc, że można traktować te obiekty jako niepodzielne elementy i nie zagłębiać się w ich wewnętrzną specyfikę. Warto jednak uwzględnić fakt, że decyzja ta może uniemożliwiać lub w znacznym stopniu utrudniać niektóre przyszłe rozszerzenia symulacji. I tak jak nie będzie zapewne stanowiło problemu dodanie do symulacji obsługi zderzeń niesprężystych gdyż ich obsługa nie wymaga zagłębiania się w budowę obiektów, tak obsługa np. aerodynamiki pojazdów może stanowić znaczące utrudnienie implementacyjne. Należy pamiętać, że nie każde obliczenia mikro skali da się przełorzyć na wartości w skali makro [?].
+}
+\par{
+Licząc się z wyżej wspomnianymi konsekwencjami podjęto decyzję, by elementy świata rozpatrywać w skali abstraktyjnych obiektów o nieznanej wewnętrznej budowie. Będąc świadomym, iż przedmiotem naszej symulacji są właśnie obiekty makroświata zawieszone w czterowymiarowej przestrzeni (przestrzeń i czas) i będąc świadomym ich właściwości można przystąpić do dalszego planowania metodyki symulaci.
+}
+
+\subsection{Model symulacji}
+\par{
+Poprzedni podrozdział uzasadnił dlaczego przy implementacji symulatora zdecydowano sie na nie wgłębianie w wewnętrzną strukturę obiektów a jedynie zasymulowanie ich poprawnego z punktu widzenia celu symulacji zachowania w możliwie prosty sposób. Innym problemem z jakim należało sobie poradzić było ustalenia jak przedstawić owe makroskopowe obiekty by zachowywały się one w sposób realistyczny z punktu widzenia informacji istotnych dla obserwatorów.
+}
+\par{
+Z pomocą przy rozwiązaniu tego problemu przychodzi nam teoria symulacji a także podstawy dynamiki Newtona przedstawione w pierwszym rozdziale.
+I tak wiemy, że zastosowanie właśnie modelu newtonowskiego do symulowania ruchów obiektów da nam obraz realistyczny z punktu widzenia makro świata.
+}
+\par{
+Podstawowymi pojęciami dynamiki Newtona są siła (F), przyśpieszenie (a) oraz masa (m), połączone wspominanym już wzorem:
+\begin{center}
+$F = m \times a$
+\end{center}
+Wzór ten opisuje podstawę ruchu i odnosi się właśnie do obiektów makroskopowych o nieznanej lub nieokreślonej strukturze wewnętrznej opisywanych modelami fizycznymi takimi jak punkt materialny lub bryła sztywna.
+}
+\par{
+Dla ciał opisywanych przy użyciu symulatora również należało znaleść odpowiedni model fizyczny. Pod uwagę wzięto dwa wyżej wspomniane modele, jako, że zapewniają one realizm symulacji i pozwalają na uwzględnianie licznych czynników zewnętrznych.
+}
+\par{
+Podejście do obiektów symulowanych jak do bryły sztywnej wydaje się być intuicyjne. W naturalny sposób blokuje to możliwość ingerencji w wenwnętrzną fizykę ciała, jednocześnie zapewniając wysoki realizm w skali makro.
+Takie podejście pozwala na łatwe zasymulowanie wszelkiego rodzaju zdarzeń, także związanych z obrotami, w sposób naturalny ułatwia wykrywanie kolizji i pozwala przewidywać ich przebieg z dużą dokładnością i z zachowaniem wysokiego realizmu.
+Niestety model ten ze względu na stopień kompilacji został odrzucony a wybrany został model prostrzy - model punktu materialnego.
+\par{
+Model ten pozwala na wykonywanie wszelkich obliczeń na obiektach które nie nawiązują między sobą interakcji równie dobrze jak model bryły sztywnej. Jego niewątpliwą wadą jest to, że w razie pojawienia się potrzeby symulowania zderzeń między obiektami pojawił by się spory narzut na dość sztucznej warstwie abstrakcji, która musiała by powstać by obsłużyć zderzenia w sposób realistyczny (dodać do modelu odpowiednie siły itp.).
+Ponadto model ten nie uwzględnia w ogóle obrotów, ponieważ z jego punktu widzenia obiekty w świecie stają się niematerialnymi punktami bez wymiarów.
+Największą i przeważającą zaletą tego modelu była jego prostota, która pozwoliła na szybką implemetację wersji symulatora zdolnej spełniać podstawowe powierzone jej zadania. 
+}
+\par{
+W ramach modelu fizyki punktu materialnego przyjęto, że każdy obiekt w świecie stanowi jeden punkt materialny, który w każdej chwili czasu charakteryzuje się następującymi wartościami:
+\begin{itemize}
+\item Siła (wektor trójwymiarowy) z jaką działa ciało na świat stanowiący intercjalny układ odniesienia rozumiany jako statyczny obiekt o nieskończonych wymiarach, względem, którego przemieszczają się ciała (swoista podstawa układu).
+\item Masa ciała
+\item Prędkością (wektor trójwymiarowy) z jaką w danej chwili porusza się ciało.
+\end{itemize}
+Znając te trzy wartości w każdej chwili czasu na podstawie modelu fizycznego można określić połorzenie obiektu w układzie współrzędnych w każdej chwili czasu.
+Warto zwrócić uwagę, że tak jak pierwsze dwa z tych parametrów są własciwościami obiektu tzn. obiekt może je dowolnie zmieniać w czasie, tak prędkość jest wartością wynikającą z dotyczasowej historii danego obiektu i sam obiekt nie jest w stanie wprost zmienić jej wartości (tak jak w rzeczywistości samochód nie może w jednej chwili się zatrzymać, ale może nagle (w modelu przyjęto że nawet w czasie $\Delta t \longrightarrow 0$) zacząć hamować działając z dużą siłą o zwrocie przciwnym do kierunku jazdy i szybko (ale nie natychmiastowo) wytracić posiadaną prędkość).
+}
+\par
+{
+W praktyce powyższy model został w trakcie implementacji jeszcze bardziej uproszczony (powody jak i sposób uproszczenia opisano niżej). W czasie projektowania architektury aplikacji dołożono jednak wszelkich starań by umożliwić zmianę działania silnika fizycznego w przyszlości.
+}
+
 \subsection{Upływ czasu}
+\par{
+Ostatnią z punktu widzenia istoty symulacji decyzją jaką należało podjąć było wybranie jednego z dwóch możliwych podejść do symulowania upływu czasu:
+
+\begin{itemize}
+\item Obliczenia przy założeniu ciągłości czasu
+\item Obliczenia przy założeniu czasu skwantowanego (dyskretnego)
+\end{itemize}
+}
+\par{
+Pierwsze z podejść jest bliższe realizmowi (choć w świetle współczesnych badań fizycznych okazuje się, że czas należy rzeczywiście traktować jako parametr zdyskretyzowany, to gęstość jego rzeczywistego "próbkowania" jest tak duża, że nie sposób obsługiwać ją przy użyciu komputera).
+Jak wspomiano w poprzednim rozdziale, uzyskanie efektu czasu ciągłego sprowadza się do opisania wszystkich elementów symulowanego świata układem równań. W każdej chwili pozycja każdego obiektu może być wyznaczona jako pozycja początkowa przesunięta o wektor wyznaczany z bieżącego równania ruchu danego ciała. Tego rodzaju symulacja zapobiega wszelkiego rodzaju błędom przybliżeń i błędom kwantowania, ma ona jednak inne właściwości, które dyskwalifikują jej użycie.
+}
+\par{
+Warto zwrócić uwagę, że tego typu równania wyznacza się ponownie ilekroć pojawia się jakiegoś rodzaju zdarzenie. Przez zdarzenie rozumie się tutaj wszelkie sytuacje mogące wpływać na stan jakiegokolwiek ciała. I tak podstawowymi zdarzeniami w typowym modelu fizycznym są np. zderzenia dwóch ciał. W wypadku symulacji zdarzenie następuje jednak również wtedy gdy conajmniej jeden z obiektów zechce pod wpływem czynników zewnętrznych zmienić swój stan (tj. siłę lub masę). Niestety wyznaczanie tego rodzaju momentów w czasie wydaje się być zadaniem bardzo trudnym. Po pierwsze nie jesteśmy w stanie przewidzieć w jakich sytuacjach obiekt będzie chciał zmieniać swój stan - musimy więc przenieść tę odpowiedzialność na niego. Po drugie obiekt taki musi w swoisty sposób przewidywać przyszłość by zaplanować zdarzenie - każdy obiekt musi więc mieć pojęcie o całym układzie by być w stanie (i to przy dużym nakładzie obliczeniowym) przewidzieć i zaplanować zdarzenia, które dotyczą jego stanu ruchu.
+}
+\par{
+Rozwiązaniem, które pozwoliło by wdrożyć ideę czasu ciągłego w życie bez konieczności wprowadzania olbżymiej ilości obliczeń, jest twarde zdefiniowanie w modelu sytuacji w których poszczególne obiekty mogą zmieniać decyzje. Warto jednak zwrócić uwagę, że obniża to decyzyjność pojedyńczych jednostek w świecie co obniża realizm ewentualnie wdrożonej sztucznej inteligencji.
+}
+\par{
+Wyżej wspomniane powody sprawiły, iż zdecydowano się na wybranie wariantu symulacji z czasem jako jednostką skwantowaną. W takiej sytuacji każdy kwant jest punktem decyzji dla każdego obiektu a przez okres jego trwania ciała poruszają się ze stałymi parametrami (przyśpieszenie, prędkość).
+Takie rozwiązanie posiada szereg wad. Po pierwsze, w przypadku potrzeby zasymulowania kolizji pojawia się problem wchodzenia w siebie obiektów. W typowym przypadku zderzenia w jednym kwancie czasu dwa ciała będą rozłączne a w następnym momecie będą się na siebie nakładały. Jest to niezgodne z modelem fizycznym bryły sztywnej jak i intuicją jednak istnieją sposoby radzenia sobie z tego rodzaju problemami - nie są one jednak przedmiotem tej pracy a ponieważ w załączonej implementacji zrezygnowano z obsługi zderzeń, nie będą one tutaj rozpatrywane - warto jednak mieć na względzie ograniczenie samej metodyki symulowania upływu czasu.
+}
+\par{
+Kolejny problem pojawiający się przy obsłudze czasu w kwantach przy zachowaniu szybkosci jego upływu w sosunku do czasu rzeczywistego jest fakt, że przy dużym czasie zajmowanym przez każdy krok (np. na skutek operacji IO) algorytmu odpowiadający kwantowi czasu, wydłuża się czas jego trwania w symulacji. W skrajnych wypadkach może to doprowadzić do kwantów czasu bardzo długich co sprawia, że błąd kwantowania staje się ogromny - w praktyce może to np. powodować opuszczenie przez obiekty obszaru symulacji.
+Problem ten można oczywiście zlikwidować rezygnując z odniesienia czasu symulacji do czasu rzeczywistego (wtedy błąd kwantowania jest stały i z założenia niewielki), jednak jako że takie odniesienie jest jednym z wymagań stawianym symulatorowi, tego typu sytuacje mimo ich nieprecyzyjności należało w jakiś (możliwe realistyczny z punktu widzenia obserwacji) sposób obsłużyć, a na pewno nie należało ich podczas dalszej implementacji zaniedbać.
+}
+\par{
+Dobranie metodyki obsługi upływu czasu stanowi zwieńczenie procesu projektowania działania symulatora. W jego wyniku otrzymano obraz symulatora jako procesu działającego na abstrakcyjnych obiektach makroświata, obsługiwawnych zgodnie z zasadami dynamiki newtona tak jakby były punktami materialnymi przy jednoczesnym zachowaniu kwantyzacji czasu pozwalającej na swobodne zmiany stanu (rozumianego jako masa i siła) obiektów na skutek ich własnych decyzji w wyznaczonych momentach czasu symulacji.
+}
 
 \section[Dobór technologii][Dobór technologii]{Dobór technologii}
 \par{ Treść... }
