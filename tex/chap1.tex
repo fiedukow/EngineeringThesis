@@ -1,16 +1,85 @@
-\chapter{Wprowadzenie}
+\chapter{Podstawy teoretyczne}
+\section[Symulacja komputerowa][Symulacja komputerowa]{Symulacja Komputerowa}
+
+\subsection{Wstęp}
+\par{
+Ludzkość od zarania dziejów stara się analizować otaczający ją świat. Nie bez powodu. Zrozumienie zasad wg. funkcjonuje otaczająca nas rzeczywistość zdaje się znacząco ułatwiać naszą egzystencję co w prostej linii prowadzi do tego, że samo dążenie do zgłębienia prawideł świata da się wytłumaczyć odwołując się bezpośrednio do ewolucji - osobniki lepiej rozumiejące otaczający świat potrafią lepiej się mierzyć z pojawiającymi się w nim przeciwnościami.
+}
 
 \par{
-Systemy, które pozwalają na zbieranie informacje z wielu źródeł i ich łączenie w celu uzyskania spójnego obrazu obserwowanych zjawisk nazywane są systemami fuzji danych. Tego rodzaju systemy zdają się być kluczowym elementem rozwoju współczesnej informatyki, ponieważ coraz częściej mamy do czynienia z sytuacjami, w których dane rozproszone są dookoła globu a dopiero zebranie i przeanalizowanie ich całości pozwala zaobserwować pewne zjawiska i wyciągnąć odpowiednie wnioski.
-\par{
-Okazuje się bowiem, że w dzisiejszych czasach problemem nie jest samo posiadanie danych co wyłowienie istotnych informacji z morza informacji nieistotnych. I tak jak systemy związane z data mineingiem mogą radzić sobie z wnioskowaniem na bazie dostarczonych danych, tak samo dostarczenie kompletnych, niezdublowanych i godnych zaufania danych z wielu źródeł może być problematyczne i stało się obiektem wielu badań.
+Zasadniczo ludzkie badania działają na dwóch płaszczyznach - dążą do przewidywania przyszłości i pozwalają podejmować coraz lepsze reakcje na bieżące zdarzenia.
 }
+
 \par{
-Tego rodzaju badania wymagają odpowiedniego wsparcia ze strony symulacji komputerowej. Dla ich prowadzenia zdaje się być bowiem kluczowe, stworzenie systemów mogących zasymulować dane o charakterze rozproszonym a jednocześnie pozwalające odtworzyć je w formie nie zaszumionej by porównać wyniki systemu fuzji z rzeczywistym obrazem symulowanego świata.
+Przez wiele lat ludzie prowadzili rozliczne badania starające się wyjaśniać naturę świata - z początku nieco chaotycznie (co nie znaczy, że bez znaczących sukcesów) - u zarania nauki w starożytnej Grecji, gdy cała nauka zamknięta była w jedną dziedzinę nazywaną ogólnym mianem Filozofii.
+Wraz z rozwojem ludzkości nasze podejście do nauki jako takiej ewoluowało. I tak już w XVII wieku Kartezjusz wysuwał postulaty, że podstawą nauki powinny być pewne abstrakcyjne narzędzia jak matematyka i logika na bazie których buduje się teorię innych dziedzin. Współczenie niewiele odsuneliśmy się od myśli Kartezjusza - podstawą naszych badań zdaje się być matematyka, na którą nakładane są inne dziedziny jak fizyka i chemia, których wypadkową są nauki przyrodnicze.
 }
+
 \par{
-Niniejsza praca opisuje sposób podejścia do projektowania tego rodzaju symulatora, techniki wykorzystane przy jego implementacji jak i zastosowane przy niej technologie. Implementowany system jest symulatorem środowiska miejskiego z systemem miejskiego monitoringu – tego rodzaju system zdaje się doskonale pasować do specyfiki systemów rozproszonych, ze względu na różnorodność zbieranych odczytów, problemy związane z synchronizacją czasu i wieloma źródłami danych, przez które należy w tym wypadku rozumieć czujniki systemu monitoringu.
+Warto zwrócić uwagę, że nasza nauka układa się wsosób warstwowy - kolejne warstwy pozwalają nam odcinać się od reguł obowiązujących w małej skali i budować torie dla skali większej. Jest to szczególnie uzasadnione w świetle odkryć XX wieku, jak ogólna teoria względności.
 }
+
 \par{
-Autor niniejszej pracy wyraża nadzieję, że praca ta choć bez wątpienia nie wyczerpie tematu projektowania tego rodzaju aplikacji, to może stanowić cenną wskazówkę dla ich projektantów.
+Oczywiście nadal wiele naukowych tez ma charakter czysto empiryczny i często jest to wystarczające dla określonych zastosowań - w końcu po dziś dzień nauka służy ludziom a nie odwrotnie.
 }
+
+\par{
+Mamy więc doczynienia z pozornym rozłamem nauki - z jednej strony formalizmy pozwalające na precyzyjny, spójny i co najważniejsze - jednoznaczny, opis określonych zjawisk. Z drugiej strony badania empiryczne, na podstawie których często wyszukuje się potencjalnych dróg rozwoju w sposób analityczny. Obie te metody uzupełniają się wzajemnie - niektórych badań praktycznych nie sposób zaplanować bez określonych reguł i znajomości niektórych torii a jednocześnnie niektóre teorie (w zasadzie większość) nie powstały by gdyby nie konkretne obserwacje rzeczywistości.
+}
+
+\par{
+Symulacja komputerowa, zdaje się być odpowiedzią na drugą metodykę, która jednakowoż ściśle wykorzystuje specyficzny aparat matematyczny. Stosując ją wykorzystujemy bowiem teorie w pewnej skali, by odtworzyć zachowania i obserować ich skutki w innej (zwykle większej), np. symulując ruch cząsteczek cieczy wg. określonych fizyką zasad by obserwować zachowanie cieczy jako całości w określonych warunkach.
+}
+
+\par{
+Czym jest więc symulacja komputerowa? Symulacja to proces, który pozwala przy użyciu reguł jednej skali obserwować zjawiska w innej. Słowo komputerowa odnosi się do konkretnej realizacji - z wykorzystaniem maszyn cyfrowych.
+}
+
+\subsection{Filozofia symulacji komputerowej}
+\subsubsection{Postulat Laplace'a}
+\subsubsection{Precyzja komputerów}
+\subsubsection{Praktyczne znaczenie ograniczeń}
+\subsection{Zastosowanie symulacji}
+
+\subsubsection{Przewidywanie zdarzeń}
+Podstawowym zdaniem stawianym przed symulacjami komputerowymi zdaje się być przewidywanie różnego rodzaju zdarzeń.
+
+\subsubsection{Badania empiryczne, eksperymenty}
+A co będzie gdy tu pchniemy?
+
+\subsubsection{Testowanie i badania}
+Czy to się zachowa jak zakładaliśmy?
+Czy nasze mechanizmy zadziałają prawidłowo?
+CZY WYŚLEDZIMY OBIEKT
+
+\subsection{Dokładność symulacji komputerowej}
+\subsubsection{Postulat Laplace'a}
+\subsection{Klasyfikacja symulacji komputerowej}
+\subsection{Symulacja a rozwiązania analityczne}
+Istnieją dwa podejścia do badania zjawisk o charakterze fizycznym.
+Pierwszym z podejść jest badanie analityczne z wykorzystaniem teorii fizyki, bogatego aparatu matematycznego, drugim symulowanie danych zjawisk.
+Oba podejścia znacząco się od siebie różnią i są wykorzystywane w różnych sytuacjach.
+
+\subsubsection{Sposób opisu}
+Precyzyjny opis zjawisk fizycznych w określonej skali jest zwykle związany z określonym modelem matematycznym. Model ten, wynikający z praw obowiązujących w danej skali (
+Przewaga symulacji nad rozwiązaniami dokładnymi objawia się przedewszystkim w stopni złożoności obliczeń. I tak jak symulacja sprowadza się zwykle do przeprowadzenia dużej ilości prostych obliczeń (co jest zadaniem doskonałym dla współczesnych architektur sprzętowych przystosowanych do pracy w takim właśnie trybie) tak rozwiązania dokładne wymagają często ogromnych ilości bardzo złożonych obliczeń lub stosowania pewnych uproszczeń, które sprawiają, że w pewien sposób tracimy powód by korzystać z tego rodzaju technik.
+Ponadto symulacja pozwala na przeglądanie zachowań w różnych kontekstach z punktu widzenia skali interpretowalenej dla operatora symulacji.
+
+Symulacja a rozwiązanie analityczne.
+- Złożoność
+- Liczność przeglądania
+- Reprezentacja graficzna (interpretacja organoleptyczna).
+
+\subsection{Symulacja dynamiki obiektów}
+\subsubsection{Podstawy fizyczne symulacji}
+Dynamika bryły sztywnej
+Dynamika punktu materialnego
+\subsection{Zastosowanie symulacji}
+\subsection{Przykłady istniejących symulacji}
+\section[Systemy fuzji danych][Systemy fuzji danych]{Systemy fuzji danych}
+\section[Specyfika środowiska miejskiego][Specyfika środowiska miejskiego]{Specyfika środowiska miejskiego}
+\subsection{Specyfika symulowanych obiektów}
+\subsubsection{Obiekty Statyczne}
+\subsubsection{Obiekty Dynamiczne}
+\subsection{Specyfika obserwacji}
+\subsection{Szumy i niedokładności}
