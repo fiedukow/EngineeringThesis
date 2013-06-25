@@ -151,7 +151,97 @@ Powołując się ponownie na przykład symulacji cząstek wody by obserować ich
 Wizualizowanie wszelkich zjawisk zdaje się być nierozłącznie związane z ich symulowaniem i stanowi istotny element a w wielu sytuacjach cel egzystencji symulatorów jako takich.
 }
 
-\subsection{Klasyfikacja symulacji komputerowej}
+\subsection{Model symulacji komputerowej}
+\subsubsection{Definicja modelu}
+Modelem w symulacji komputerowej nazywamy zasady, wedle których funkcjonuje symulacja, uwzględniający wszelkie zmienne wejściowe i wyprowadzający z nich zmienne wyjściowe z uwzględnieniem upływu czasu.
+\par{
+W literaturze [3] można spotkać następującą, nieco bardziej ścisłą definicję:g
+Model \textit{to operator przekształcający zadane zmienne wejściowe X(t) w zmieenne wyjściowe Y(t) czyli 
+\begin{center}
+$Y(t) = H_{t} \times X(t).$
+\end{center}
+}
+}.
+
+\subsubsection{Oczekiwane cechy modelu}
+\par{
+Przed modelami do symulacji najczęściej stawiane są trzy wymagania [2,4]:
+\begin{itemize}
+\item Wymaganie jednoznaczności - oznacza to, że operator modelu jest zależnością funkcyjną tzn. że jeden zbiór danych wejściowych daje dokładnie jedną odpowiedź.
+\item Wymaganie spójności (rozwiązywalności) - oznacza to, że elementy modelu nie przeczą sobie nazajem (są matematycznie spójne).
+\item Wymaganie stabilności - wymaganie to, oznacza, że niewielkie zmiany danych wejściowych nie powinny pociągać za sobą gwałtownych zmian w danych wyjściowych. Należy jednak zwrócić uwagę, iż niekiedy symulowany system posiada właściwości przeczące tej zasadzie - nietrudno wyobrazić sobie na przykład symulację nacisku na jakiś obiekt, który po przekroczeniu pewnej krytycznej wartości siły nacisku łamie się, powodując diametralną zmianę wyglądu całego systemu (w wyniku reakcji łancuchowej). 
+\end{itemize}
+}
+
+\subsection{Taksonomia modeli}
+\par{
+Literatura [2,3,4] podaje wiele kryteriów podziału modeli, poniżej zestawiono najbardziej ostre spośród nich.
+}
+
+\subsubsection{Podział ze względu na istnienie czasu}
+\par{
+\begin{itemize}
+\item model dynamiczny - znacznie bardziej popularny, upływ czasu jest uwzględniany w modelu i ma wpływ na wartości zmiennych wyjściowych.
+\item model statyczny - nie uwzględnia upływu czasu lub wartosci zmiennych wyjściowych nie zależą od niego w żaden sposób.
+\end{itemize}
+}
+
+\subsubsection{Podział ze względu na model czasu}
+\par{
+Dotyczy tylko modeli dynamicznych.
+\begin{itemize}
+\item model ciągły w czasie - istnieje możliwość wyznaczenia wartości parametrów wyjściowych dla dowolnej chwili czasowej.
+\item model dyskretny w czasie - istnieje możliwość wyznaczenia wartości parametrów końcowych tylko dla przeliczalnego zbioru chwil czasowych.
+\end{itemize}
+}
+
+\subsubsection{Podział ze względu na determinizm}
+\par{
+\begin{itemize}
+\item model deterministyczny - dla danego stanu początkowego daje zawsze taki sam wynik.
+\item model niedeterministyczny - wynik działania modelu nie jest zdetermininowany w momencie zadania stanu wejściowego.
+\end{itemize}
+}
+\par{
+Warto mieć na względzie, że modele niedeterministyczne niejako stoją w sprzeczności z postulatem Laplace'a jak i z postawionym wyżej wymaganiem jednoznaczności. Należy jednak pamiętać, że w typowym przypadku narzędziem programistycznym dla symulacji operującej na modelu niedeterministycznym będzie symulator liczb pseudolosowych, który choć wykazuje cechy probabilistyczne charakterystyczne dla liczb losowych, w rzeczywistości bazuje na deterministycznych zdarzeniach - w praktyce więc każda komputerowa implementacja symulatora będzie miała charakter deterministyczny.
+}
+
+\subsubsection{Podział ze względu na oddziaływanie ze światem zewnętrznym}
+\par{
+\begin{itemize}
+\item model autonomiczny - tworzy zamknięty układ i nie uwzględnia żadnych możliwości interakcji z jego zewnętrzem.
+\item model nieautonomiczny - pozwala na dostarczanie bodźców (pobudzeń, wartości) z zewnątrz, które mają wpływ na zmienne wyjściowe.
+\end{itemize}
+}
+
+\subsubsection{Podział ze względu na rodzaj związków między wejściem a wyjściem}
+\par{
+\begin{itemize}
+\item model liniowy - zmienne wyjściowe są związane ze zmiennymi wejściowymi przy użyciu liniowych funkcji.
+\item model nieliniowy - wykorzystuje funkcje nieliniowe do obliczania wartości parametrów wyjściowych.
+\end{itemize}
+}
+
+\subsubsection{Podział ze względu na źródło zależności}
+\par{
+\begin{itemize}
+\item model dedukcyjny - reguły modelu pochodzą na podstawie teorii opisującej modelowane zjawisko.
+\item model empiryczny - reguły są tworzone na podstawie obserwacji zachowań modelowanego zjawiska, tak by model miał podobne obserwowalne właściwości.
+\end{itemize}
+}
+
+\subsection{Modelowanie}
+\subsubsection{Co modelujemy}
+Upraszczanie kosztem czego
+\subsubsection{Kryteria doboru}
+\subsubsection{Zasadność modelu}
+\par{
+Model jako taki musi posiadać pewne cechy by był przydatny do jakichkolwiek zastosowań. Zastosowanie wyżej sformułowanych kryteriów doboru, powinno zapewnić, że model będzie właściwie dobrany, jednak warto mieć dodatkowo na względzie dwa aspekty, wedle których można ocenić zasadność istnienia zaproponowanego przez nas modelu [4].
+\begin{itemize}
+\item Badanie modelu nie powinno być bardziej złożone od badanie właściwego zjawiska.
+\item Model powinien (zwłaszcza w kwestiach związanych ze swoim celem) zachowywać się w sposób zbliżony do modelowanego zjawiska.
+\end{itemize}
+}
 
 \subsection{Symulacja a rozwiązania analityczne}
 Istnieją dwa podejścia do badania zjawisk o charakterze fizycznym.
@@ -172,8 +262,8 @@ Symulacja a rozwiązanie analityczne.
 \subsubsection{Podstawy fizyczne symulacji}
 Dynamika bryły sztywnej
 Dynamika punktu materialnego
-\subsection{Zastosowanie symulacji}
-\subsection{Przykłady istniejących symulacji}
+
+
 \section[Systemy fuzji danych][Systemy fuzji danych]{Systemy fuzji danych}
 \section[Specyfika środowiska miejskiego][Specyfika środowiska miejskiego]{Specyfika środowiska miejskiego}
 \subsection{Specyfika symulowanych obiektów}
