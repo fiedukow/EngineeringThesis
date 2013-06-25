@@ -36,25 +36,123 @@ Czym jest więc symulacja komputerowa? Symulacja to proces, który pozwala przy 
 }
 
 \subsection{Filozofia symulacji komputerowej}
+
 \subsubsection{Postulat Laplace'a}
+\par{
+W roku 1814 Pierre Simon Laplace opublikował \textit{Essai philosophique sur les probabilites} (fran. \textit{Filozoficzny esej na temat prawdopodobieństwa}), w którym wysunął następujący postulat:
+}
+\par{
+\textit{Umysł, który by znał siły działające w danej chwili w przyrodzie oraz wzajemne położenie wszystkich istotności, z których ona się składa, gdyby zdołał ująć je i poddać analizie - w jednym wzorze zawarłby ruchy największych ciał niebieskich i najdrobniejszych atomów. Nie byłoby dla niego nic niepewnego i zarówno przyszłość, jak i przeszłość świata byłyby obecne dla jego oka ...
+}}
+\par{
+\textit{... Jesteśmy tak dalecy od chwili, kiedy poznamy wszystkie siły przyrody i różne formy ich oddziaływania, że nie byłoby godnym filozofa negowanie pewnych zjawisk jedynie dlatego, że nie można ich objaśnić przy obecnym stanie wiedzy. Jesteśmy zobowiązani do badania zjawisk tym dokładniej, im trudniej przychodzi nam uznać je za istniejące.}
+}
+
+\par{
+Współczesna nauka odsunęła się nieco od tej koncepcji. Po pierwsze przyjmuje się (mając na względzie zasady fizyki kwantowej), że świat nie opiera sie o deterministyczne zasady - co w zasadzie obala postulat Laplace'a. Po drugie nastomiast, zgodnie z zasadą Heisenberga nie jest możliwe uzyskanie pełnego obrazu świata ponieważ każda jego obserwacja wpływa na jego stan - co uniemożliwia wykorzystanie postulatu Laplace'a w praktyce.
+}
+\par{
+Obalenie teorii Laplace'a nie oznacza bynajmniej, że nie pozostaje ona poza światem nauki - nadal ma ona bardzo duże znaczenie filozoficzne oraz nadal aktualna pozostaje jej druga część. Ponadto, w wielu sytuacjach zakłada się, że zasada ta nadal obowiązuje - jednym z takich miejsc jest symulacja komputerowa.
+}
+\par{
+Podstawą w zasadzie każdej symulacji komputerowej jest stan symulowanych obiektów oraz oddziaływania między nimi. Zakłada się, że symulator zna \textbf{wszystkie} zasady obowiązujące w symulowanym świecie jak i stan wszystkich i w związku z tym jest w stanie określić przyszłość symulowanego układu - jest to stan, o którym wspominał Laplace'a, a symulator można by w tym kontekście potraktować jako demona Laplace'a. Warto zwrócić uwagę, że w podejściu takim nie ma nic zdrożnego, ani sprzecznego ze współczesną nauką - przedewszystkim dlatego, że ograniczenie symulacji do ciągu przyczyn i skutków nie obniża zwykle jej wartości w kwestii celu jaki się przed nią stawia.
+}
+
 \subsubsection{Precyzja komputerów}
+\par{
+Kolejnym problem w pewien sposób uniemożliwający przyrównanie rzeczywstości do symulacji komputerowej jest fakt, że współczesne komputery przechowują dane w sposób skwantowany (binarny). W związku z tym nie sposób opisać na nim danych o charakterze ciągłym z dowolną precyzją.
+}
+\par{
+Choć zdawać by się mogło, że w świetle współczesnych badań, ograniczenie to przestaje mieć sens, ponieważ przyjmuje się, że wszelkie zjawiska w przyrodzie mają charakter kwantowy, to należy wziąć pod uwagę jak małe są kwanty o których mówi ta teoria.
+}
+\par{
+Długość Plancka (czyli minimalna obserwowalna we wrzechświecie odległość wyniosi 
+\begin{center}
+$l_P = c \ t_P = \sqrt{\frac{\hbar G}{c^3}} = 1,616 199(97) \times 10^{-35} m$
+\end{center}
+co oznacza, że aby zapisać na komputerze dokładne położenie obiektu w trójwymiarowej kostce o boku długości jednego metra potrzebowali byśmy ok. $3.5 \times 10^{65}$ terabajta pamięci. Przy obecnej technologii zdaje się więc, że dokładność komputera jest zasadniczym problemem uniemożliwiającym dokładne odwzorowanie rzeczywistości.
+}
+
 \subsubsection{Praktyczne znaczenie ograniczeń}
+\par{
+W praktyce, wyżej wymienione ograniczenia nie są zwykle krytyczne. Często bowiem symulacja ma za zadanie upraszczać wygląd rzeczywistości, a więc nadmierna precyzja jest w wręcz niewskazana.
+}
+\par{
+Warto jednak zdawać sobie sprawę, że symulacja komputerowa jest jedynie pewnym przybliżeniem rzeczywistości i z samej swojej natury obarczona jest zasadniczym błędem - i własnie znalezienie takiego sposobu symulacji by błąd w możliwie małym stopniu wpływał na aspekty istotne z punktu widzenia celu symulacji zdaje się być istotą jej projektowania.
+}
+
 \subsection{Zastosowanie symulacji}
 
 \subsubsection{Przewidywanie zdarzeń}
-Podstawowym zdaniem stawianym przed symulacjami komputerowymi zdaje się być przewidywanie różnego rodzaju zdarzeń.
+\par{
+Podstawowym zdaniem stawianym przed symulacjami komputerowymi zdaje się być przewidywanie różnego rodzaju zdarzeń. Znając zasady wg. których funkcjonują pewne zjawiska, jesteśmy w stanie do pewnego stopnia określić jak będą rozwijały się te zjawiska w przyszłości.
+}
+\par{
+Niektóre z tych zjawisk potrafiliśmy przewidywać już przed erą symulacji komputerowej - albo przy użyciu klasycznego aparatu matematycznego albo przy użyciu własnej intuicji i doświadczenia. Jednak symulowanie zjawisk w celu przewidywania ich rozwoju przenosi przewidywanie przyszłości na zupełnie nowy poziom.
+}
+\par{
+Na symulację możemy wpływać - tj. sprawdzać jak będzie reagowała na poszczególne bodźce ze świata zewnętrznego. Możemy także sterować jej przebiegiem - tj. w miejscach gdzie pojawia się niepewność związana z metodyką symulacji wybrać konkretny wariant rozwiązania problemu.
+Dzięki temu, jesteśmy w stanie, w którkim czasie wytworzyć i przeanalizować wiele sceneriuszy wydarzeń i na podstawie tych doświadczeń podejmować działania (w szczególności realne działania prewencyjne).
+}
+\par{
+Przykładem tego rodzaju zastosowań jest symulowanie przebiegu huraganu, pozwalające przewidywać jego rozwój, kierunek i szybkość przemieszczania się w zależności od licznych, często samych w sobie trudnych do przewidzenia okoliczności. Na podstawie tego rodzaju symulacji uruchamia się służby kryzysowe w odpowiednich rejonach, informuje się mieszkańców o zagrożeniu, czy zarządza ewakuację.
+}
 
-\subsubsection{Badania empiryczne, eksperymenty}
-A co będzie gdy tu pchniemy?
+\subsubsection{Badania i eksperymenty}
+\par{
+Drugi typ zastosowań ma ścisły związek z badaniami naukowymi.
+Opisując model pewnych zjawisk, przy użyciu symulatora jesteśmy w stanie sprawdzać reakcję całego układu na naszą ingerencję jak i obserwować jego zachowanie w stanie zamkniętym. Tego rodzaju badanie może często uzmysławiać pewne zjawiska w innej skali, niż ta na której rozpatrywany jest układ w modelu symulacji.
+}
+\par{
+Przeprowadzanie niektórych eksperymentów jest często w świecie realnym problematyczne, kosztowne lub wręcz niemożliwe - symulowanie eksperymentów zdaje się pozwalać w znacznym stopniu usprawniać badania a także wskazywać kierunki dalszego rozwoju. Jednocześnie najbardziej udane eksperymenty często powtarza się w warunkach realnych by uzyskać bardziej precyzyjny i pewny obraz.
+}
+\par{
+Przykładem zastsowania w tym sektorze może być np. symulacja zbiornika z wodą na poziomie pojedyńczych cząsteczek by symulować jej zachowanie w konkretnych sytuacjach (np. uderzenie). Mając do dyspozycji taki symulator możemy zaobserować jak reaguje tafla wody na uderzenie i np. wysnuć teorię na temat związku długości fali na wodzie z siłą uderzenia.
+}
 
-\subsubsection{Testowanie i badania}
-Czy to się zachowa jak zakładaliśmy?
-Czy nasze mechanizmy zadziałają prawidłowo?
-CZY WYŚLEDZIMY OBIEKT
+\subsubsection{Testowanie}
+\par{
+Często spotykanym problemem, na który napotykają inżynierowie jest niemożność testowania ich rozwiązań w realnych warunkach. W takich sytuacjach z pomocą często przychodzą komputerowe symulacje. Dostarczają one danych do badań, lub pozwalają obserwować reakcje układu na działanie wdrażanego systemu.
+}
+\par{
+Symulator opisywany w niniejszej pracy został stworzony z myślą o właśnie takim zastosowaniu. Ma on za zadanie generować dane wyjściowe dotyczące ruchu w środowisku miejskim przeznaczone jako wejście dla systemu śledzenia obiektów, który przystosowany został do pracy z realnymi danymi.
+}
+\par{
+Rozwiązanie wykorzystujące symulator jest tańsze, szybsze oraz znacznie prostsze i może w znacznym stopniu wyprzedzać bieżące czasy.
+Zebranie realnych danych na temat pojazdów poruszających się po mieście jest zadaniem nie łatwym. Kamery z funkcją rozponawania obiektów są dopiero raczkującą technologią a ich umieszczenie w całym mieście jest bardzo kosztowne. Umieszczenie ludzi spisujących odpowiednie, jest mało precyzyjne, i obarczone innym rodzajem błędów niż odczyty z kamer. Uzyskanie realnych danych potrzebnych do testowania skuteczności systemu śledzenia zdaje się więc być praktycznie niemożliwe.
+}
+\par{
+Z pomocą przychodzą symulatory - za ich pomocą możemy wytworzyć takie dane, jakich powinna nam dostarczyć hipotetyczna kamera. Nałożyć na nie odpowiednie szumy. I zapisać razem z o wiele szerszymi danymi realnymi pozwalającymi analizować skuteczność wykorzystanych rozwiązań.
+}
+\par{
+Dzięki temu, praca nad systemami śledzenia może postępować niezależnie od prac nad systemami monitoringu. Takie podejście sprawia że w sytuacji stworzenia i wdrożenia odpowiedniej realnej bazy sprzętowej będzie istniało już gotowe oprogramowanie mogące w pełni wykorzystać jej możliwości.
+}
+\par{
+Wykorzystanie symulatorów do testowania zdaje się pozwalać na oszczędzanie dużej ilości zasobów i może prowadzić do skrócenia czasu badań pozwalając na unikanie kłopotliwych przygotowań do realnego testowania w trakcie koncepcyjnego opracowywania projektowanego systemu.
+}
 
-\subsection{Dokładność symulacji komputerowej}
-\subsubsection{Postulat Laplace'a}
+\subsubsection{Wizualizacja (także interaktywna)}
+\par{
+Ostatnim, acz nie najmniej istotnym z zastosowań symulatorów jest tworzenie wizualizacji w tym wizualizacji interaktywnych.
+}
+\par{
+Organoleptyczne przekazywanie informacji jest bardzo istotne z punktu widzenia funkcjonowania człowieka - dane dostarczone w sposób nieprzetworzony są zwykle niezrozumiałe lub wymagają dużych nakładów czasu by wyciąganąć z nich potrzebne informację. Ponieważ często symulator ma za zadanie zaprezentować ogólny pogląd na symulowane zjawisko, często wraz z symulatorem dostarczany jest system pozwalający zwizualizować jego pracę.
+}
+\par{
+Praktyczne zastosowanie tego rodzaju tandemu zdaje się być bardzo szerokie. Pozwala to na prezentowanie sedna złożonych zjawisk, ułatwia przekazywania informacji, pozwala na obserwowanie zjawisk, do których odruchowej analizy człowiek jest całe życie przyzwyczajany. Dzięki temu często w sposób heurystyczny jesteśmy w stanie wyznaczyć pewne prawidłowości, których zasadność często sprawdzana jest dokładnie albo analitycznie albo z wykorzystaniem tego samego symulatora i dołączonego do niego modułu analizującego dane.
+}
+\par{
+Prezentując dane przy użyciu odpowiedniej wizualizacji, jesteśmy w stanie przekazać złożone informacje w sposób intuicyjnie zrozumiały. Jest to cenna właściwość szczególnie dla edukacji czy wszelkiego rodzaju ciał doradczych współpracujących z podmiotami nie operującymi naukową nomenklaturą.
+}
+\par{
+Powołując się ponownie na przykład symulacji cząstek wody by obserować ich powierzchnię, wynikiem takiego symulatora było by zapewne położenie poszczególnych cząstek wody. Jednak chcąc widzieć realną powierzchnię - często z uzyskanych danych wytworzymy trójwymiarowy obraz dający nam wrażenie jakbyśmy pracowali z realną cieczą.
+}
+\par{
+Wizualizowanie wszelkich zjawisk zdaje się być nierozłącznie związane z ich symulowaniem i stanowi istotny element a w wielu sytuacjach cel egzystencji symulatorów jako takich.
+}
+
 \subsection{Klasyfikacja symulacji komputerowej}
+
 \subsection{Symulacja a rozwiązania analityczne}
 Istnieją dwa podejścia do badania zjawisk o charakterze fizycznym.
 Pierwszym z podejść jest badanie analityczne z wykorzystaniem teorii fizyki, bogatego aparatu matematycznego, drugim symulowanie danych zjawisk.
