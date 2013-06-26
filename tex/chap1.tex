@@ -32,7 +32,7 @@ Symulacja komputerowa, zdaje się być odpowiedzią na drugą metodykę, która 
 }
 
 \par{
-Czym jest więc symulacja komputerowa? Symulacja to proces, który pozwala przy użyciu reguł jednej skali obserwować zjawiska w innej. Słowo komputerowa odnosi się do konkretnej realizacji - z wykorzystaniem maszyn cyfrowych. Dobrym podsumowaniem ukazującym funkcję symulacji komputerowej zdaje się być poniższy schemat przedstawiający trzy filary współczesnej nauki.
+Czym jest więc symulacja komputerowa? Symulacja to proces, który pozwala przy użyciu reguł jednej skali obserwować zjawiska w innej. Słowo komputerowa odnosi się do konkretnej realizacji - z wykorzystaniem maszyn cyfrowych. Dobrym podsumowaniem ukazującym funkcję symulacji komputerowej zdaje się być poniższy schemat przedstawiający trzy filary współczesnej nauki wg. prof. Michała Kleibera.
 \begin{center}
 \includegraphics[width=\textwidth,keepaspectratio]{img/triada_poznania}
 \textit{Trzy filary poznawcze współczesnej nauki [5].}
@@ -79,10 +79,10 @@ co oznacza, że aby zapisać na komputerze dokładne położenie obiektu w trój
 
 \subsubsection{Praktyczne znaczenie ograniczeń}
 \par{
-W praktyce, wyżej wymienione ograniczenia nie są zwykle krytyczne. Często bowiem symulacja ma za zadanie upraszczać wygląd rzeczywistości, a więc nadmierna precyzja jest w wręcz niewskazana.
+W praktyce, wyżej wymienione ograniczenia nie są zwykle krytyczne. Zazwyczaj bowiem symulacja ma za zadanie upraszczać wygląd rzeczywistości, a więc nadmierna precyzja jest w wręcz niewskazana.
 }
 \par{
-Warto jednak zdawać sobie sprawę, że symulacja komputerowa jest jedynie pewnym przybliżeniem rzeczywistości i z samej swojej natury obarczona jest zasadniczym błędem - i własnie znalezienie takiego sposobu symulacji by błąd w możliwie małym stopniu wpływał na aspekty istotne z punktu widzenia celu symulacji zdaje się być istotą jej projektowania.
+Warto jednak zdawać sobie sprawę, że symulacja komputerowa jest jedynie pewnym przybliżeniem rzeczywistości i z samej swojej natury obarczona jest zasadniczym błędem - i własnie \textbf{znalezienie takiego sposobu symulacji by błąd w możliwie małym stopniu wpływał na aspekty istotne z punktu widzenia celu symulacji zdaje się być istotą jej projektowania.}
 }
 
 \subsection{Zastosowanie symulacji}
@@ -108,7 +108,7 @@ Drugi typ zastosowań ma ścisły związek z badaniami naukowymi.
 Opisując model pewnych zjawisk, przy użyciu symulatora jesteśmy w stanie sprawdzać reakcję całego układu na naszą ingerencję jak i obserwować jego zachowanie w stanie zamkniętym. Tego rodzaju badanie może często uzmysławiać pewne zjawiska w innej skali, niż ta na której rozpatrywany jest układ w modelu symulacji.
 }
 \par{
-Przeprowadzanie niektórych eksperymentów jest często w świecie realnym problematyczne, kosztowne lub wręcz niemożliwe - symulowanie eksperymentów zdaje się pozwalać w znacznym stopniu usprawniać badania a także wskazywać kierunki dalszego rozwoju. Jednocześnie najbardziej udane eksperymenty często powtarza się w warunkach realnych by uzyskać bardziej precyzyjny i pewny obraz.
+Przeprowadzanie niektórych eksperymentów w świecie realnym jest często problematyczne, kosztowne lub wręcz niemożliwe. Symulowanie eksperymentów zdaje się pozwalać w znacznym stopniu usprawniać badania a także wskazywać kierunki dalszego rozwoju. Jednocześnie najbardziej udane eksperymenty często powtarza się w rzeczywistości by uzyskać bardziej precyzyjny i pewny obraz.
 }
 \par{
 Przykładem zastsowania w tym sektorze może być np. symulacja zbiornika z wodą na poziomie pojedyńczych cząsteczek by symulować jej zachowanie w konkretnych sytuacjach (np. uderzenie). Mając do dyspozycji taki symulator możemy zaobserować jak reaguje tafla wody na uderzenie i np. wysnuć teorię na temat związku długości fali na wodzie z siłą uderzenia.
@@ -140,7 +140,7 @@ Wykorzystanie symulatorów do testowania zdaje się pozwalać na oszczędzanie d
 Ostatnim, acz nie najmniej istotnym z zastosowań symulatorów jest tworzenie wizualizacji w tym wizualizacji interaktywnych.
 }
 \par{
-Organoleptyczne przekazywanie informacji jest bardzo istotne z punktu widzenia funkcjonowania człowieka - dane dostarczone w sposób nieprzetworzony są zwykle niezrozumiałe lub wymagają dużych nakładów czasu by wyciąganąć z nich potrzebne informację. Ponieważ często symulator ma za zadanie zaprezentować ogólny pogląd na symulowane zjawisko, często wraz z symulatorem dostarczany jest system pozwalający zwizualizować jego pracę.
+Organoleptyczne przekazywanie informacji jest bardzo istotne z punktu widzenia funkcjonowania człowieka - dane dostarczone w sposób nieprzetworzony są zwykle niezrozumiałe lub wymagają dużych nakładów czasu by wyciąganąć z nich potrzebne informację. Ponieważ często symulator ma za zadanie zaprezentować ogólny pogląd na symulowane zjawisko, typowo wraz z symulatorem dostarczany jest system pozwalający zwizualizować jego pracę.
 }
 \par{
 Praktyczne zastosowanie tego rodzaju tandemu zdaje się być bardzo szerokie. Pozwala to na prezentowanie sedna złożonych zjawisk, ułatwia przekazywania informacji, pozwala na obserwowanie zjawisk, do których odruchowej analizy człowiek jest całe życie przyzwyczajany. Dzięki temu często w sposób heurystyczny jesteśmy w stanie wyznaczyć pewne prawidłowości, których zasadność często sprawdzana jest dokładnie albo analitycznie albo z wykorzystaniem tego samego symulatora i dołączonego do niego modułu analizującego dane.
@@ -159,7 +159,7 @@ Wizualizowanie wszelkich zjawisk zdaje się być nierozłącznie związane z ich
 \subsubsection{Definicja modelu}
 Modelem w symulacji komputerowej nazywamy zasady, wedle których funkcjonuje symulacja, uwzględniający wszelkie zmienne wejściowe i wyprowadzający z nich zmienne wyjściowe z uwzględnieniem upływu czasu.
 \par{
-W literaturze [3] można spotkać następującą, nieco bardziej ścisłą definicję:g
+W literaturze [3] można spotkać następującą, nieco bardziej ścisłą definicję:
 Model \textit{to operator przekształcający zadane zmienne wejściowe X(t) w zmieenne wyjściowe Y(t) czyli 
 \begin{center}
 $Y(t) = H_{t} \times X(t).$
@@ -244,23 +244,23 @@ Proces tworzenia modeli pewnych zjawisk (np. na potrzeby symulacji komputerowej)
 Przystępując do modelowania jakichkolwiek zjawisk poprawnym podejściem jest zwrócenie uwagi na następujące aspekty [2]:
 \begin{itemize}
 \item \textbf{cel} - celowi tworzenia modelu powinny być podporządkowane wszystkie związane z nim działania. Należy pamiętać, że to model istnieje dla celu a nie odwrotnie. Cel symulacji stanowi punkt odniesienia, do którego należy często powracać i podporządkowywać mu decyzje podejmowane podczas modelowania.
-\item \textbf{poziom uproszczenia} - model z samej swojej natury musi być pewnym uproszczonym odpowiednikiem wycinka rzeczywistości. Jego stopień skomplikowania nie może być zbyt wysoki, przez względ na dostępne metody praktycznej implementacji symulacji oń opertej. Z drugiej strony wybranie modelu nadmiernie uproszczonego moze prowadzić do zagubienia pewnych specyficznych zachowań symulowanego zjawiska - co może fałszować obraz symulacji. Dobrym określeniem porządanego stopnia uproszczenia modelu mogą być słowa Alberta Einsteina: \textit{Wszys­tko po­win­no być tak pros­te, jak to tyl­ko możli­we, ale nie pros­tsze.}.
+\item \textbf{poziom uproszczenia} - model z samej swojej natury musi być pewnym uproszczonym odpowiednikiem wycinka rzeczywistości. Jego stopień skomplikowania nie może być zbyt wysoki, przez względ na dostępne metody praktycznej implementacji symulacji oń opertej. Z drugiej strony wybranie modelu nadmiernie uproszczonego moze prowadzić do zagubienia pewnych specyficznych zachowań symulowanego zjawiska - co może fałszować obraz symulacji. Dobrym określeniem porządanego stopnia uproszczenia modelu mogą być słowa Alberta Einsteina: \textit{Wszys­tko po­win­no być tak pros­te, jak to tyl­ko możli­we, ale nie pros­tsze.}
 \item \textbf{potrzeby eksperymentu} - niezywkle często zdarza się, że zjawisko modelowane jest z zamiarem wykorzystania do ściśle określonego eksperymentu. Mając taką świadomość, jesteśmy w stanie łatwiej dobrać możliwe uproszczenia, a co ważniejsze pozbyć się wielu niepotrzebnych zależności z proponowanego modelu.
-\item \textbf{poprawność} - model uznaje się za poprawny, jeśli model poddany każdemu możliwemu wejściu zachowa się wystarczająco podobnie do realnego zjawiska poddanego bodźcom odpowiadającym temu wejściu. Określenie, czy dane wyjście jest wystarczająco podobne do wyjścia realnego jest decyzją jaką podejmuje modelujący mając na względnie różne aspekty modelu a w szczególności jego cel. Zależności jakie powinny zachodzić w poprawnym modelu przedstawia poniższy rysunek.
+\item \textbf{poprawność} - model uznaje się za poprawny, jeśli poddany każdemu możliwemu wejściu zachowa się wystarczająco podobnie do realnego zjawiska poddanego bodźcom odpowiadającym temu wejściu. Określenie, czy dane wyjście jest wystarczająco podobne do wyjścia realnego jest decyzją jaką podejmuje modelujący mając na względnie różne aspekty modelu a w szczególności cel jego tworzenia. Zależności jakie powinny zachodzić w poprawnym modelu przedstawia poniższy rysunek.
 \par{
 \begin{center}
 \includegraphics[width=\textwidth,keepaspectratio]{img/poprawnosc_modelu}
 \textit{Popraność modelu względem modelowanego zjawiska [2].}
 \end{center}
 }
-\item \textbf{przydatność} - model uznawany jest za przydatny gdy jego złożoność rośnie wolniej niż wykładniczo względem ilości zmiennych wykorzystywanych do jego opisu [2]. Modele zagadnień o złożoności wykładniczej mogą być poprawne, jednak ich precyzyjny opis jest często nieprzydatny i wymagane jest ich uproszczenie, by rozwiązywać symulowane zagadnienie z mniejszą dokładnością (np. heurystycznie) ale ciągle wystarczająco dobrze z punktu widzenia symulacji i w realnie dostępnym czasie.
+\item \textbf{przydatność} - model uznawany jest za przydatny gdy jego złożoność rośnie wolniej niż wykładniczo względem ilości zmiennych wykorzystywanych do jego opisu [2]. Modele zagadnień o złożoności wykładniczej mogą być poprawne, jednak ich precyzyjny opis jest często nieprzydatny i wymagane jest ich uproszczenie, by rozwiązywać symulowane zagadnienie z mniejszą dokładnością (np. heurystycznie) ale ciągle wystarczająco dobrze z punktu widzenia symulacji a jednocześnie w realnie dostępnym czasie.
 \item \textbf{wiarygodność} - wiarygodność modelu określa na ile użytkownik jest przekonany o jego poprawności, szczególnie bazując na obserwacji wyników jego działania i organoleptycznym porównaniu tych wyników z realnym zjawiskiem. Wiarygodność modelu jest szczególnie istotna w przypadku symulacji przeznaczonych do wizualizacji określonych zjawisk.
 \end{itemize}
 }
 
 \subsubsection{Zasadność modelu}
 \par{
-Model jako taki musi posiadać pewne cechy by był przydatny do jakichkolwiek zastosowań. Zastosowanie wyżej sformułowanych kryteriów doboru, powinno zapewnić, że model będzie właściwie dobrany, jednak warto mieć dodatkowo na względzie dwa aspekty, wedle których można ocenić zasadność istnienia zaproponowanego przez nas modelu [4].
+Model jako taki musi posiadać pewne cechy by był przydatny do jakichkolwiek zastosowań. Zastosowanie wyżej sformułowanych kryteriów doboru, powinno zapewnić, że model będzie właściwie sformułowany, jednak warto mieć dodatkowo na względzie dwa aspekty, wedle których można ocenić zasadność istnienia zaproponowanego przez nas modelu [4].
 \begin{itemize}
 \item Badanie modelu nie powinno być bardziej złożone od badanie właściwego zjawiska.
 \item Model powinien (zwłaszcza w kwestiach związanych ze swoim celem) zachowywać się w sposób zbliżony do modelowanego zjawiska.
