@@ -239,16 +239,22 @@ Warto mieć na względzie, że modele niedeterministyczne niejako stoją w sprze
 Proces tworzenia modeli pewnych zjawisk (np. na potrzeby symulacji komputerowej) nazywany jest modelowaniem. Proces ten, stanowi często wyzwanie dla przystępujących do niego inżynierów ze względu na bardzo wysokość złożoność zagadnień jak i konieczność dobierania miejsc, które model będzie upraszczał względem rzeczywistości, tak by zachować zasadność tworzenia modelu.
 }
 
-\subsubsection{Zasady tworzenia modeli}
+\subsubsection{Aspekty tworzenie modeli}
 \par{
-Literatura [2] podaje następujące aspekty, które powinny przykuć uwagę projektanta podczas modelowania jakichkolwiek zjawisk.
+Przystępując do modelowania jakichkolwiek zjawisk poprawnym podejściem jest zwrócenie uwagi na następujące aspekty [2]:
 \begin{itemize}
-\item \textbf{poziom uproszczenia} - model z samej swojej natury musi być pewnym uproszczonym wycinkiem rzeczywistości ...
-\item \textbf{potrzeby eksperymentu}
-\item \textbf{poprawność}
-\item \textbf{przydatność}
-\item \textbf{wiarygodność}
-\item \textbf{cel}
+\item \textbf{cel} - celowi tworzenia modelu powinny być podporządkowane wszystkie związane z nim działania. Należy pamiętać, że to model istnieje dla celu a nie odwrotnie. Cel symulacji stanowi punkt odniesienia, do którego należy często powracać i podporządkowywać mu decyzje podejmowane podczas modelowania.
+\item \textbf{poziom uproszczenia} - model z samej swojej natury musi być pewnym uproszczonym odpowiednikiem wycinka rzeczywistości. Jego stopień skomplikowania nie może być zbyt wysoki, przez względ na dostępne metody praktycznej implementacji symulacji oń opertej. Z drugiej strony wybranie modelu nadmiernie uproszczonego moze prowadzić do zagubienia pewnych specyficznych zachowań symulowanego zjawiska - co może fałszować obraz symulacji. Dobrym określeniem porządanego stopnia uproszczenia modelu mogą być słowa Alberta Einsteina: \textit{Wszys­tko po­win­no być tak pros­te, jak to tyl­ko możli­we, ale nie pros­tsze.}.
+\item \textbf{potrzeby eksperymentu} - niezywkle często zdarza się, że zjawisko modelowane jest z zamiarem wykorzystania do ściśle określonego eksperymentu. Mając taką świadomość, jesteśmy w stanie łatwiej dobrać możliwe uproszczenia, a co ważniejsze pozbyć się wielu niepotrzebnych zależności z proponowanego modelu.
+\item \textbf{poprawność} - model uznaje się za poprawny, jeśli model poddany każdemu możliwemu wejściu zachowa się wystarczająco podobnie do realnego zjawiska poddanego bodźcom odpowiadającym temu wejściu. Określenie, czy dane wyjście jest wystarczająco podobne do wyjścia realnego jest decyzją jaką podejmuje modelujący mając na względnie różne aspekty modelu a w szczególności jego cel. Zależności jakie powinny zachodzić w poprawnym modelu przedstawia poniższy rysunek.
+\par{
+\begin{center}
+\includegraphics[width=\textwidth,keepaspectratio]{img/poprawnosc_modelu}
+\textit{Popraność modelu względem modelowanego zjawiska [2].}
+\end{center}
+}
+\item \textbf{przydatność} - model uznawany jest za przydatny gdy jego złożoność rośnie wolniej niż wykładniczo względem ilości zmiennych wykorzystywanych do jego opisu [2]. Modele zagadnień o złożoności wykładniczej mogą być poprawne, jednak ich precyzyjny opis jest często nieprzydatny i wymagane jest ich uproszczenie, by rozwiązywać symulowane zagadnienie z mniejszą dokładnością (np. heurystycznie) ale ciągle wystarczająco dobrze z punktu widzenia symulacji i w realnie dostępnym czasie.
+\item \textbf{wiarygodność} - wiarygodność modelu określa na ile użytkownik jest przekonany o jego poprawności, szczególnie bazując na obserwacji wyników jego działania i organoleptycznym porównaniu tych wyników z realnym zjawiskiem. Wiarygodność modelu jest szczególnie istotna w przypadku symulacji przeznaczonych do wizualizacji określonych zjawisk.
 \end{itemize}
 }
 
@@ -261,11 +267,64 @@ Model jako taki musi posiadać pewne cechy by był przydatny do jakichkolwiek za
 \end{itemize}
 }
 
-\subsection{Symulacja dynamiki obiektów}
-\subsubsection{Podstawy fizyczne symulacji}
-Dynamika bryły sztywnej
-Dynamika punktu materialnego
 
+\section[Podstawy fizyczne][Podstawy fizyczne]{Podstawy fizyczne}
+
+\subsection{Fizyczne modele dynamiki Newtona}
+\par{
+Do stworzenia odpowiedniego modelu symulacji komputerowej, oprócz znajomości metodyki modelowania wymagana jest znajomość teorii stojącej za modelowanym zjawiskiem oraz aparatu matematycznego dla niej odpowiedniego.
+Ruch obiektów w środowisku miejskim jest związany ściśle z klasyczną dynamiką Newtona. W fizyce klasycznej funkcjonują dwa podstawowe modele uproszczone opisujące ruch obiektów wg. zasad dynamiki Newtona - model bryły sztywnej i punktu materialnego.
+}
+
+\subsubsection{Dynamika bryły sztywnej}
+\par{
+Model bryły sztywnej uwzględnia kształt i wymiary obiektu poruszającego sie w przestrzeni. Jego podstawą jest założenie, że każdy obiekt ma strukturę jednostajnej, sztywnej (niezmieniającej kształtu pod względem czynników zewnętrznych) oraz nie absorbującej energii bryły, która poddawana jest wszelakim oddziaływaniom.
+}
+\par{
+W związku z tym, że model bryły sztywnej zakłada wymiarowość obiektów, posiadają one w tym modelu sześć stopni swobody, które określają ich położenie w trójwymiarowej przestrzeni:
+\begin{itemize}
+\item Trzy związane z ruchem postępowym
+	\begin{itemize}
+	\item szerokość (położenie na osi X)
+	\item wysokość (położenie na osi Y)
+	\item głębokość (położenie na osi Z)
+	\end{itemize}
+\item Trzy związane z ruchem obrotowym
+	\begin{itemize}
+	\item Kąt roll (obrót wokół osi X)
+	\item Kąt yaw (obrót wokół osi Y)
+	\item Kąt pitch (obrót wokół osi Z)
+	\end{itemize}
+\end{itemize}
+}
+\par{
+\begin{center}
+\includegraphics[]{img/xyz_ryp}
+\end{center}
+}
+\par{
+\begin{center}
+\textit{Stopnie swobody bryły szytwnej, źródło: $http://www.projectrho.com/public\_html/rocket/controldeck.php$}
+\end{center}
+}
+\subsubsection{Dynamika punktu materialnego}
+\par{
+Model punktu materialnego nie uwzględnia kształtu i fizycznego charakteru poruszającego się w przestrzeni ciała. W tym modelu przyjmuje się, że ciało (a więc cała masa) skupione jest w przestrzeni o zerowych wymiarach (punkcie). Tego rodzaju uproszczenie znacząco obniża skomplikowania rachunków związanych z ruchem ciał, jednak uniemożliwa rozpatrywanie ich ruchu obrotowego jak i nie jest w stanie bez dodatkowego wsparcia zapewnić spójnego opisu zderzeń obiektów (dwa punkty nie mogą się zderzyć gdyż nie mają wymiarów).
+}
+
+\par{
+Ponieważ punkt materialny nie ma wymiarów, posiada zaledwie trzy stopnie swobody, związane z położeniem, nie jest natomiast opisywany przez obroty (jak bryła sztywna):
+\begin{itemize}
+\item szerokość (położenie na osi X)
+\item wysokość (położenie na osi Y)
+\item głębokość (położenie na osi Z)
+\end{itemize}
+}
+
+\subsection{Rozwiązywanie równań dynamiki}
+\par{
+Posiadanie modelu fizycznego i odpowiedniej bazy matematycznej dla danego zjawiska pozwala na jego wykorzystanie, jednak wszelkie obliczenia związane z symulacją komputerową odbywać się będą przy użyciu maszyn cyfrowych. Koniecznym jest więc znalezienie sposobów numerycznego rozwiązywania problemów charakterystycznych dla wybranego modelu fizycznego - w tym wypadku dynamiki punktu materialnego.
+}
 
 \section[Systemy fuzji danych][Systemy fuzji danych]{Systemy fuzji danych}
 \section[Specyfika środowiska miejskiego][Specyfika środowiska miejskiego]{Specyfika środowiska miejskiego}
