@@ -53,7 +53,7 @@ W roku 1814 Pierre Simon Laplace opublikował \textit{Essai philosophique sur le
 }
 
 \par{
-Współczesna nauka odsunęła się nieco od tej koncepcji. Po pierwsze przyjmuje się (mając na względzie zasady fizyki kwantowej), że świat nie opiera sie o deterministyczne zasady - co w zasadzie obala postulat Laplace'a. Po drugie nastomiast, zgodnie z zasadą nieoznaczoności Heisenberga nie jest możliwe uzyskanie pełnego obrazu świata ponieważ każda jego obserwacja wpływa na jego stan - co uniemożliwia wykorzystanie postulatu Laplace'a w praktyce.
+Współczesna nauka odsunęła się nieco od tej koncepcji. Po pierwsze przyjmuje się (mając na względzie zasady fizyki kwantowej), że świat nie opiera sie o deterministyczne zasady - co w zasadzie obala postulat Laplace'a. Po drugie nastomiast, zgodnie z zasadą nieoznaczoności Heisenberga [7] nie jest możliwe uzyskanie pełnego obrazu świata ponieważ każda jego obserwacja wpływa na jego stan - co uniemożliwia wykorzystanie postulatu Laplace'a w praktyce.
 }
 \par{
 Obalenie teorii Laplace'a nie oznacza bynajmniej, że nie pozostaje ona poza światem nauki - nadal ma ona bardzo duże znaczenie filozoficzne oraz nadal aktualna pozostaje jej druga część. Ponadto, w wielu sytuacjach zakłada się, że zasada ta nadal obowiązuje - jednym z takich miejsc jest symulacja komputerowa.
@@ -327,50 +327,168 @@ Posiadanie modelu fizycznego i odpowiedniej bazy matematycznej dla danego zjawis
 }
 
 \section[Systemy fuzji danych][Systemy fuzji danych]{Systemy fuzji danych}
-\section[Modelowanie środowiska miejskiego][Modelowanie środowiska miejskiego]{Modelowanie środowiska miejskiego}
-\subsection{Obiekty w środowisku miejskim}
+\section[Elementy symulowanego środowiska][Elementy symulowanego środowiska]{Elementy symulowanego środowiska}
 \par{
-Środowisko miejskie jest pojęciem bardzo kompleksowym i opisuje całokształt zjawisk związanych z funkcjonowaniem wszelkich obiektów fizycznych w granicach miast. Najważniejszymi elementami tego środowiska z punktu widzenia fuzji danych do celów śledzenia obiektów zdają się być jednak tylko te elementy, które bezpośrednio i znacząco wpływają na wyniki obserwacji.
-}
-\subsubsection{Obiekty statyczne}
-\par{
-Obiekty statyczne w środowisku miejskim to wszelkiego rodzaju elementy krajobrazu rozumiane jako bryły, a w szczególności zabudowania oraz roślinność. Obiekty te zdają się być stosunkowo proste do osadzenia w symulacji gdyż charakteryzują się niezmienną w czasie pozycją. Mają jednak one istotny i zmienny w czasie wpływ na obserwowane środowisko w związku z tym ich zaniedbanie może być przyjęte tylko po wcześniejszej analizie wpływu takiego uproszczenia modelu na cel symulacji.
+Środowiskem miejskim nazywa się tu ogół obiektów znajdującej się w czterowymiarowej przestrzeni w otoczeniu ludzkich miast, powiązanych wzajemnymi relacjami. Elementami środowiska miejskiego są więc piesi i chodniki, pojazdy i ulice, budynki i ich mieszkńcy, parki wraz z lokalną fauną i florą czy post industrialne ruiny ozdobione dzikimi wysypiskami śmieci.
 }
 \par{
-Podstawowym pojęciem związanym z obiektami statycznymi jest przysłanianie. Warto zwrócić uwagę, że obiekty takie wpływają bezpośrednio na wynik obserwacji modelowanego środowiska w zależności od położenia obserwatora, czasu oraz pozycji innych obiektów. W związku z tym przy budowaniu modelu  obserwatorów środowiska należy uwzględniać jego interakcję z obiektami statycznymi.
+Środowisko miejskie rysuje się więc jako bardzo kompleksowe pojęcie, które nie sposób modelować w całej rozciągłości. Jednakże, z punktu widzenia systemów dozoru czy też śledzenia wystarczającym wydaje się być przedstawienia całego środowska miejskiego jako zbioru obiektów niżej wymienionych typów. Należy pamietać, że poniżej zaproponowany podział nie jest jedynym możliwym, a został wybrany do omówienia ponieważ pozwalał na jednocześnie na zaprezentowanie samego środowiska jak i płynne przejście do jego modelowania w dalszej części pracy.
+}
+\subsection{Obiekty statyczne}
+\par{
+Obiektami statycznymi w środowisku miejskim nazywamy wszystkie elementy krajobrazu niezmienne w czasie ale posiadające fizyczną reprezentację, mogącą wchodzić w pośrednią lub bezpośrednią interakcję z innymi obiektami.
 }
 \par{
-Analogicznie sprawa wygląda jeśli chodzi o inne zaburzenia obserwacji spowodowane przez obiekty statyczne - odbicia, zacienienia itd. Tego rodzaju zjawiska również mogą być uwzględnione w modelu, jeśli ich występowanie wydaje się mieć istotny wpływ na wynik analizy problemu, do którego sporządzany jest model.
+W wypadku przestrzeni czterowymiarowej, jaką jest środowisko miejskie, każdy obiekt posiadający fizyczną reprezentację w naturalny sposób opisywany jest bryłą potencjalnie zmienną w czasie. Jako że obiekty statyczne z samej swojej natury są niezmienne w czasie są one opisywane trójwymiarową bryłą o określonej pozycji w trzech wymiarach i znajdująca się w tej pozycji w każdym punkcie wymiaru czwartego (czasu).
 }
 \par{
-Innym aspketem związanym z symulowaniem elementów statyczych jest możliwość przewidzenia zderzeń pomiędzy obiektami dynamicznymi a statycznymi. W takiej sytuacji także obiekty statyczne muszą posiadać pewną fizyczną reprezentację by być w stanie wyznaczyć przebieg zdarzenia.
-}
-\subsubsection{Ścieżki}
-\par{
-Ścieżki są w zasadzie obiektami statycznymi, jednak o bardzo charakterystycznych właściowościach. Wyznaczają one bowiem potencjalne trasy po jakich poruszają się obiekty dynamiczne.
-}
-\par{
-Reprezentacja fizyczna ścieżek zdaje się być relatywnie bez znaczeni. Warto jednak mieć na względzie, że w niektórych sytuacjach ich wygląd czy kształt może wpływać na efektywność obserwacji, np. czarny samochód może być trudniejszy do automatycznego wykrycia przez systemy rozpoznawania obrazu na czarnym asfalcie niż na jasnych betonowych płytach. Innym elementem związaną z fizyczną reprezentacją ścieżek może być np. śliskość, która wpływa na poruszające się po niej obiekty dynamiczne.
-}
-\par{
-Modelując środowisko miejskie należy podjąć świadomą decyzję na temat reprezentacji fizycznej ścieżek - w wypadku celu tej pracy ich fizyczna reprezentacja w modelu zdaje się nie być istotna ponieważ praca ta nie służy analizie skuteczności pozyskiwania informacji. Nie wydaje się również żeby ich fizyczna reprezentacja miała znaczenie z punktu widzenia jakichkolwiek aspektów symulowanej przestrzeni. Warto zwrócić uwagę, że jeśli w przyszłości zajdzie potrzeba modelowania właściwości scieżek jako takich, można wykorzystać do tego celu typowy model obiektów statycznych, który zapewnia wszystkie właściwości potrzebne danej symulacji - jako że \textbf{ścieżka jest właśnie obiektym statycznym powiększonym o pewne dodatkowe właściwości}.
-}
-\par{
-Podstawową właściwością ścieżki jest posiadanie początku i końca umieszczonego w przestrzeni. Dodatkowo ścieżkę charakteryzować mogą inne właściwości jak np.:
+Poza reprezentacją w formie bryły każdy element tego rodzaju może być opisywany w całości lub częściami rozmaitymi parametrami mającymi fizyczny wpływ na inne obiekty z otoczenia jak np.
 \begin{itemize}
-\item Kierunek
-\item Szerokość
-\item Rodzaj obiektów, dla których jest przeznaczona
+\item Gęstość lub komplementarna masa
+\item Przepuszczalność światła
+\item Współczynnik odbicia
+\item Współczynnik tarcia
+\item itd.
 \end{itemize}
 }
-Te właściwości bezpośrednio wpływają na sposób poruszania się obiektów dynamicznych. Założeniem prezentowanego modelu jest bowiem, 
-\subsubsection{}
+\par{
+Ilość uwzględnianych właściwości obiektów statycznych zależy od potrzeb tworzonego modelu. Opisywanie poszczególnych własności fizycznych obiektów nie jest przedmiotem tej pracy. Przy tworzeniu ogólnego modelu dla środowiska miejskiego należy jednak uwzględnić fakt, że tego rodzaju właściwości istniają i w zasleżności od potrzeb konkretnych badań lista uwzględnianych parametrów może być zmienna.
+}
+\par{
+Przykładami obiektów statycznych są:
 \begin{itemize}
-\item \textbf{Pojazdy} - 
-\item \textbf{Piesi} - 
+\item Budynki
+\item Roślinność
+\item Znaki drogowe
+\item Ulice, chodniki
 \end{itemize}
+}
+\subsection{Ścieżki}
+\par{
+Ulice, chodniki czy inne szlaki po których typowo poruszają się obiekty w środowisku miejskim są określane wspólnym mianem scieżek. Choć ścieżki same w sobie mają zwykle niezmienną w czasie reprezentacje fizyczną, czyli są obiektami statycznymi, to mają one dodatkowe charakterystyczne znaczenie semantyczne.
+}
+\par{
+Ścieżka wyznacza parametryzowalny szlak, po którym mogą poruszać się obiekty pewnego rodzaju. Wyznaczenie tego rodzaju ścieżek zdaje się być typowe dla obserwatorów rzeczywistego świata stąd też specjalne wyróżnienie tego bytu w specjalną grupę.
+}
+\par{
+Wyróżnienie ścieżek ma również praktyczne znaczenie w badaniach - ścieżki wraz z ich semantyką można bowiem w prosty sposób badać pod względem cech związanych z przepływem i umiejscowieniem na nich obiektów.
+}
+\subsection{Czujniki}
+\par{
+Jednym z najistotniejszych elementów opisywanego środowiska jest zdolność obiektów w nim się znajdujących do autonomicznego obserwowania stanu swojego otoczenia. W szczególności wszelkiego rodzaju czujniki stanowiące źródło danych dla docelowego systemu fuzji są w stanie zaobserować conajmniej część  spośród cech posiadanych przez obiekty w systemie.
+}
 
+\subsubsection{Obserwacja środowiska}
+\par{
+Środowisko miejskie niezależnie od zastosowanego modelu można potraktować jako zbiór informacji (stan) wraz z opisem zasad jego zmian w czasie. Cały stan układu jest maksymalną informacją niesioną przez system. Choć fakt, ten wydaje się naturalny rozpatrując pozbiór informacji dostarczany do poszczególnych czujników warto mieć na względzie, że zawsze będzie on jedynie podzbiorem lub wynikową podzbioru stanu układu.
+}
 
+\subsubsection{Stopień przetworzenia danych}
+\par{
+Rozpatrując charakter czujników należy przedewszystkim skupić się na uwzględnieniu jakie informacje z modelu mogą one uzyskać. Mogą one mieć dwojaki charakter:
+\begin{itemize}
+\item Bezpośredni - czujniki odbierają bezpośrednio wielkości znane z modelu środiwska. Tego rodzaju czujniki są zawsze uproszczeniem, ponieważ sam model jest jedynie przybliżeniem rzeczywistości, ale jednocześnie pozwalają na szybkie uzyskanie określonych informacji o określonych cechach systemu, kiedy sam sposób ich pozyskania nie jest przedmiotem badań. Przykładem takiego czujnika może być inteligentna kamera, która dostarcza bezpośrednio odczytów dotyczących pozycji zaobserwowanych obiektów.
+\item Fuzyjny - czujniki odbierają informację jako wynik analizy określonych czujników stanowiący syntezę wielu elementów modelu. Zwykła kamera obserwująca kolejne obrazy będące wypadkową kolejnych stanów modelu jest właśnie takim czujnikiem.
+\end{itemize}
+W przypadku systemu mającego służyć generowaniu konkretnych informacji jakim jest opisywany w tej pracy symulator typowym zdaje się być zastosowanie czujników o charakterze fuzyjnym, co jednakowoż nie przekreśla szansy zastąpienia ich czujnikami fuzyjnym wraz analizatorem ich obserwacji by uzyskać podobne informacje wynikowe w sposób bardziej zbliżony do rzeczywistego.
 
-\subsection{Specyfika obserwacji}
-\subsection{Szumy i niedokładności}
+\subsubsection{Dokładność pomiarów}
+\par{
+Wszsystkie rzeczywiste obserwacje obarczone są pewnym nieredukowalnym błędem [7]. Naturalnie wymuszony błąd wyniający z praw fizyki nie jest kluczowy z punktu widzenia realnych obserwacji w makroskali, jednak narzędzia do obserwacji w makroskali są obarczone licznymi błędami wynikającymi z ich konstrukcji, szumów analogowych, losowych zdarzeń, które same w sobie nie muszą być modelowane itp.
+}
+\par{
+Centralne twierdzenie graniczne [?], mówi, że suma zmiennych o rozkładach charakteryzujących się taką samą wartością oczekiwaną i wariancją upodabnia się do rozkładu normalnego o takich właście parametrach. Praktycznym wnioskiem wynikającym z tego twierdzenia, jest fakt, że stosowanie rozkładu normalnego przy sztucznym generowaniu błędów jest statystycznie poprawną metodą zepewniającą dla dużej ilości zaszumionych pomiarów zbliżenie do realnych błędów, które zwykle mają cechy zbliżone do warunków postawionych w twierdzeniu. Wydaje się być to poprawne podejście zarówno w przypadku zaszukiania obserwacji bezpośredniej jak i fuzyjnej.
+}
+
+\subsection{Obiekty dynamiczne}
+\par{
+Najważniejszymi z punktu widzenia systemu inwigilacji czy dozoru obiektami są obiekty dynamiczne, ponieważ to właśnie one są obiektem bezpośredniej obserwacji.
+}
+\par{
+Obiekty dynamiczne są reaktywnymi elementami wchodzącymi w interakcje z otoczeniem i mogącymi potencjalnie podejmować autonomiczne decyzje dotyczące zmiany własnego stanu. Podobnie jak obiekty statyczne, obiekty dynamiczne mają swoją reprezentację fizyczną w postaci prametryzowalnej bryły.
+}
+\par{
+W środowisku miejskim wyróżnia się dwie najważniejsze grupy obiektów dynamicznych, których przedstawicie są do siebie zbliżeni pod względem pewnych parametrów.
+}
+\subsubsection{Pojazdy}
+\par{
+Pojazd w rozumieniu ruchu drogowego definiowany jest jako obiekt fizyczno-psychiczny [6]. W praktyce bowiem pojazd traktuje się jako tandem pojazd-kierowca (ang. Driver-Vehicle-Element DVE [6]). Tak jak sam pojazd jest faktycznie odzwierciedleniem fizycznej egzystencji DVE w przestrzeni, tak kierowca odpowiada za jego bieżący stan.
+}
+\par{ }
+\par{
+\textbf{Kierowca}
+}
+\par{
+Zadaniem kierowcy w tandemie pojazd-kierowca jest podejmowanie decyzji na podstawie obserwowalnych przez niego właściwości otoczenia. W tym znaczeniu, kierowca jest charakterystycznym rozdzajem czujnika, który nie tylko obserwuje pewne własności otocznia ale także podejmuje na ich podstawie decyzje.
+}
+\par{
+Do kierowcy docierają pewne obarczone błędami informacje z zewnątrz (podobnie jak do czujnika), z których na podstawie reguł decyzyjnych wyprowadzane są bieżące akcje polegające na obsłudze interfejsu samochodu (kierownica, pedały itd.). Stworzenie samych reguł decyzyjnych jest zagadanieniem związanym z tworzeniem sztucznej inteligencjii znacznie przewyższającym złożonością zakres tej pracy, i w związku z tym nie będzie tu poruszane. Jednakże, pewne istotne właściwości zachowań ludzkiego kierowcy zostaną tu omówione by wskazać jakie cechy powinny posiadać systemy decyzyjne mające modelować jego działanie.
+}
+\par{
+Podstawowym elementem związanym z reakcjami ludzkimi jest \textbf{czas reakcji}. Czas reakcji składa się z dwóch elementów składowych. Czasu od zdarzenia do rozpoznania konieczności reakcji oraz refleksu czyli czasu jaki upłynie od rozpoznania konieczności reakcji do reakcji mięśniowej [9].
+}
+\par{
+Pierwszy z tych czasów wynosi statystycznie około 0.7s [9]. Drugi natomiast ok. 0.25-0.3s [9,10] (bardziej precyzyjny rozkład na wykresie poniżej).
+}
+\par{
+\begin{center}
+\includegraphics[width=\textwidth,keepaspectratio]{img/reaction_times}
+\textit{Rozkład czasu refleksu (ms) [10].}
+\end{center}
+}
+\par{
+Sumaryczny czas reakcji wynoszący ok. 1s oznacza w przypadku samochodu poruszającego się z prędkością 50km/h przejechanie ok. 14m. Jest to wielkość obserwowalna i istotna w makroskali w związku z tym wydaje się, że w większości wypadków nie należy zaniedbywać czasu reakcji kierowcy przy budowaniu jego modelu.
+}
+\par{
+Innym istotnym aspektem służacym budowie realnego modelu, choć nie koniecznie niezbędnym do statystycznych badań w typowym przypadku są \textbf{błędy kierowcy}, które zdają się być nieuniknione gdy mamy doczynienia z czynnkiem ludzkim. Błędy kierowcy to przedewszystkim:
+\begin{itemize}
+\item Błędna ocena sytuacji - np. błędna estymacja czasu dojazdu do skrzyżowania.
+\item Błędna reakcja - np. zbyt mocne skręcenie kierownicy.
+\item Rozproszenie - np. niedostrzeżenie zagrożenia.
+\item Spowolniona reakcja - np. w wyniku spożycia alkoholu.
+\end{itemize}
+}
+\par{
+Naturalnym elementem szczególnie w kontekście uwzględnienia przez psychikę kierowcy możliwości wystąpienia jego własnych błędów jest \textbf{uwzględnienie poziomu bezpieczeństwa} przez kierującego. Osoba kierująca samochodem uwzględnia ryzyko jakie niesie jazda w określony sposób i nie zakłada swojej idealnej jazdy.
+}
+\par{
+Kolejnym aspektem, na który zwraca uwagę kierowca jest \textbf{ograniczona wiedza} - często kierowca musi podejmować decyzje nie mając ze względu na pewne ograniczenia (np. widoczności) pełnej wiedzy na temat ruchu w jego okolicy i podejmuje decyzje uwzględniając niejako automatycznie ryzyko związane z wybraniem określonego scenariusza jako domniemanego.
+}
+\par{
+Innym elemnetem związanym z typową jazdą jest zasada \textbf{ograniczonego zaufania}, która mówi o tym, że nie należy ufać w poprawny czy też bezpieczny sposób reagowania pozostałych uczestników ruchu. Konsekwencją tego, jest np. fakt, że kierowaca realnie rusza ze świateł gdy kierowca przed nim zacznie ruszać a nie gdy zobaczy zielone światło. Ma to istotny i nieunikniony wpływ na generalne spowolnienie ruchu.
+}
+\par{
+Kierowca nie decyduje się na jazde z określoną prędkością biorąc pod uwagę ryzyko jakie niesie za sobą zderzenie i inne wydarzenia na drodze. Kierowcą kierują też względy społeczno-ekonomiczne gdy jedzie zgodnie lub niezgodnie z \textbf{przepisami ruchu drogowego}. Niekiedy tylko konieczność dostoswania prędkości czy innych zachowań do przepisów ruchu zmienia sposób jazdy kierowcy. Co jest szczególnie obserwowalne gdy kierowcy reagują zmniejszeniem prędkości na sam widok policyjnego radiowozu.
+}
+\par{
+Powyższe aspekty są jedynie najważniejszymi z punktu widzenia realizmu symulacji i stanowią wierzchołek góry lodowej zagadnienia, psychologicznego dotyczącego elementów składających się na reakcje kierowców.
+}
+\par{ }
+\par{
+\textbf{Pojazd}
+}
+\par{
+Zupełnie odrębnym od kierowcy samochodu elementem DVE posiadającym własną specyfikę jest sam pojazd. Pojazd składa się z elementów roboczych, które działają określonymi siłami na otoczenie, oraz z interfejsu, który pozwala regulować działanie elementów roboczych.
+}
+\par{
+Podobnie jak człowiek reaguje z pewnym opóźnieniem, podobnie przeniesienie akcji interfejsu na reakcję elementów roboczych zajmuje pewien czas. Ponieważ jednak czas ten rzędy wielkości niższy od czasu reakcji kierowcy, wydaje być się on pomijalny dla większości zastosowań przy obserwowaniu układu w skali makro.
+}
+\par{
+Pojazdy posiadają pewną charakterystykę przyśpieszenia różną dla różnych ich typów. Przyśpieszenie do $100km/h$ dla nowoczesnego niesportowego samochodu zajmuje ok. $8-12s$, co daje średnie przyśpieszenie ok. $~2.8m/s^2$. Analogiczny zakres dla motocykla to $4-8s$. co daje średnie przyśpieszenie $~4.7m/s^2$. Są to stałe, które można by przyjąć w bardzo uproszczonym modelu zachowując minimalny poziom realizmu w rzeczywsistości należało by się posługiwać charakterystykami przyśpieszenia w zależności od prędkości by ustalać konkretne wartości przyśpieszenia. 
+}
+\par{
+\begin{center}
+\includegraphics[width=\textwidth,keepaspectratio]{img/golf_acc}
+\textit{Przukład charakterystyki przyśpieszenia od prędkości z uwzględnieniem biegów dla Volksvagena Golf IV 1.4. [11].}
+\end{center}
+}
+\par{
+Analogicznie sprawa wygląda jeśli chodzi o opóźnienia, które wg. literatury [9] wynoszą $3.0-4.5m/s^2$ dla samochodów w zależności od rodzaju pojazdu jak i stanu nawierzchni. Oraz $6.0-9.8m/s^2$ dla motocykli.
+}
+\subsubsection{Piesi}
+\par{
+Charakterystyka pieszych z punktu widzenia ich zewnętrznej obserwacji jest paradoksalnie bardzo zbliżona do charakterystyki DVE. Można bowiem uznać, że świadomość steruje bezpośrednio interfejsem pojazdu, którym staje się ciało ludzkie - wtedy wszystkie złożenia dotyczące DVE zostają aktualne.
+}
+\par{
+Naturalnie piesi mają inną fizyczną dynamikę. I tak przeciętna prędkość pieszego wynosi $~5km/h$ [12] a czas średni czas rozpędzania się do tej prędkości wynosi $~2.25s$ [12]. Oba te prametry stanowią pewne stałe, które mogą być zastosowane dla uproszczenia, jednak źródła [12] podają, iż parametry te zmieniają się w zależności od licznych czynników jak płeć pieszego, dzień tygodnia, rodzaj nawierzchni, pogoda, temperatura itd. Należy uwzględnić istotne z punktu widzenia celu modelowania korelacje.
+}
