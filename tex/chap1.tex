@@ -53,13 +53,13 @@ W roku 1814 Pierre Simon Laplace opublikował \textit{Essai philosophique sur le
 }
 
 \par{
-Współczesna nauka odsunęła się nieco od tej koncepcji. Po pierwsze przyjmuje się (mając na względzie zasady fizyki kwantowej), że świat nie opiera sie o deterministyczne zasady - co w zasadzie obala postulat Laplace'a. Po drugie nastomiast, zgodnie z zasadą Heisenberga nie jest możliwe uzyskanie pełnego obrazu świata ponieważ każda jego obserwacja wpływa na jego stan - co uniemożliwia wykorzystanie postulatu Laplace'a w praktyce.
+Współczesna nauka odsunęła się nieco od tej koncepcji. Po pierwsze przyjmuje się (mając na względzie zasady fizyki kwantowej), że świat nie opiera sie o deterministyczne zasady - co w zasadzie obala postulat Laplace'a. Po drugie nastomiast, zgodnie z zasadą nieoznaczoności Heisenberga nie jest możliwe uzyskanie pełnego obrazu świata ponieważ każda jego obserwacja wpływa na jego stan - co uniemożliwia wykorzystanie postulatu Laplace'a w praktyce.
 }
 \par{
 Obalenie teorii Laplace'a nie oznacza bynajmniej, że nie pozostaje ona poza światem nauki - nadal ma ona bardzo duże znaczenie filozoficzne oraz nadal aktualna pozostaje jej druga część. Ponadto, w wielu sytuacjach zakłada się, że zasada ta nadal obowiązuje - jednym z takich miejsc jest symulacja komputerowa.
 }
 \par{
-Podstawą w zasadzie każdej symulacji komputerowej jest stan symulowanych obiektów oraz oddziaływania między nimi. Zakłada się, że symulator zna \textbf{wszystkie} zasady obowiązujące w symulowanym świecie jak i stan wszystkich i w związku z tym jest w stanie określić przyszłość symulowanego układu - jest to stan, o którym wspominał Laplace'a, a symulator można by w tym kontekście potraktować jako demona Laplace'a. Warto zwrócić uwagę, że w podejściu takim nie ma nic zdrożnego, ani sprzecznego ze współczesną nauką - przedewszystkim dlatego, że ograniczenie symulacji do ciągu przyczyn i skutków nie obniża zwykle jej wartości w kwestii celu jaki się przed nią stawia.
+Podstawą w zasadzie każdej symulacji komputerowej jest stan symulowanych obiektów oraz oddziaływania między nimi. Zakłada się, że symulator zna \textbf{wszystkie} zasady obowiązujące w symulowanym świecie jak i stan wszystkich obiektów w nim występujących i w związku z tym jest w stanie określić przyszłość symulowanego układu - jest to stan, o którym wspominał Laplace'a, a symulator można by w tym kontekście potraktować jako demona Laplace'a. Warto zwrócić uwagę, że w podejściu takim nie ma nic zdrożnego, ani sprzecznego ze współczesną nauką - przedewszystkim dlatego, że ograniczenie symulacji do ciągu przyczyn i skutków nie obniża zwykle jej wartości w kwestii celu jaki się przed nią stawia.
 }
 
 \subsubsection{Precyzja komputerów}
@@ -70,7 +70,7 @@ Kolejnym problem w pewien sposób uniemożliwający przyrównanie rzeczywstości
 Choć zdawać by się mogło, że w świetle współczesnych badań, ograniczenie to przestaje mieć sens, ponieważ przyjmuje się, że wszelkie zjawiska w przyrodzie mają charakter kwantowy, to należy wziąć pod uwagę jak małe są kwanty o których mówi ta teoria.
 }
 \par{
-Długość Plancka (czyli minimalna obserwowalna we wrzechświecie odległość wyniosi 
+Długość Plancka (czyli minimalna obserwowalna we wrzechświecie odległość) wyniosi 
 \begin{center}
 $l_P = c \ t_P = \sqrt{\frac{\hbar G}{c^3}} = 1,616 199(97) \times 10^{-35} m$
 \end{center}
@@ -160,7 +160,7 @@ Wizualizowanie wszelkich zjawisk zdaje się być nierozłącznie związane z ich
 Modelem w symulacji komputerowej nazywamy zasady, wedle których funkcjonuje symulacja, uwzględniający wszelkie zmienne wejściowe i wyprowadzający z nich zmienne wyjściowe z uwzględnieniem upływu czasu.
 \par{
 W literaturze [3] można spotkać następującą, nieco bardziej ścisłą definicję:
-Model \textit{to operator przekształcający zadane zmienne wejściowe X(t) w zmieenne wyjściowe Y(t) czyli 
+Model \textit{to operator przekształcający zadane zmienne wejściowe X(t) w zmienne wyjściowe Y(t) czyli 
 \begin{center}
 $Y(t) = H_{t} \times X(t).$
 \end{center}
@@ -327,9 +327,50 @@ Posiadanie modelu fizycznego i odpowiedniej bazy matematycznej dla danego zjawis
 }
 
 \section[Systemy fuzji danych][Systemy fuzji danych]{Systemy fuzji danych}
-\section[Specyfika środowiska miejskiego][Specyfika środowiska miejskiego]{Specyfika środowiska miejskiego}
-\subsection{Specyfika symulowanych obiektów}
-\subsubsection{Obiekty Statyczne}
-\subsubsection{Obiekty Dynamiczne}
+\section[Modelowanie środowiska miejskiego][Modelowanie środowiska miejskiego]{Modelowanie środowiska miejskiego}
+\subsection{Obiekty w środowisku miejskim}
+\par{
+Środowisko miejskie jest pojęciem bardzo kompleksowym i opisuje całokształt zjawisk związanych z funkcjonowaniem wszelkich obiektów fizycznych w granicach miast. Najważniejszymi elementami tego środowiska z punktu widzenia fuzji danych do celów śledzenia obiektów zdają się być jednak tylko te elementy, które bezpośrednio i znacząco wpływają na wyniki obserwacji.
+}
+\subsubsection{Obiekty statyczne}
+\par{
+Obiekty statyczne w środowisku miejskim to wszelkiego rodzaju elementy krajobrazu rozumiane jako bryły, a w szczególności zabudowania oraz roślinność. Obiekty te zdają się być stosunkowo proste do osadzenia w symulacji gdyż charakteryzują się niezmienną w czasie pozycją. Mają jednak one istotny i zmienny w czasie wpływ na obserwowane środowisko w związku z tym ich zaniedbanie może być przyjęte tylko po wcześniejszej analizie wpływu takiego uproszczenia modelu na cel symulacji.
+}
+\par{
+Podstawowym pojęciem związanym z obiektami statycznymi jest przysłanianie. Warto zwrócić uwagę, że obiekty takie wpływają bezpośrednio na wynik obserwacji modelowanego środowiska w zależności od położenia obserwatora, czasu oraz pozycji innych obiektów. W związku z tym przy budowaniu modelu  obserwatorów środowiska należy uwzględniać jego interakcję z obiektami statycznymi.
+}
+\par{
+Analogicznie sprawa wygląda jeśli chodzi o inne zaburzenia obserwacji spowodowane przez obiekty statyczne - odbicia, zacienienia itd. Tego rodzaju zjawiska również mogą być uwzględnione w modelu, jeśli ich występowanie wydaje się mieć istotny wpływ na wynik analizy problemu, do którego sporządzany jest model.
+}
+\par{
+Innym aspketem związanym z symulowaniem elementów statyczych jest możliwość przewidzenia zderzeń pomiędzy obiektami dynamicznymi a statycznymi. W takiej sytuacji także obiekty statyczne muszą posiadać pewną fizyczną reprezentację by być w stanie wyznaczyć przebieg zdarzenia.
+}
+\subsubsection{Ścieżki}
+\par{
+Ścieżki są w zasadzie obiektami statycznymi, jednak o bardzo charakterystycznych właściowościach. Wyznaczają one bowiem potencjalne trasy po jakich poruszają się obiekty dynamiczne.
+}
+\par{
+Reprezentacja fizyczna ścieżek zdaje się być relatywnie bez znaczeni. Warto jednak mieć na względzie, że w niektórych sytuacjach ich wygląd czy kształt może wpływać na efektywność obserwacji, np. czarny samochód może być trudniejszy do automatycznego wykrycia przez systemy rozpoznawania obrazu na czarnym asfalcie niż na jasnych betonowych płytach. Innym elementem związaną z fizyczną reprezentacją ścieżek może być np. śliskość, która wpływa na poruszające się po niej obiekty dynamiczne.
+}
+\par{
+Modelując środowisko miejskie należy podjąć świadomą decyzję na temat reprezentacji fizycznej ścieżek - w wypadku celu tej pracy ich fizyczna reprezentacja w modelu zdaje się nie być istotna ponieważ praca ta nie służy analizie skuteczności pozyskiwania informacji. Nie wydaje się również żeby ich fizyczna reprezentacja miała znaczenie z punktu widzenia jakichkolwiek aspektów symulowanej przestrzeni. Warto zwrócić uwagę, że jeśli w przyszłości zajdzie potrzeba modelowania właściwości scieżek jako takich, można wykorzystać do tego celu typowy model obiektów statycznych, który zapewnia wszystkie właściwości potrzebne danej symulacji - jako że \textbf{ścieżka jest właśnie obiektym statycznym powiększonym o pewne dodatkowe właściwości}.
+}
+\par{
+Podstawową właściwością ścieżki jest posiadanie początku i końca umieszczonego w przestrzeni. Dodatkowo ścieżkę charakteryzować mogą inne właściwości jak np.:
+\begin{itemize}
+\item Kierunek
+\item Szerokość
+\item Rodzaj obiektów, dla których jest przeznaczona
+\end{itemize}
+}
+Te właściwości bezpośrednio wpływają na sposób poruszania się obiektów dynamicznych. Założeniem prezentowanego modelu jest bowiem, 
+\subsubsection{}
+\begin{itemize}
+\item \textbf{Pojazdy} - 
+\item \textbf{Piesi} - 
+\end{itemize}
+
+
+
 \subsection{Specyfika obserwacji}
 \subsection{Szumy i niedokładności}
