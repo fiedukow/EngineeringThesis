@@ -327,6 +327,73 @@ Posiadanie modelu fizycznego i odpowiedniej bazy matematycznej dla danego zjawis
 }
 
 \section[Systemy fuzji danych][Systemy fuzji danych]{Systemy fuzji danych}
+\par{
+\textit{Fuzją danych} nazywa się [14] \textit{proces łączący dane w celu oczyszczenia estymaty i predykcji stanu.}, który jest uogólnieniem wcześniejszej definicji [13] mówiącej, że \textit{Fuzja danych to proces obsługujący asocjację, korelację i wiązanie ze sobą danych i informacji z jednego lub wielu źródeł w celu uzyskania lepszej pozycji i tożsamości obiektu oraz możliwie trafnej i precyzyjnej ocenie sytuacji i zagrożenia.}.
+}
+\par{
+Obie powyższe definicje zdają się oddawać kwintesencję fuzji danych, którą jest zbieranie wielu danych o niedużej wartości jednostkowej w celu uzyskania szerokiego obrazu o dużej wartości końcowej.
+}
+
+\subsection{Rodzaje fuzji}
+\par{
+Systemy fuzji danych dzieli się ze względu na charakter danych poddawanych obróbce. Fuzją \textbf{danych} nazywa się procesy wykorzystujące dane pozbawione wstępnej obróbki lub ograniczające wstępną obróbkę do wyrównania dziedzin danych pochodzących z różnych źródeł. Systemy fuzji danych operują na danych nieprzetworzonych np. właściwościach fizycznych sygnałów analogowych.
+}
+\par{
+Bardziej rozpowszechniona od fuzji danych jest fuzja \textbf{informacji} nazywana również fuzją \textbf{cech} lub fuzją \textbf{właściwości} --- operująca na danych obrobionych mających znaczenie na wyższym poziomie abstrakcji. Przykładem tego rodzaju systemu może być system operujący na danych dostarczanych z inteligentnych kamer w środowisku miejskim - analizujący konkrente informacje o znanym charaketrze (np. położenie obiektu) w celu uzyskania szerszych informacji na jego temat (np. śledzenie jego pozycji w czasie).
+}
+\par{
+Rzadziej spotykanymi ale także wymienianymi w literaturze [15] są systemy fuzji \textbf{decyzji}. O tym przypadku mówi się, kiedy przetwarzanie danych przed samą fuzją dochodzi jeszcze o krok dalej - tzn. na podstawie danych przed fuzją wypracowywana jest pewna decyzja. W takim przypadku dopiero niezależne decyzje z wielu źródeł są łączone w celu wypracowania rozwiązania ogólnego. Oznacza to, że daną w takim rozumieniu jest jakaś zmienna o charakterze sterującym sama sobie będąca wnioskiem z dostarczonych informacji, natomiast zadaniem systemu fuzji jest wybranie sumarycznej decyzji systemu nie wnikając w wewnętrzne funkcjonowanie poszczególnych swoich części a jedynie w poddecyzje.
+}
+\par{
+Kolejne stopnie przetworzenia danych o których mowa powyżej można by przedstawić na podstawie systemu fuzji danych mającego dawać werdykt w kwestii zwycięscy wyborów prezydenckich w Stanach Zjednoczonych Ameryki. System, dla którego danymi wejściowymi były by zdjęcia wypełnionych kart do głosowania byłby w takim ujęciu systemem fuzji danych. Wstępne przetworzenie danych, np. przez odczytanie informacji z kart do głosowania lub wręcz dostarczenia sum wyników z poszczególnych lokali wyborczych zaprowadziło by nas do systemu, mogącego zakrawać na system fuzji informacji. Jeśli jednak poszli byśmy krok dalej i zebrali tego rodzaju informacje dla każdego stanu z osobna i na tej podstawie wyznaczyli decyzję w postaci preferowanego przez dany stan prezydenta, a następnie przesłali tę decyzję do systemu, który decydował by o końcowym wyborze, mieli byśmy doczynienia z syntezą decyzji. W rzeczywistości system głosowania w stanach zdjednoczonych jest właśnie złożeniem tych trzech warstw.
+}
+\par{
+Da się wyraźnie dostrzec, że poszczególne typy fuzji różnią się stopniem obróbki danych przed wejściem do systemu. W związku z tym systemy fuzji danych wydają się być bardziej złożone ale jednocześnie tracące najmniejszą ilość informacji. Zastosowane konkrentego rodzaju fuzji zależy ściśle od dzidziny zastosowania i intencji twórcy systemu - nie sposób jest poszeregować wyników poszczególnych typów systemów w kategorii lepszy-gorszy.
+}
+\subsection{Model JDL}
+\par{
+Lata doświadczeń nad systemami fuzji danych pozwoliły na wypracowanie pewnych wzorców ich funkcjonowania stanowiących swoise ramy dla wszystkich nowych systemów. Ilość modeli powstałych w czasie badań jest zuważalnie duża, jednak większość z nich zdaje się być jedynie szczególnym przypadkiem modelu zwanego modelem JDL.
+}
+\par{
+Model JDL dzieli proces fuzji danych na pięć poziomów:
+\begin{itemize}
+\item \textbf{Poziom 0, preprocessing} --- na tym poziomie dokonuje się wstępnego przygotowania danych otrzymanych z zewnątrz systemu. Dane mogą być wyrównane do spójnej dziedziny czy jednostek, zagregowane względem określonych cech itd. Każda obróbka tego rodzaju może następować również poza systemem więc zasadność występowania tego poziomu zależy od tego jak bardzo porządany przez nas rodzaj wejścia różni się od tego dostarczanego do systemu.
+\item \textbf{Poziom 1, asocjacja} --- faza ta odpowiada za łączenie ze sobą danych pochodzących z różnych źródeł. Uwzględnia ona modele dotyczące obiektów w systemie pozwalając na estymację stanu obiektów na podstawie połączonych danych z wielu źródeł.
+\item \textbf{Poziom 2, ocena sytuacji} --- na tym poziomie na podstawie ogólnych zasad funkcjonowania znanych już w momencie tworzenia systemu wyciągane są wnioski dotyczące jego bieżącego stanu.
+\item \textbf{Poziom 3, ocena wpływu} --- na podstawie wyników poprzednich poziomów, zarówno bieżących jak i historycznych poziom ten stara się estymować przyszły stan obiektów. Poziom ten odpowiada również za interpretację wyników estymacji w szczególności wykrywając pewne sceneriusze jako potencjalnie nietypowe, niebezpieczne lub po prostu wymagające reakcji.
+\item \textbf{Poziom 4, decyzje} --- zadaniem ostatniej fazy jest reagowanie na określone zdarzenia w systemie fuzji obserwowalne przez pryzmat poprzednich poziomów. Zapewnia to sprzężenie zwrotne, tzn. sam system fuzji danych zaczyna wpływać na obserwowane zjawiska a jednocześnie stanowi swoistą kwintesencję sensu istnienia tego rodzaju systemów zwłaszcza w ich pierwotnym znaczeniu.
+\end{itemize}
+}
+\par{
+Model JDL ma pochodzenie militarno-wojskowe. Został on opracowany przez Data Fusion Subpanel of the Joint Directors of Laboratories (JDL) w 1985 roku [16]. W związku z tym nomenklatura używana do jego opisu jak i cele jakie stawia się przed tym modelem są ściśle związane z potrzebami wojskowymi. Nic jednak nie stało na przeszkodzie żeby wykorzystać tę metodykę w zastosowaniach cywilnych czego przykładem może system DAFNE implementujący dwa pierwsze poziomy modelu JDL [17]).
+}
+\par{
+\begin{center}
+\includegraphics[width=15em,keepaspectratio]{img/jdl}
+\end{center}
+}
+\par{
+\begin{center}
+\textit{Działanie systemu fuzji danych w modelu JDL}
+\end{center}
+
+\subsection{System śledzenia}
+\par{
+Opis modelu JDL stanowi jedynie podstawowę dla dalszych rozważań dotyczących konkrenych systemów fuzji danych, pokazuje on jednak generalną logikę stojącą za systemami fuzji niezależnie od metodyki i linii podziału tej logiki na konkrene warstwy.
+}
+\par{
+System śledzenia, dla celów którego tworzony jest opisywany w pracy symulator, jest typowym systemem fuzji informacji. Ma on za zadanie zbierać informacje z wielu czujników rozmieszczonych w środowisku miejskim i na ich podstawie wyznaczać trasy poszczególnych obiektów a także przewidywać dlasze kierunki ich poruszania sie.
+}
+\par{
+Z puntku widzenia takiego systemu podstawową informacje dotyczącą obiektów i poddawaną fuzji stanowi położenie obiektu, jednakże system ten zakłada możliwość dostarczania przez czujniki większej ilości informacji i może w przyszłośći wykorzystywać je by zwiększać swoją skuteczność.
+}
+\par{
+Takie wymagania systemu ciągną za sobą faktyczne znaczenie postawienia pracy w kontekście systemów fuzji. Oznacza to bowiem, że system ten \textbf{musi} dostarczać dla docelowego systemu informacji w formie wstępnie przetworzonej dotyczącej położenia obiektów obserwowanych przez inteligentne czujniki oraz, że te czujniki \textbf{mogą} dostarczać większej ilości informacji.
+}
+\par{
+Ponieważ wyżej zaprezentowany ogólny wstęp dotyczący systemów fuzji danych pozwolił na sformułowanie tego zagadnienia w kontekście pracy a same systemy fuzji nie są przedmiotem tej pracy, nie będą one bardziej szczegółowo opisywane.
+}
+
 \section[Elementy symulowanego środowiska][Elementy symulowanego środowiska]{Elementy symulowanego środowiska}
 \par{
 Środowiskem miejskim nazywa się tu ogół obiektów znajdującej się w czterowymiarowej przestrzeni w otoczeniu ludzkich miast, powiązanych wzajemnymi relacjami. Elementami środowiska miejskiego są więc piesi i chodniki, pojazdy i ulice, budynki i ich mieszkńcy, parki wraz z lokalną fauną i florą czy post industrialne ruiny ozdobione dzikimi wysypiskami śmieci.
@@ -428,7 +495,7 @@ Do kierowcy docierają pewne obarczone błędami informacje z zewnątrz (podobni
 Podstawowym elementem związanym z reakcjami ludzkimi jest \textbf{czas reakcji}. Czas reakcji składa się z dwóch elementów składowych. Czasu od zdarzenia do rozpoznania konieczności reakcji oraz refleksu czyli czasu jaki upłynie od rozpoznania konieczności reakcji do reakcji mięśniowej [9].
 }
 \par{
-Pierwszy z tych czasów wynosi statystycznie około 0.7s [9]. Drugi natomiast ok. 0.25-0.3s [9,10] (bardziej precyzyjny rozkład na wykresie poniżej).
+Pierwszy z tych czasów wynosi statystycznie około $0.7s$ [9]. Drugi natomiast ok. $0.25-0.3s$ [9,10] (bardziej precyzyjny rozkład na wykresie poniżej).
 }
 \par{
 \begin{center}
