@@ -268,15 +268,16 @@ Model jako taki musi posiadać pewne cechy by był przydatny do jakichkolwiek za
 }
 
 
-\section[Podstawy fizyczne][Podstawy fizyczne]{Podstawy fizyczne}
+\section[Fizyczne modele dynamiki Newtona][Fizyczne modele dynamiki Newtona]{Fizyczne modele dynamiki Newtona}
 
-\subsection{Fizyczne modele dynamiki Newtona}
 \par{
-Do stworzenia odpowiedniego modelu symulacji komputerowej, oprócz znajomości metodyki modelowania wymagana jest znajomość teorii stojącej za modelowanym zjawiskiem oraz aparatu matematycznego dla niej odpowiedniego.
-Ruch obiektów w środowisku miejskim jest związany ściśle z klasyczną dynamiką Newtona. W fizyce klasycznej funkcjonują dwa podstawowe modele uproszczone opisujące ruch obiektów wg. zasad dynamiki Newtona - model bryły sztywnej i punktu materialnego.
+Do stworzenia odpowiedniego modelu symulacji komputerowej, oprócz znajomości metodyki modelowania wymagana jest znajomość teorii stojącej za modelowanym zjawiskiem oraz aparatu matematycznego dla niej odpowiedniego. Nie wydaje się jednak koniecznym by w ramach pracy tego rodzaju przybliżać podstawy fizyki klasycznej w postaci zasad dynamiki Newtona stanowiących w dzisiejszym świecie wiedzę powszechną.
+}
+\par{
+Jednakże, zasady dynamiki Newtona operują na dwóch podstawowych modelach reprezentacji obiektów, z pośród których dla celów symulacji należy wybrać jeden mając świadomość związanych z tym konsekwencji. W związku z tym podstawowe cechy tych modeli zostaną omówione w tej pracy.
 }
 
-\subsubsection{Dynamika bryły sztywnej}
+\subsection{Dynamika bryły sztywnej}
 \par{
 Model bryły sztywnej uwzględnia kształt i wymiary obiektu poruszającego sie w przestrzeni. Jego podstawą jest założenie, że każdy obiekt ma strukturę jednostajnej, sztywnej (niezmieniającej kształtu pod względem czynników zewnętrznych) oraz nie absorbującej energii bryły, która poddawana jest wszelakim oddziaływaniom.
 }
@@ -307,7 +308,17 @@ W związku z tym, że model bryły sztywnej zakłada wymiarowość obiektów, po
 \textit{Stopnie swobody bryły szytwnej, źródło: $http://www.projectrho.com/public\_html/rocket/controldeck.php$}
 \end{center}
 }
-\subsubsection{Dynamika punktu materialnego}
+\par{
+Podstawową cechą jaką rzuca się w oczy przy opisywaniu tego modelu jest fakt, że opisuje On nie tylko pozycję ale i obrót obiektu (uwzględniając jego bryłę). Jest to więc model pozwalający na bezpośredni przekład wartości modelu fizycznego na obserwowalne przy użyciu zmysłów własciwości jak kształt. Konsekwencją tego jest także możliwość naturalnego z punktu widzenia modelu fizycznego symulowania zderzeń niesprężystych. Ewentualne zdeżenia sprężyste muszą być rozpatrywane poza  modelem fizycznym.
+}
+\par{
+Jednocześnie wymaganie jednolitości całej bryły w tym modelu sprawia, że jej częściowa parametryzacja (np. wydzielenie oddzielnych właściwości szyby samochodu od jego karoserii) może być utrudniona i będzie musiała być najprawdopodobniej dokonana poza samym modelem fizycznym.
+}
+\par{
+Podstawową wadą tego modelu jest dość wysoki stopnień złożoności ze względu na konieczność przejścia w wielu obliczeniach z rachunku skalarnego na rachunek wektorowy (zamiast pędu moment pędu itd.). Nie jest to stopnień złożoności, który mógłby stanowić wyzwanie dla współczesnej bazy sprzętowej, jednakże skomplikowanie obliczeń oznacza również zwiększenie kosztów (w szczególności czasowych) wytwarzania oprogramowania. Jest to argument, który należy brać pod uwagę bilansując koszta względem korzyści odnoszonych w wyniku zastosowania bardziej złożonych i precyzyjnych modeli.
+}
+
+\subsection{Dynamika punktu materialnego}
 \par{
 Model punktu materialnego nie uwzględnia kształtu i fizycznego charakteru poruszającego się w przestrzeni ciała. W tym modelu przyjmuje się, że ciało (a więc cała masa) skupione jest w przestrzeni o zerowych wymiarach (punkcie). Tego rodzaju uproszczenie znacząco obniża skomplikowania rachunków związanych z ruchem ciał, jednak uniemożliwa rozpatrywanie ich ruchu obrotowego jak i nie jest w stanie bez dodatkowego wsparcia zapewnić spójnego opisu zderzeń obiektów (dwa punkty nie mogą się zderzyć gdyż nie mają wymiarów).
 }
@@ -321,9 +332,14 @@ Ponieważ punkt materialny nie ma wymiarów, posiada zaledwie trzy stopnie swobo
 \end{itemize}
 }
 
-\subsection{Rozwiązywanie równań dynamiki}
 \par{
-Posiadanie modelu fizycznego i odpowiedniej bazy matematycznej dla danego zjawiska pozwala na jego wykorzystanie, jednak wszelkie obliczenia związane z symulacją komputerową odbywać się będą przy użyciu maszyn cyfrowych. Koniecznym jest więc znalezienie sposobów numerycznego rozwiązywania problemów charakterystycznych dla wybranego modelu fizycznego - w tym wypadku dynamiki punktu materialnego.
+Jak wspomniano podstawową korzyścią płynącą z zastosowania takiego modelu zdaje się być uproszczenie obliczeń a więc zmniejszenie kosztów implementacji.
+}
+\par{
+Do wad tego rozwiązania należy zaliczyć fakt, że wiele aspektów dotyczących obiektów w środowisku - w tym bardzo podstawowych, jak obroty - będą musiał być rozpatrywe odrębnie od modelu fizycznego. Większa ilość odrębnych od siebie modeli prowadzi w typowym wypadku do pewnych anomalii dających wrażenie nierealistycznego działania systemu.
+}
+\par{
+Choć powyże porównanie wyraźnie wskazuje, że zastosowanie modelu bryły sztywnej pozwala na bardziej spójne i co za tym idzie bardziej realistyczne przedstawienie rzeczywistości. Należy jednak mieć na względzie, że realne decyzje projektowe tego typu uwzględniają blians zysku i kosztu a nie tylko zyski. W związku z tym, wybranie jednego z tych dwóch modeli jest istotnym wyzwaniem projektowym.
 }
 
 \section[Systemy fuzji danych][Systemy fuzji danych]{Systemy fuzji danych}
