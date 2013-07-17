@@ -54,7 +54,7 @@ Z pomocą przy rozwiązaniu tego problemu przychodzi nam teoria symulacji a tak�
 I tak wiemy, że zastosowanie właśnie modelu newtonowskiego do symulowania ruchów obiektów da nam obraz realistyczny z punktu widzenia makro świata.
 }
 \par{
-Podstawowymi wielkościami dynamiki Newtona są siła (F), przyśpieszenie (a) oraz masa (m), połączone wspominanym już wzorem:
+Podstawowymi wielkościami dynamiki Newtona są siła (F), przyśpieszenie (a) oraz masa (m), połączone wzorem:
 \begin{center}
 $F = m \times a$
 \end{center}
@@ -65,7 +65,7 @@ Dla ciał opisywanych przy użyciu symulatora również należało znaleźć odp
 }
 \par{
 Podejście do obiektów symulowanych jak do bryły sztywnej wydaje się być intuicyjne. W naturalny sposób blokuje to możliwość ingerencji w wewnętrzną fizykę ciała, jednocześnie zapewniając wysoki realizm w skali makro.
-Takie podejście pozwala na łatwe zasymulowanie wszelkiego rodzaju zdarzeń, także związanych z obrotami, w sposób naturalny ułatwia wykrywanie kolizji i pozwala przewidywać ich przebieg z dużą dokładnością i z zachowaniem wysokiego realizmu.
+Takie podejście pozwala na łatwe zasymulowanie wszelkiego rodzaju zdarzeń niesprężystych, także związanych z obrotami, w sposób naturalny ułatwia wykrywanie kolizji i pozwala przewidywać ich przebieg z dużą dokładnością i z zachowaniem wysokiego realizmu.
 Niestety model ten ze względu na stopień kompilacji został odrzucony a wybrany został model prostszy - model punktu materialnego.
 \par{
 Model punktu materialnego pozwala na wykonywanie wszelkich obliczeń na obiektach które nie nawiązują między sobą interakcji równie dobrze jak model bryły sztywnej. Jego niewątpliwą wadą jest to, że w razie pojawienia się potrzeby symulowania zderzeń między obiektami pojawił by się spory narzut na dość sztucznej warstwie abstrakcji, która musiała by powstać by obsłużyć zderzenia w sposób realistyczny (dodać do modelu odpowiednie siły itp.).
@@ -81,10 +81,6 @@ W ramach modelu fizyki punktu materialnego przyjęto, że każdy obiekt w świec
 \end{itemize}
 Znając te trzy wartości w każdej chwili czasu na podstawie modelu fizycznego można określić położenie obiektu w układzie współrzędnych w każdej chwili czasu.
 Warto zwrócić uwagę, że tak jak pierwsze dwa z tych parametrów są właściwościami obiektu tzn. obiekt może je dowolnie zmieniać w czasie, tak prędkość jest wartością wynikającą z dotychczasowej historii danego obiektu i sam obiekt nie jest w stanie wprost zmienić jej wartości (tak jak w rzeczywistości samochód nie może w jednej chwili się zatrzymać, ale może nagle (w modelu przyjęto że nawet w czasie $\Delta t \longrightarrow 0$) zacząć hamować działając z dużą siłą o zwrocie przeciwnym do kierunku jazdy i szybko (ale nie natychmiastowo) wytracić posiadaną prędkość).
-}
-\par
-{
-W praktyce powyższy model został w trakcie implementacji jeszcze bardziej uproszczony (powody jak i sposób uproszczenia opisano niżej). W czasie projektowania architektury aplikacji dołożono jednak wszelkich starań by umożliwić zmianę działania silnika fizycznego w przyszłości.
 }
 
 \subsection{Upływ czasu}
@@ -126,7 +122,7 @@ Poniższy rozdział traktuje o doborze tych technologii opisując powody ich wyb
 \subsection{Wybór języka programowania}
 \subsubsection{Rozszerzalność}
 \par{
-Symulator według wyżej wyspecyfikowanych wymagań ma na wielu płaszczyznach wspierać możliwości rozszerzania. Obecnie za paradygmat programowania umożliwiający rozszerzenie funkcjonalności w największym stopniu uważa się paradygmat programowania obiektowego [?].
+Symulator według wyżej wyspecyfikowanych wymagań ma na wielu płaszczyznach wspierać możliwości rozszerzania. Obecnie za paradygmat programowania umożliwiający rozszerzenie funkcjonalności w największym stopniu uważa się paradygmat programowania obiektowego.
 W związku z tym pod uwagę w wyborze brane będą tylko języki programowania związane z tym paradygmatem a jednocześnie znane choć w podstawowym stopniu autorowi niniejszej pracy:
 \begin{itemize}
 \item C++
@@ -142,17 +138,91 @@ Istotnym elementem z punktu widzenia każdej aplikacji użytkowej, także tej tw
 I tak spośród wymienionych wcześniej języków programowania tylko dwa pierwsze zdają się pokrywać zakresem swej dostępności porównywalne ilości platform - są to Java, której kod ze względu na wykorzystanie implementowanej na wiele popularnych platform wirtualnej maszyny może być wykonywany na większości współczesnych urządzeń elektronicznych (nie tylko klasy PC), oraz C++, którego kompilacja i wykonanie ze względu na szeroko dostępne kompilatory dla wielu architektur oraz implementacje biblioteki standardowej nie stanowi problemu dla większości popularnych konfiguracji sprzętowo-systemowych.
 }
 \par{
-Niestety język C\# zdaje się nie być równie dostępny na wielu platformach. Implementacje jego wirtualnej maszyny nie są zbyt szeroko dostępne a nawet jeśli istnieją są generalnie postrzegane jako półśrodek nie do końca spełniający swoją rolę [?]. Z tego względu język C\# został odrzucony i nie będzie rozpatrywany w kolejnych kategoriach doboru.
+Niestety język C\# zdaje się nie być równie dostępny na wielu platformach. Implementacje jego wirtualnej maszyny nie są zbyt szeroko dostępne a nawet jeśli istnieją są generalnie postrzegane jako półśrodek nie do końca spełniający swoją rolę. Z tego względu język C\# został odrzucony i nie będzie rozpatrywany w kolejnych kategoriach doboru.
 }
 \subsubsection{Wydajność}
 \par{
+Choć wydajność obliczeń nie jest kluczowym elementem dla aplikacji, czego dowiodły późniejsze badania, to czas obliczeń jest niewątpliwym kosztem w związku z tym jego minimalizacja zdaje się być istotnym elementem decyzyjnym przy doborze języka programowania.
+}
+\par{
+Język C++ jako język kompilowany bezpośrednio (lub pośrednio) do kodu natywnego kodu maszynowego daje możliwość uzyskania idealnie optymalnego kodu dla danego rozwiązania na danej platformie sprzętowej. W tej kategorii język Java, będący językiem kompilowanym do maszyny wirtualnej z natury rzeczy uzyska niższe wyniki wydajnościowe - ze względu niemożliwą do uniknięcia dodatkową warstwę interpretacji w trakcie wykonywania.
+}
+\par{
+Przewaga języka C++ nad Javą jest niezaprzeczalna, jednakże wydajność nie jest głównym kryterium doboru technologii w związku z tym nie wydaje się by odrzucenie języka Java na tym etapie było rozsądną koncepcją.
 }
 \subsubsection{Doświadczenie}
-\subsubsection{Typizacja}
-\subsubsection{Interpretacja/Kompilacja}
+\par{
+Istotne z punktu widzenia tworzenia aplikacji jest doświadczenie programistyczne w danej technologii. Ogranicza ono błędy. Skraca czas potrzebny na implementację. Pozwala uniknąć nawrotów. Doświadczony w danej technologii ma większą szansę na stworzenie bezawaryjnego i utrzymywalnego oprogramowania.
+}
+\par{
+Doświadczenie autora jest zdecydowanie po stronie języka C++, który jest dla niego naturalnym narzędziem pracy. Język Java znany jest mu tylko pobieżnie i w związku z tym zdaje się on być w tym kontekście mniej rozsądnym wyborem.
+}
+\subsubsection{Odporność na błędy}
+\par{
+Naturalną rzeczą związaną nieodłącznie z wytwarzaniem jakiegokolwiek oprogramowania są błędy programistyczne. Języki różnego typu w różny sposób bronią się przed nimi swoją strukturą.
+}
+\par{
+Zarówno język Java jak i język C++ są językami silnie typowanymi. Oznacza to, że za błąd w ich kontekście uważa się zachowania powszechnie uznawane za nielogiczne - stawianie obiektów złych klas w określonych kontekstach. Języki te bronią nas więc przed błędami, których znakomitym podsumowaniem jest żart \textit{"Jechały dwa autobusy jeden był zielony a drugi też skręcał w prawo."}.
+}
+\par{
+Aspektem typowym dla języka C++, który został wyeliminowany w języku Java jest ręczne zarządzanie pamięcią, które uznawane jest powszechnie za najbardziej błędogenny element tworzenia oprogramowania. W związku z tym, należy zwrócić uwagę, że w tej kwestii język Java, który sam obsługuje pamięć nie obciążając tym programisty wydaje się być zauważalnie lepszy.
+}
+\subsubsection{Wybór}
+\par{
+Mając na względzie powyższe elementy oceny, wybór wydaje się być nietrywialny. Wydajność w dzisiejszych czasem nie jest specjalnym kosztem a dla tego konkretnego projektu nie jest kluczowa zwłaszcza jeśli mówimy tylko o zmianach w obrębie tego samego rzędu wielkości. Jednocześnie język chroniący programistę przed jego własnymi błędami zdaje się mieć tu zauważalną przewagę. W praktyce jednak najbardziej kluczowe zdaje się być doświadczenie programistyczne autora tej pracy, które zaważyło o wyborze języka C++.
+}
+
+\subsection{Wybór silnika bazy danych}
+\par{
+Pod uwagę brano następujące silniki baz danych:
+\begin{itemize}
+\item ORACLE DB
+\item PostgreSQL
+\item MySQL
+\item sqLite
+\end{itemize}
+}
+
+\subsection{Wybór technologii tworzenia interfejsu}
+\par{
+Wybór technologii interfejsu nie był kluczowy dla projektu, dlatego autor wybrał w zasadzie jedyną dobrze znaną sobie bibliotekę umożliwiającą tworzenie przenośnych interfejsów graficznych --- bibliotekę Qt. Biblioteka zdawała się być wystarczająco dobrym rozwiązaniem w związku z czym poszukiwanie alternatywnych rozwiązań wydawało się bezzasadne zwłaszcza, że prezentowanie wyników symulacji nie jest kluczowe z punktu widzenia celu pracy.
+}
 
 \section[Projekt bazy danych][Projekt bazy danych]{Projekt bazy danych}
-\par{ Treść... }
+\par{
+W ramach symulatora wykorzystywane są dwie odrębne bazy danych. Jedna (baza danych dynamicznych) stanowi główne wyjście aplikacji i służy do zapisu odczytów z czujników umieszczonych wewnątrz symulacji. Druga z baz - baza statyczna - służy do opisywania środowiska miejskiego a w zasadzie jego statycznych elementów.
+}
+
+\subsection{Baza danych statycznych}
+\par{
+Zadaniem bazy danych statycznych jest przechowywanie układu ulic, budynków w symulowanym środowisku miejskim. Symulator w pierwszej fazie swojego działania (inicjalizacji) będzie wczytywał tego rodzaju dane by pracować na nich przez cały czas symulacji.
+}
+\par{
+Kwestią dyskusyjną było umieszczenie w bazie danych statycznych umiejscowienia czujników, ponieważ mają one charakter odpowiadający jej specyfice (są niezmienne przez cały czas symulacji). Jednakże, ze względu na to, że do danych tych odnosi się baza dynamiczna, by uniknąć niepotrzebnej zależności jednej bazy od drugiej zdecydowano by umiejscowienie czujników przenieść do bazy danych dynamicznych.
+}
+\par{
+Baza danych statycznych zawiera więc:
+\begin{itemize}
+\item Układ ulic - rozumiany jako graf geometryczny
+\item Umiejscowienie i kształt budynków - traktowanych jako graniastosłupy
+\end{itemize}
+Szczegóły bazy można zobaczyć na diagramie ER poniżej.
+}
+
+\par{
+\begin{center}
+\includegraphics[width=25em]{img/static_db}
+\end{center}
+}
+\par{
+\begin{center}
+\textit{Diagram ER bazy danych statycznych.}
+\end{center}
+}
+
+\subsection{Baza danych dynamicznych}
+\par{
+}
 
 \section[Architektura systemu][Architektura systemu]{Architektura systemu}
 \par{ Treść... }
