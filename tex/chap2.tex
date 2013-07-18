@@ -135,13 +135,13 @@ Niestety język C\# zdaje się nie być równie dostępny na wielu platformach. 
 }
 \subsubsection{Wydajność}
 \par{
-Choć wydajność obliczeń nie jest kluczowym elementem dla aplikacji, czego dowiodły późniejsze badania, to czas obliczeń jest niewątpliwym kosztem w związku z tym jego minimalizacja zdaje się być istotnym elementem decyzyjnym przy doborze języka programowania.
+Choć wydajność obliczeń nie jest kluczowym elementem dla aplikacji, czego dowiodły późniejsze badania, to czas obliczeń jest niewątpliwym kosztem i w związku z tym jego minimalizacja zdaje się być istotnym elementem decyzyjnym przy doborze języka programowania.
 }
 \par{
-Język C++ jako język kompilowany bezpośrednio (lub pośrednio) do kodu natywnego kodu maszynowego daje możliwość uzyskania idealnie optymalnego kodu dla danego rozwiązania na danej platformie sprzętowej. W tej kategorii język Java, będący językiem kompilowanym do maszyny wirtualnej z natury rzeczy uzyska niższe wyniki wydajnościowe - ze względu niemożliwą do uniknięcia dodatkową warstwę interpretacji w trakcie wykonywania.
+Język C++ jako język kompilowany bezpośrednio (lub pośrednio) do kodu natywnego kodu maszynowego daje możliwość uzyskania idealnie optymalnego kodu dla danego rozwiązania na danej platformie sprzętowej. W tej kategorii język Java, będący językiem kompilowanym do kodu maszynowego maszyny wirtualnej z natury rzeczy uzyska niższe wyniki wydajnościowe - ze względu niemożliwą do uniknięcia dodatkową warstwę interpretacji w trakcie wykonywania.
 }
 \par{
-Przewaga języka C++ nad Javą jest niezaprzeczalna, jednakże wydajność nie jest głównym kryterium doboru technologii w związku z tym nie wydaje się by odrzucenie języka Java na tym etapie było rozsądną koncepcją.
+Przewaga języka C++ nad Javą jest niezaprzeczalna, jednakże wydajność nie jest głównym kryterium doboru technologii i w związku z tym nie wydaje się by odrzucenie języka Java na tym etapie było rozsądną koncepcją.
 }
 \subsubsection{Doświadczenie}
 \par{
@@ -158,11 +158,11 @@ Naturalną rzeczą związaną nieodłącznie z wytwarzaniem jakiegokolwiek oprog
 Zarówno język Java jak i język C++ są językami silnie typowanymi. Oznacza to, że za błąd w ich kontekście uważa się zachowania powszechnie uznawane za nielogiczne - stawianie obiektów złych klas w określonych kontekstach. Języki te bronią nas więc przed błędami, których znakomitym podsumowaniem jest żart \textit{"Jechały dwa autobusy jeden był zielony a drugi też skręcał w prawo."}.
 }
 \par{
-Aspektem typowym dla języka C++, który został wyeliminowany w języku Java jest ręczne zarządzanie pamięcią, które uznawane jest powszechnie za najbardziej błędogenny element tworzenia oprogramowania. W związku z tym, należy zwrócić uwagę, że w tej kwestii język Java, który sam obsługuje pamięć [18] nie obciążając tym programisty wydaje się być zauważalnie lepszy.
+Aspektem typowym dla języka C++, który został wyeliminowany w języku Java jest ręczne zarządzanie pamięcią, które uznawane jest powszechnie za najbardziej błędogenny element tworzenia oprogramowania. W związku z tym, należy zwrócić uwagę, że w tej kwestii język Java, który sam obsługuje zarządzanie pamięcią [18] nie obciążając tym programisty wydaje się być zauważalnie lepszy.
 }
 \subsubsection{Wybór}
 \par{
-Mając na względzie powyższe elementy oceny, wybór wydaje się być nietrywialny. Wydajność w dzisiejszych czasem nie jest specjalnym kosztem a dla tego konkretnego projektu nie jest kluczowa zwłaszcza jeśli mówimy tylko o zmianach w obrębie tego samego rzędu wielkości. Jednocześnie język chroniący programistę przed jego własnymi błędami zdaje się mieć tu zauważalną przewagę. W praktyce jednak najbardziej kluczowe zdaje się być doświadczenie programistyczne autora tej pracy, które zaważyło o wyborze języka C++.
+Mając na względzie powyższe kryteria oceny, wybór wydaje się być nietrywialny. Wydajność w dzisiejszych czasem nie jest specjalnym kosztem a dla tego konkretnego projektu nie jest kluczowa zwłaszcza jeśli mówimy tylko o zmianach w obrębie tego samego rzędu wielkości. Jednocześnie język chroniący programistę przed jego własnymi błędami zdaje się mieć tu zauważalną przewagę. W praktyce jednak najbardziej kluczowe zdaje się być doświadczenie programistyczne autora tej pracy, które zaważyło o wyborze języka C++.
 }
 
 \subsection{Wybór silnika bazy danych}
@@ -189,7 +189,7 @@ W ramach symulatora wykorzystywane są dwie odrębne bazy danych. Jedna (baza da
 
 \subsection{Baza danych statycznych}
 \par{
-Zadaniem bazy danych statycznych jest przechowywanie układu ulic, budynków w symulowanym środowisku miejskim. Symulator w pierwszej fazie swojego działania (inicjalizacji) będzie wczytywał tego rodzaju dane by pracować na nich przez cały czas symulacji.
+Zadaniem bazy danych statycznych jest przechowywanie układu ulic i obiektów statycznych w symulowanym środowisku miejskim. Symulator w pierwszej fazie swojego działania (inicjalizacji) będzie wczytywał tego rodzaju dane by pracować na nich przez cały czas symulacji.
 }
 \par{
 Kwestią dyskusyjną było umieszczenie w bazie danych statycznych umiejscowienia czujników, ponieważ mają one charakter odpowiadający jej specyfice (są niezmienne przez cały czas symulacji). Jednakże, ze względu na to, że do danych tych odnosi się baza dynamiczna, by uniknąć niepotrzebnej zależności jednej bazy od drugiej zdecydowano by umiejscowienie czujników przenieść do bazy danych dynamicznych.
@@ -216,7 +216,7 @@ Szczegóły bazy można zobaczyć na diagramie ER poniżej.
 
 \subsection{Baza danych dynamicznych}
 \par{
-Baza danych statycznych ma za zadanie zbierać informacje z czujników i stanowić element komunikujący symulator z dalszymi systemami bazującymi na jego wyjściu. Struktura tej bazy musi być w związku z tym możliwie elastyczna - by nie ograniczać przyszłego rozwoju całego ciągu narzędzi. Struktura ta została zaprojektowana we współpracy z twórcą oprogramowania korzystającego z wyników symulatora.
+Baza danych dynamicznych ma za zadanie zbierać informacje z czujników i stanowić element komunikujący symulator z dalszymi systemami bazującymi na jego wyjściu. Struktura tej bazy musi być w związku z tym możliwie elastyczna - by nie ograniczać przyszłego rozwoju całego ciągu narzędzi. Struktura ta została zaprojektowana we współpracy z twórcą oprogramowania korzystającego z wyników symulatora.
 }
 \subsubsection{Raport wykrycia}
 \par{
@@ -226,14 +226,14 @@ Podstawowym pojęciem w przypadku bazy danych dynamicznych to \textit{raport o z
 Zaproponowana struktura pozwala na łączenie każdego raportu wykrycia z dowolną ilością \textit{wartości dodatkowych} (\textit{Feature Value}). Wartość dodatkowa  zapisywana jest w postaci ciągu znaków którego interpretacja zależy od aplikacji, która dodatkowo może posiłkować się informacjami dotyczącymi typu danej - możliwej do uzyskania z opisu konkretnej wartości dodatkowej.
 }
 \par{
-Każda wartość dodatkowa odnosi się bowiem do \textit{definicji wartości dodatkowej} (\textit(Feature for Sensor}). Tabela ta opisuje każdą klasę wartości dodatkowych typem informacji jaką za sobą ta klasa niesie oraz jej nazwą. Interpretacja znaczenia typu, który jest opisywany ciągiem znaków zależy od narzędzia docelowego, zakłada się jednak, że w typowym wypadku ciągi znaków będą zawierały nazwy typów zgodne z odpowiadającymi im typami w języku C++.
+Każda wartość dodatkowa odnosi się bowiem do \textit{definicji wartości dodatkowej} (\textit{Feature for Sensor}). Tabela ta opisuje każdą klasę wartości dodatkowych typem informacji jaką za sobą ta klasa niesie oraz jej nazwą. Interpretacja znaczenia typu, który jest opisywany ciągiem znaków zależy od narzędzia docelowego, zakłada się jednak, że w typowym wypadku ciągi znaków będą zawierały nazwy typów zgodne z odpowiadającymi im typami w języku C++.
 }
 \subsubsection{Czujnik}
 \par{
 Innym elementem, który musi być opisany przez dynamiczną bazę danych by uniknąć niepotrzebnej zależności od bazy danych statycznych są czujniki. Każdy raport o zauważeniu obiektu musi posiadać informację na temat czujnika, z którego pochodzi - jest to kluczowa informacja dla analizy danych.
 }
 \par{
-Podstawową informacją dotyczącą każdego czujnika jest jego położenie w przestrzeni oraz maksymalny zasięg. Maksymalny zasięg to odległość z jakiej dany czujnik może przy idealnych informacjach zebrać jakiekolwiek informacje.
+Podstawową informacją dotyczącą każdego czujnika jest jego położenie w przestrzeni oraz maksymalny zasięg. Maksymalny zasięg to odległość z jakiej dany czujnik może przy idealnych warunkach zebrać jakiekolwiek informacje.
 }
 \par{
 Poza podstawowymi informacjami każdy czujnik może mieć swoją charakterystykę opisującą jego działanie (np. pole widzenia wyrażone w stopniach). Ponieważ typowo czujniki tego samego typu charakteryzują się podobnymi atrybutami, wprowadzono pojęcie typu opisywanego opcjonalnie nazwą. Każdy typ posiada zestaw atrybutów charakterystycznych dla siebie. Każdy atrybut posiada typ i opcjonalnie nazwę. Wiele czujników może wymagać takich samych informacji.
