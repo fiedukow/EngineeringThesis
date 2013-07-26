@@ -8,17 +8,17 @@ TODO: Spisać specyfikację sprzętową komputera...
 
 \section{Plan badań}
 \par{
-Zaplanowane zadanie miało za zadanie potwierdzić lub zaprzeczyć hipotezie, że kluczowe z punktu widzenia wydajności całej symulacji są czasy operacji wejścia-wyjścia nie zaś czasy obliczeń.
+Zaplanowane badanie miało za zadanie potwierdzić lub zaprzeczyć hipotezie, że kluczowe z punktu widzenia wydajności całej symulacji są czasy operacji wejścia-wyjścia nie zaś czasy obliczeń.
 }
 \par{
-Aby sprawdzić tę teorię postanowiono przebadać czasy pojedyńczego obiegu pętli symulacji w zależności od ilości obiektów symulowanych, przy stałej architekturze symulowanego miasta, stałym pokryciu czujnikami oraz stałym minimalnym czasie pętli dla włączonego zapisu do bazy (standardowa wersja aplikacji) oraz dla operacji zapisu do bazy zastąpionej progamową zaślepką nie wykonującą dodatkowych operacji.
+Aby sprawdzić tę teorię postanowiono przebadać czasy pojedynczego obiegu pętli symulacji w zależności od ilości obiektów symulowanych, przy stałej architekturze symulowanego miasta, stałym pokryciu czujnikami oraz stałym minimalnym czasie pętli dla włączonego zapisu do bazy (standardowa wersja aplikacji) oraz dla operacji zapisu do bazy zastąpionej programową zaślepką nie wykonującą dodatkowych operacji.
 }
 \par{
 Wartości wyżej wspomnianych stałych pokazuje Tablica 4.1.
 }
 \par{
 \begin{table}[t]
-\caption{Stałe paramtery symulacji w badaniach}
+\caption{Stałe parametry symulacji w badaniach}
 \label{Tabela 1}
 \begin{center}
 \begin{tabular}{|c|c|}
@@ -36,7 +36,7 @@ Wartości wyżej wspomnianych stałych pokazuje Tablica 4.1.
 
 \subsection{Czas pętli a ilość zapisów}
 \par{
-Przy planowaniu badań zauważono, że jeśli postawiona hipoteza była by prawdziwa, to kluczowe z punktu widzenia badanego czasu pojedyńczej pętli była by ilość odczytów jakie czyniły czujniki w czasie takiego obiegu. Z tego względu zdecydowano się w ramach planowanie końcowego eksperymentu na zbadanie zależności między ilością zapisów a ilością obiektów. Efekt tej pracy przedstawia \textit{Tablica 4.2} oraz \textit{Wykres 1}.
+Przy planowaniu badań zauważono, że jeśli postawiona hipoteza była by prawdziwa, to kluczowe z punktu widzenia badanego czasu pojedynczej pętli była by ilość odczytów jakie czyniły czujniki w czasie takiego obiegu. Z tego względu zdecydowano się w ramach planowania właściwego eksperymentu na zbadanie zależności między ilością obiektów w symulacji a czasem obiegu pojedynczej symulacji. Efekt tej pracy przedstawia \textit{Tablica 4.2} oraz \textit{Wykres 1}.
 }
 \par{
 \begin{table}[t]
@@ -69,7 +69,7 @@ Przy planowaniu badań zauważono, że jeśli postawiona hipoteza była by prawd
 }
 
 \par{
-Na wykresie tym wyraźnie widać, że ilość zapisów w stosunku do ilości obiektów ma charakter liniowy w dwóch przedziałach z wyraźnym przesunięciem w okolicach 120 obiektów. Powodem tego załamania zdaje się być fakt, że przekroczenie przez czas jednego obiegu pętli zadanego jako stała minimalnego czasu przetwarzania, powoduje, że kolejny obieg pętli będzie odpowiadał dłuższemu odcinkowi symulowanego czasu a więc średnio będzie nań przypadało więcej odczytów z kamer (jako, że kamera odczytuje stan okolicy periodycznie). Zależnie od prawdziwości wyżej wspomnianej hipotezy powinna nastąpić w tym miejscu mniej lub bardziej gwałtowna reakcja lawinowa prowadząca do stanu, w którym każda kamera będzie dokonywała odczytu w każdym obiegu pętli - to właśnie obserwujemy jako załamanie na \textit{wykresie 1}.
+Na wykresie tym wyraźnie widać, że ilość zapisów w stosunku do ilości obiektów ma charakter liniowy w dwóch przedziałach z wyraźnym przesunięciem w okolicach 120 obiektów. Powodem tego załamania zdaje się być fakt przekroczenia przez czas jednego obiegu pętli zadanego jako stała minimalnego czasu przetwarzania.  Powoduje to, że kolejny obieg pętli będzie odpowiadał dłuższemu odcinkowi symulowanego czasu a więc średnio będzie nań przypadało więcej odczytów z kamer (jako, że kamera odczytuje stan okolicy periodycznie). Zależnie od prawdziwości wyżej wspomnianej hipotezy powinna nastąpić w tym miejscu mniej lub bardziej gwałtowna reakcja lawinowa prowadząca do stanu, w którym każda kamera będzie dokonywała odczytu w każdym obiegu pętli - to właśnie obserwujemy jako załamanie na \textit{wykresie 1}.
 }
 \par{
 Ze względu na dualny charakter tej charakterystyki zdecydowano się przenieść ją do celów badań do jej górnej części, by to załamanie - nieistotne z punktu widzenia celu badan - nie zaciemniało obrazu. W związku z tym zdecydowano się obniżć czas między wyzwoleniami każdej z kamer do zera co powoduje, że każda kamera w każdym obiegu pętli wykona zrzut swojego otoczenia, ponieważ spełniony będzie warunek:
@@ -84,7 +84,6 @@ $T_{wyzwolenia kamer} < \Delta T_{kroku}$
 \par{
 W wyniku badań otrzymano rezultaty zaprezentowane w Tablicy 4.3 oraz na Wykresie 2.
 }
-	Brak zapisu do bazy danych
 
 \par{
 \begin{table}[t]
@@ -115,7 +114,7 @@ W wyniku badań otrzymano rezultaty zaprezentowane w Tablicy 4.3 oraz na Wykresi
 }
 
 \par{
-Na \textit{wykresie 2} wyraźnie widać, że zarównow przypadku zapisu do bazy danych jak i gdy zapis ten zostanie wyłączony czas trwania pojedyńczego obiegu pętli zależy liniowo od ilości obiektów w symulacji.
+Na \textit{wykresie 2} wyraźnie widać, że zarówno przypadku zapisu do bazy danych jak i gdy zapis ten zostanie wyłączony czas trwania pojedynczego obiegu pętli zależy liniowo od ilości obiektów w symulacji.
 }
 \par{
 Na wykresie w skali logarytmicznej widać też jednak, że w przypadku zapisów do bazy cały wykres przeniesiony jest o rzędy wielkości wyżej - na wykresie w zwykłej skali wariant bez zapisu byłby w ogóle nie widoczny i zredukowany do płaskiego odcinka na dole wykresu.
@@ -129,3 +128,12 @@ Ze względu na całkowite zdominowanie czasu pracy symulacji przez czas operacji
 }
 
 \chapter{Podsumowanie}
+\par{
+W ramach pracy stworzono model dla symulatora ruchu obiektów w środowisku miejskim o modularnym i warstwowym charakterze pozwalającym na opisywanie logiki symulacji na różnych poziomach abstrakcji.
+}
+\par{
+Zaimplementowany został również referencyjny symulator operujący w wysokiej skali abstrakcji, spełniający postawione przed nim wymagania.
+}
+\par{
+Udowodniono, że kluczowa z punktu widzenia wydajności działania symulatora mającego udostępniać swoje wyjście w formie rekordów w bazie danych, jest optymalizacja czasu operacji wejścia-wyjścia (zapisów do bazy) natomiast optymalizacja czasu obliczeń nie daje żadnych realnych wzrostów wydajności.
+}
