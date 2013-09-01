@@ -1,32 +1,28 @@
 \chapter{Implementacja symulatora}
-\par{
-W tym rozdziale zostanie omówiona implementacja symulatora. Przedstawione będą stawiane tego rodzaju aplikacjom.
-}
-
-\section[Wymagania][Wymagania]{Wymagania}
+\section[Wymagania funkcjonalne][Wymagania funkcjonalne]{Wymagania funkcjonalne}
 
 \par{
-Tak jak i inne systemy informatyczne tak i ten, choć projektowany w ramach pracy inżynierskiej musiał spełniać pewne wymagania wynikające z możliwości jego późniejszego zastosowania do badań naukowych, a w szczególności do współpracy z systemem fuzji danych obecnie realizowanym przez pana Macieja Grzybka (temat pracy inżynierskiej: \textit{Implementacja algorytmu śledzenia obiektów w systemie fuzji danych}).
+Implementowany w ramach tej pracy symulator środowiska miejskiego musi spełniać pewne wymagania, wynikające z możliwości jego późniejszego zastosowania do badań naukowych, a w szczególności do współpracy z systemem fuzji danych obecnie realizowanym przez pana Macieja Grzybka (temat pracy inżynierskiej: \textit{Implementacja algorytmu śledzenia obiektów w systemie fuzji danych} [26]).
 }
 \par{
-Poniżej opisano postawione systemowi wymagania:
+Symulator musi:
 \begin{itemize}
-	\item System powinien dostarczać dane z czujników rozmieszczonych w mieście w formie wstępnie przetworzonej (na potrzeby fuzji informacji).
-	\item System powinien posiadać przynajmniej jeden typ czujnika, który dostarcza przynajmniej informację na temat współrzędnych geograficznych obiektu obserwowanego.
-	\item System powinien udostępniać odczyty z czujników przy użyciu uzgodnionego schematu bazy danych dynamicznych.
-	\item System powinien odczytywać wejściowe informacje na temat środowiska z określonego schematu bazy danych statycznych (wczytywanie map).
-	\item System powinien mieć możliwość dodania implementacji bardziej zaawansowanych rodzajów czujników, a w szczególności posiadających inne właściwości oraz dostarczających innych informacji.
-	\item System powinien prezentować symulację w formie graficznej tak, by można było obserwować jej przebieg i konfrontować go z wynikami bieżącego działania systemu fuzji danych.
-	\item System powinien umożliwiać regulację natężenia ruchu.
-	\item System powinien umożliwiać regulację szybkości symulacji względem czasu rzeczywistego (przyśpieszenie, spowolnienie).
-	\item System powinien pozwalać na czasowe wstrzymanie symulacji.
+	\item Dostarczać dane z czujników rozmieszczonych w mieście w formie wstępnie przetworzonej (na potrzeby fuzji informacji).
+	\item Posiadać przynajmniej jeden typ czujnika, który dostarcza przynajmniej informację na temat współrzędnych geograficznych obiektu obserwowanego.
+	\item Udostępniać odczyty z czujników przy użyciu uzgodnionego schematu bazy danych dynamicznych.
+	\item Odczytywać wejściowe informacje na temat środowiska z określonego schematu bazy danych statycznych (wczytywanie map).
+	\item Mieć możliwość dodania implementacji bardziej zaawansowanych rodzajów czujników, a w szczególności posiadających inne właściwości oraz dostarczających innych informacji.
+	\item Prezentować symulację w formie graficznej tak, by można było obserwować jej przebieg i konfrontować go z wynikami bieżącego działania systemu fuzji danych.
+	\item Umożliwiać regulację natężenia ruchu.
+	\item Umożliwiać regulację szybkości symulacji względem czasu rzeczywistego (przyśpieszenie, spowolnienie).
+	\item Pozwalać na czasowe wstrzymanie symulacji.
 \end{itemize}
 }
 
 \section[Metodyka symulacji][Metodyka symulacji]{Metodyka symulacji}
 \subsection{Przedmiot symulacji}
 \par{
-Jak wspomniano w poprzednim rozdziale, dobranie skali integracji symulacji do wybranego zagadnienia jest istotne z punktu widzenia osiągnięcia zamierzonych rezultatów. Wybranie skali zbyt wysokiej ogranicza możliwości zastosowania symulacji i jej rozszerzalność. Wybranie skali zbyt niskiej skutkuje natomiast utrudnieniami implementacyjnymi, wzrostem złożoności obliczeniowej i skomplikowaniem ogólnej zasady działania symulacji bez rekompensaty w postaci użytecznych możliwości.
+Jak wspomniano w poprzednim rozdziale, dobranie skali integracji symulacji do wybranego zagadnienia jest istotne z punktu widzenia osiągnięcia zamierzonych rezultatów. Wybranie skali zbyt wysokiej ogranicza możliwości zastosowania symulacji i jej rozszerzalność. Wybranie skali zbyt niskiej skutkuje natomiast utrudnieniami implementacyjnymi, wzrostem złożoności obliczeniowej i skomplikowaniem ogólnej zasady działania symulacji, bez rekompensaty w postaci użytecznych możliwości.
 }
 \par{
 Dobranie odpowiedniej skali integracji powinno przede wszystkim uwzględniać skalę w jakiej obserwowany będzie symulowany układ, tak by w tej skali zachowywał się on realistycznie z punktu widzenia celu symulacji. I tak w przypadku przedstawianego w pracy symulatora obserwowane obiekty są obserwowane w stosunkowo wysokiej skali integracji --- jako samochody, piesi i inne elementy makro-świata.
@@ -47,9 +43,9 @@ Przy rozwiązaniu tego problemu z pomocą przychodzi nam teoria symulacji a tak�
 I tak wiemy, że zastosowanie właśnie modelu newtonowskiego do symulowania ruchów obiektów da nam obraz realistyczny z punktu widzenia makro świata.
 }
 \par{
-Podstawowymi wielkościami dynamiki Newtona są siła (F), przyśpieszenie (a) oraz masa (m), połączone wzorem:
+Podstawowymi wielkościami dynamiki Newtona są siła (\textbf{F}), przyśpieszenie (\textbf{a}) oraz masa (\textit{m}), połączone wzorem:
 \begin{center}
-$F = m \times a$
+$\textbf{F} = m \times \textbf{a}$
 \end{center}
 Wzór ten opisuje podstawę ruchu i odnosi się właśnie do obiektów makroskopowych o nieznanej lub nieokreślonej strukturze wewnętrznej opisywanych modelami fizycznymi takimi jak punkt materialny lub bryła sztywna.
 }
@@ -59,17 +55,17 @@ Dla ciał objętych symulacją również należało znaleźć odpowiedni model f
 \par{
 Podejście do obiektów symulowanych jak do bryły sztywnej wydaje się być intuicyjne. W naturalny sposób blokuje to możliwość ingerencji w wewnętrzną fizykę ciała, jednocześnie zapewniając wysoki realizm w skali makro.
 Takie podejście pozwala na łatwe zasymulowanie wszelkiego rodzaju zdarzeń niesprężystych, także związanych z obrotami, w sposób naturalny ułatwia wykrywanie kolizji i pozwala przewidywać ich przebieg z dużą dokładnością i z zachowaniem wysokiego realizmu.
-Niestety model ten ze względu na stopień kompilacji został odrzucony a wybrany został model prostszy - model punktu materialnego.
+Niestety model ten ze względu na stopień kompilacji został odrzucony a wybrany został model prostszy --- model punktu materialnego.
 \par{
-Model punktu materialnego pozwala na wykonywanie wszelkich obliczeń na obiektach które nie nawiązują między sobą interakcji równie dobrze jak model bryły sztywnej. Jego niewątpliwą wadą jest to, że w razie pojawienia się potrzeby symulowania zderzeń między obiektami pojawił by się spory narzut na dość sztucznej warstwie abstrakcji, która musiała by powstać by obsłużyć zderzenia w sposób realistyczny (dodać do modelu odpowiednie siły itp.).
+Model punktu materialnego pozwala na wykonywanie wszelkich obliczeń na obiektach, które nie nawiązują między sobą interakcji równie dobrze jak model bryły sztywnej. Jego niewątpliwą wadą jest to, że w razie pojawienia się potrzeby symulowania zderzeń między obiektami pojawił by się spory narzut na dość sztucznej warstwie abstrakcji, która musiała by powstać by obsłużyć zderzenia w sposób realistyczny (dodać do modelu odpowiednie siły, itp.).
 Ponadto model ten nie uwzględnia obrotów, ponieważ z jego punktu widzenia obiekty w świecie stają się niematerialnymi punktami bez wymiarów.
 Największą i przeważającą zaletą tego modelu była jego prostota, która pozwoliła na szybką implemetację wersji symulatora zdolnej spełniać podstawowe powierzone jej zadania. 
 }
 \par{
 W ramach modelu fizyki punktu materialnego przyjęto, że każdy obiekt w świecie stanowi jeden punkt materialny, który w każdej chwili czasu charakteryzuje się następującymi wartościami:
-\begin{itemize}
+\begin{itemize}\renewcommand{\labelitemi}{$\bullet$}
 \item Siła (wektor trójwymiarowy) z jaką działa ciało na świat stanowiący inercjalny układ odniesienia rozumiany jako statyczny obiekt o nieskończonych wymiarach, względem, którego przemieszczają się ciała (swoista podstawa układu).
-\item Masa ciała
+\item Masa ciała.
 \item Prędkość (wektor trójwymiarowy) z jaką w danej chwili porusza się ciało.
 \end{itemize}
 Znając te trzy wartości, można określić położenie obiektu w układzie współrzędnych w każdej chwili czasu.
@@ -81,30 +77,30 @@ Warto zwrócić uwagę, że tak jak pierwsze dwa z tych parametrów są właści
 Ostatnią z punktu widzenia istoty symulacji decyzją jaką należało podjąć było wybranie jednego z dwóch możliwych podejść do symulowania upływu czasu:
 
 \begin{itemize}
-\item Obliczenia przy założeniu ciągłości czasu
-\item Obliczenia przy założeniu czasu skwantowanego (dyskretnego)
+\item obliczenia przy założeniu ciągłości czasu,
+\item obliczenia przy założeniu czasu skwantowanego (dyskretnego).
 \end{itemize}
 }
 \par{
-Pierwsze z podejść jest bliższe realizmowi. Gdyż pomimo, iż w świetle współczesnych badań fizycznych okazuje się, że czas należy rzeczywiście traktować jako parametr zdyskretyzowany, to gęstość jego rzeczywistego ,,próbkowania'' jest tak duża, że nie sposób obsługiwać ją przy użyciu komputera (opisano to w pierwszym rozdziale pracy).
+Pierwsze z podejść jest bliższe realizmowi. Gdyż pomimo, iż w świetle współczesnych badań fizycznych okazuje się, że czas należy rzeczywiście traktować jako parametr zdyskretyzowany, to gęstość jego rzeczywistego ,,próbkowania'' jest tak duża, że nie sposób obsługiwać ją przy użyciu komputera.
 Jak wspominano w poprzednim rozdziale, uzyskanie efektu czasu ciągłego sprowadza się do opisania wszystkich elementów symulowanego świata układem równań. W każdej chwili pozycja każdego obiektu może być wyznaczona jako pozycja początkowa przesunięta o wektor wyznaczany z bieżącego równania ruchu danego ciała. Tego rodzaju symulacja zapobiega wszelkiego rodzaju błędom przybliżeń i błędom kwantowania, ma ona jednak inne właściwości, które dyskwalifikują jej użycie.
 }
 \par{
-Warto zwrócić uwagę, że tego typu równania wyznacza się ponownie ilekroć pojawia się jakieś zdarzenie. Przez zdarzenie rozumie się tutaj wszelkie sytuacje mogące wpływać na stan jakiegokolwiek ciała. I tak podstawowymi zdarzeniami w typowym modelu fizycznym są np. zderzenia dwóch ciał. W wypadku symulacji zdarzenie następuje jednak również wtedy, gdy co najmniej jeden z obiektów pod wpływem czynników zewnętrznych zmieni swój stan (tj. siłę lub masę). Niestety wyznaczanie wystąpień tego rodzaju w czasie wydaje się być zadaniem bardzo trudnym. Po pierwsze nie jesteśmy w stanie przewidzieć w jakich sytuacjach obiekt zmienia swój stan --- musimy więc przenieść tę odpowiedzialność na niego, dając mu tym samym wgląd w przyszłość symulacji co jest niezgodne z logiką procesu. Po drugie obiekt taki musi w swoisty sposób przewidywać przyszłość by zaplanować zdarzenie - każdy obiekt musi więc mieć pojęcie o całym układzie by być w stanie (i to przy dużym nakładzie obliczeniowym) przewidzieć i zaplanować zdarzenia, które dotyczą jego stanu ruchu.
+Warto zwrócić uwagę, że tego typu równania wyznacza się ponownie ilekroć pojawia się jakieś zdarzenie. Przez zdarzenie rozumie się tutaj wszelkie sytuacje mogące wpływać na stan jakiegokolwiek ciała. I tak podstawowymi zdarzeniami w typowym modelu fizycznym są np. zderzenia dwóch ciał. W wypadku symulacji zdarzenie następuje jednak również wtedy, gdy co najmniej jeden z obiektów pod wpływem czynników zewnętrznych zmieni swój stan (tj. siłę lub masę). Niestety wyznaczanie wystąpień tego rodzaju zdarzeń w czasie wydaje się być zadaniem bardzo trudnym. Po pierwsze nie jesteśmy w stanie przewidzieć w jakich sytuacjach obiekt zmienia swój stan --- musimy więc przenieść tę odpowiedzialność na niego, dając mu tym samym wgląd w przyszłość symulacji, co jest niezgodne z logiką procesu. Po drugie obiekt taki musi w swoisty sposób przewidywać przyszłość by zaplanować zdarzenie --- każdy obiekt musi więc mieć pojęcie o całym układzie by być w stanie (i to przy dużym nakładzie obliczeniowym) przewidzieć i zaplanować zdarzenia, które dotyczą jego stanu ruchu.
 }
 \par{
-Rozwiązaniem, które pozwoliło by wdrożyć ideę czasu ciągłego w życie bez konieczności wprowadzania olbrzymiej ilości obliczeń, jest twarde zdefiniowanie w modelu sytuacji w których poszczególne obiekty mogą zmieniać decyzje. Warto jednak zwrócić uwagę, że zmniejsza to decyzyjność pojedynczych jednostek w świecie co obniża realizm ewentualnie wdrożonej sztucznej inteligencji.
+Rozwiązaniem, które pozwoliło by wdrożyć ideę czasu ciągłego w życie bez konieczności wprowadzania olbrzymiej ilości obliczeń, jest twarde zdefiniowanie w modelu sytuacji w których poszczególne obiekty mogą zmieniać decyzje. Warto jednak zwrócić uwagę, że zmniejsza to decyzyjność pojedynczych jednostek w świecie, co obniża realizm ewentualnie wdrożonej sztucznej inteligencji.
 }
 \par{
-Wyżej wspomniane powody sprawiły, iż zdecydowano się na wybranie wariantu symulacji z czasem jako jednostką skwantowaną. W takiej sytuacji każdy kwant jest punktem decyzji dla każdego obiektu a przez okres jego trwania ciała poruszają się ze stałymi parametrami (przyśpieszenie, prędkość).
-Takie rozwiązanie posiada szereg wad. Po pierwsze, w przypadku potrzeby zasymulowania kolizji pojawia się problem nachodzenia na siebie obiektów. W typowym przypadku zderzenia, w jednym kwancie czasu dwa ciała będą rozłączne a w następnym momencie będą się na siebie nakładały. Jest to niezgodne z modelem fizycznym bryły sztywnej jak i intuicją. Istnieją jednak sposoby radzenia sobie z tego rodzaju problemami - nie są one jednak przedmiotem tej pracy, a ponieważ w załączonej implementacji zrezygnowano z obsługi zderzeń, nie będą one tutaj rozpatrywane. Warto jednak mieć na względzie ograniczenie samej metodyki symulowania upływu czasu.
+Wyżej wspomniane powody sprawiły, iż zdecydowano się na wybranie wariantu symulacji z czasem jako jednostką skwantowaną. W takiej sytuacji każdy kwant jest punktem decyzji dla każdego obiektu, a przez okres jego trwania ciała poruszają się ze stałymi parametrami (przyśpieszenie, prędkość).
+Takie rozwiązanie posiada szereg wad. Po pierwsze, w przypadku potrzeby zasymulowania kolizji pojawia się problem nachodzenia na siebie obiektów. W typowym przypadku zderzenia, w jednym kwancie czasu dwa ciała będą rozłączne a w następnym momencie będą się na siebie nakładały. Jest to niezgodne z modelem fizycznym bryły sztywnej jak i intuicją. Istnieją jednak sposoby radzenia sobie z tego rodzaju problemami --- nie są one jednak przedmiotem tej pracy, a ponieważ w załączonej implementacji zrezygnowano z obsługi zderzeń, nie będą one tutaj rozpatrywane. Warto jednak mieć na względzie ograniczenie samej metodyki symulowania upływu czasu.
 }
 \par{
-Kolejny problem pojawiający się przy obsłudze czasu w kwantach przy zachowaniu szybkości jego upływu w stosunku do czasu rzeczywistego jest fakt, że przy dużym czasie zajmowanym przez każdy krok algorytmu (np. na skutek operacji wejścia wyjścia), wydłuża się czas trwania kwantu czasu. W skrajnych wypadkach może to doprowadzić do kwantów czasu bardzo długich co sprawia, że błąd kwantowania staje się ogromny - w praktyce może to np. powodować opuszczenie przez obiekty obszaru symulacji.
+Kolejny problem pojawiający się przy obsłudze czasu w kwantach przy zachowaniu szybkości jego upływu w stosunku do czasu rzeczywistego jest fakt, że przy dużym czasie zajmowanym przez każdy krok algorytmu (np. na skutek operacji wejścia wyjścia), wydłuża się czas trwania kwantu czasu. W skrajnych wypadkach może to doprowadzić do kwantów czasu bardzo długich co sprawia, że błąd kwantowania staje się ogromny --- w praktyce może to np. powodować opuszczenie przez obiekty obszaru symulacji.
 Problem ten można oczywiście zlikwidować rezygnując z odniesienia czasu symulacji do czasu rzeczywistego (wtedy błąd kwantowania jest stały i z założenia niewielki), jednak jako że takie odniesienie jest jednym z wymagań stawianym symulatorowi, tego typu sytuacje mimo ich nieprecyzyjności należało obsłużyć w sposób możliwe realistyczny z punktu widzenia obserwacji. Zaproponowane rozwiązanie i konkretne miejsca występowania tego problemu opisano w dalszej części pracy.
 }
 \par{
-Dobranie metodyki obsługi upływu czasu stanowi zwieńczenie procesu projektowania działania symulatora. W jego wyniku otrzymano obraz symulatora jako procesu działającego na abstrakcyjnych obiektach makro-świata, obsługiwanych zgodnie z zasadami dynamiki newtona tak jakby były punktami materialnymi przy jednoczesnym zachowaniu kwantyzacji czasu pozwalającej na swobodne zmiany stanu (rozumianego jako masa i siła) obiektów na skutek ich własnych decyzji w wyznaczonych momentach czasu symulacji.
+Dobranie metodyki obsługi upływu czasu stanowi zwieńczenie procesu projektowania działania symulatora. W jego wyniku otrzymano obraz symulatora jako procesu działającego na abstrakcyjnych obiektach makro-świata, obsługiwanych zgodnie z zasadami dynamiki Newtona tak jakby były punktami materialnymi przy jednoczesnym zachowaniu kwantyzacji czasu pozwalającej na swobodne zmiany stanu (rozumianego jako masa i siła) obiektów na skutek ich własnych decyzji w wyznaczonych momentach czasu symulacji.
 }
 
 \section[Dobór technologii][Dobór technologii]{Dobór technologii}
@@ -116,11 +112,11 @@ Poniższy rozdział traktuje o doborze tych technologii opisując powody ich wyb
 \subsubsection{Rozszerzalność}
 \par{
 Symulator według wyżej wyspecyfikowanych wymagań ma na wielu płaszczyznach wspierać możliwości rozszerzania. Obecnie za paradygmat programowania umożliwiający rozszerzenie funkcjonalności w największym stopniu uważa się paradygmat programowania obiektowego.
-W związku z tym pod uwagę w wyborze brane będą tylko języki programowania związane z tym paradygmatem a jednocześnie znane choć w podstawowym stopniu autorowi niniejszej pracy:
+W związku z tym pod uwagę brane były tylko języki programowania związane z tym paradygmatem, a jednocześnie znane choć w podstawowym stopniu autorowi niniejszej pracy, były to:
 \begin{itemize}
-\item C++
-\item Java
-\item C\#
+\item C++,
+\item Java,
+\item C\# .
 \end{itemize}
 }
 \subsubsection{Dostępność}
@@ -128,7 +124,7 @@ W związku z tym pod uwagę w wyborze brane będą tylko języki programowania z
 Istotnym elementem z punktu widzenia każdej aplikacji użytkowej, także tej tworzonej z myślą o prowadzeniu badań naukowych zdaje się być możliwość wykorzystania jej na różnych platformach sprzętowo-systemowych.
 }
 \par{
-I tak spośród wymienionych wcześniej języków programowania tylko dwa pierwsze zdają się pokrywać zakresem swej dostępności porównywalne ilości platform - są to Java, której kod ze względu na wykorzystanie implementowanej na wiele popularnych platform wirtualnej maszyny może być wykonywany na większości współczesnych urządzeń elektronicznych (nie tylko klasy PC), oraz C++, którego kompilacja i wykonanie ze względu na szeroko dostępne kompilatory dla wielu architektur oraz implementacje biblioteki standardowej nie stanowi problemu dla większości popularnych konfiguracji sprzętowo-systemowych.
+I tak spośród wymienionych wcześniej języków programowania tylko dwa pierwsze zdają się pokrywać zakresem swej dostępności porównywalne ilości platform --- są to Java, której kod ze względu na wykorzystanie implementowanej na wiele popularnych platform wirtualnej maszyny może być wykonywany na większości współczesnych urządzeń elektronicznych (nie tylko klasy PC), oraz C++, którego kompilacja i wykonanie ze względu na szeroko dostępne kompilatory dla wielu architektur oraz implementacje biblioteki standardowej nie stanowi problemu dla większości popularnych konfiguracji sprzętowo-systemowych.
 }
 \par{
 Niestety język C\# zdaje się nie być równie dostępny na wielu platformach. Implementacje jego wirtualnej maszyny nie są zbyt szeroko dostępne a nawet jeśli istnieją są generalnie postrzegane jako półśrodek nie do końca spełniający swoją rolę. Z tego względu język C\# został odrzucony i nie będzie rozpatrywany w kolejnych kategoriach doboru.
@@ -138,14 +134,14 @@ Niestety język C\# zdaje się nie być równie dostępny na wielu platformach. 
 Choć wydajność obliczeń nie jest kluczowym elementem dla aplikacji, czego dowiodły późniejsze badania, to czas obliczeń jest niewątpliwym kosztem i w związku z tym jego minimalizacja zdaje się być istotnym elementem decyzyjnym przy doborze języka programowania.
 }
 \par{
-Język C++ jako język kompilowany bezpośrednio (lub pośrednio) do kodu natywnego kodu maszynowego daje możliwość uzyskania idealnie optymalnego kodu dla danego rozwiązania na danej platformie sprzętowej. W tej kategorii język Java, będący językiem kompilowanym do kodu maszynowego maszyny wirtualnej z natury rzeczy uzyska niższe wyniki wydajnościowe - ze względu niemożliwą do uniknięcia dodatkową warstwę interpretacji w trakcie wykonywania.
+Język C++ jako język kompilowany bezpośrednio (lub pośrednio) do natywnego kodu maszynowego daje możliwość uzyskania idealnie optymalnego kodu dla danego rozwiązania na danej platformie sprzętowej. W tej kategorii język Java, będący językiem kompilowanym do kodu maszynowego maszyny wirtualnej z natury rzeczy uzyska niższe wyniki wydajnościowe - ze względu niemożliwą do uniknięcia dodatkową warstwę interpretacji w trakcie wykonywania.
 }
 \par{
 Przewaga języka C++ nad Javą jest niezaprzeczalna, jednakże wydajność nie jest głównym kryterium doboru technologii i w związku z tym nie wydaje się by odrzucenie języka Java na tym etapie było rozsądną koncepcją.
 }
 \subsubsection{Doświadczenie}
 \par{
-Istotne z punktu widzenia tworzenia aplikacji jest doświadczenie programistyczne w danej technologii. Ogranicza ono błędy. Skraca czas potrzebny na implementację. Pozwala uniknąć nawrotów. Doświadczony w danej technologii ma większą szansę na stworzenie bezawaryjnego i utrzymywalnego oprogramowania.
+Istotne z punktu widzenia tworzenia aplikacji jest doświadczenie programistyczne w danej technologii. Programista doświadczoniem w danej technologii ma większą szansę na szybkie stworzenie bezawaryjnego i utrzymywalnego oprogramowania.
 }
 \par{
 Doświadczenie autora jest zdecydowanie po stronie języka C++, który jest dla niego naturalnym narzędziem pracy. Język Java znany jest mu tylko pobieżnie i w związku z tym zdaje się on być w tym kontekście mniej rozsądnym wyborem.
@@ -155,14 +151,14 @@ Doświadczenie autora jest zdecydowanie po stronie języka C++, który jest dla 
 Naturalną rzeczą związaną nieodłącznie z wytwarzaniem jakiegokolwiek oprogramowania są błędy programistyczne. Języki różnego typu w różny sposób bronią się przed nimi swoją strukturą.
 }
 \par{
-Zarówno język Java jak i język C++ są językami silnie typowanymi. Oznacza to, że za błąd w ich kontekście uważa się zachowania powszechnie uznawane za nielogiczne - stawianie obiektów złych klas w określonych kontekstach. Języki te bronią nas więc przed błędami, których znakomitym podsumowaniem jest żart \textit{"Jechały dwa autobusy jeden był zielony a drugi też skręcał w prawo."}.
+Zarówno język Java jak i język C++ są językami silnie typowanymi. Oznacza to, że za błąd w ich kontekście uważa się zachowania powszechnie uznawane za nielogiczne - stawianie obiektów złych klas w nieokreślonych dla nich kontekstach.
 }
 \par{
-Aspektem typowym dla języka C++, który został wyeliminowany w języku Java jest ręczne zarządzanie pamięcią, które uznawane jest powszechnie za najbardziej błędogenny element tworzenia oprogramowania. W związku z tym, należy zwrócić uwagę, że w tej kwestii język Java, który sam obsługuje zarządzanie pamięcią [18] nie obciążając tym programisty wydaje się być zauważalnie lepszy.
+Aspektem typowym dla języka C++, który został wyeliminowany w języku Java jest ręczne zarządzanie pamięcią, które uznawane jest powszechnie za najbardziej błędogenny element tworzenia oprogramowania. W związku z tym, należy zwrócić uwagę, że w tej kwestii język Java, który sam obsługuje zarządzanie pamięcią [18] nie obciążając tym programisty wydaje się być zauważalnie lepszy. Z drugiej strony w standardzie C++11 wprowadzono do języka C++ sprytne wskaźniki znacząco upraszczające proces zarządzania pamięcią.
 }
 \subsubsection{Wybór}
 \par{
-Mając na względzie powyższe kryteria oceny, wybór wydaje się być nietrywialny. Wydajność w dzisiejszych czasem nie jest specjalnym kosztem a dla tego konkretnego projektu nie jest kluczowa zwłaszcza jeśli mówimy tylko o zmianach w obrębie tego samego rzędu wielkości. Jednocześnie język chroniący programistę przed jego własnymi błędami zdaje się mieć tu zauważalną przewagę. W praktyce jednak najbardziej kluczowe zdaje się być doświadczenie programistyczne autora tej pracy, które zaważyło o wyborze języka C++.
+Mając na względzie powyższe kryteria oceny, wybór wydaje się być nietrywialny. Wydajność obliczeniowa w dzisiejszych czasem nie jest specjalnym kosztem a dla tego konkretnego projektu nie jest kluczowa zwłaszcza jeśli mówimy tylko o zmianach w obrębie tego samego rzędu wielkości. Jednocześnie język chroniący programistę przed jego własnymi błędami zdaje się mieć tu zauważalną przewagę. W praktyce jednak najbardziej kluczowe zdaje się być doświadczenie programistyczne autora tej pracy, które zaważyło o wyborze języka C++.
 }
 
 \subsection{Wybór silnika bazy danych}
@@ -172,19 +168,19 @@ Pod uwagę brano następujące silniki baz danych:
 \item ORACLE DB --- został odrzucony ze względu na komercyjny charakter, który z przyczyn ideologicznych wydaje się nieodpowiednią bazą dla mogących mieć coraz bardziej rozległy charakter badań naukowych.
 \item PostgreSQL --- posiadający zaawansowane funkcje i zbudowany poprawnie przyzwoity RDBMS --- stale rozwijający się i darmowy projekt o otwartym kodzie źródłowym.
 \item MySQL --- przejęta przez firmę ORACLE alternatywa dla PostgreSQL. Ze względu na wspomniane przejęcie praw do bazy przez firmę ORACLE została odrzucona ponieważ nie do końca znana jest jeszcze polityka firmy względem tej bazy.
-\item sqLite --- RDBMS będący w zasadzie bibliotką języka C++ --- nie wymaga dodatkowego serwera. Jego wadą jest znacząca mniejsza wydajność. W przypadku tego projektu wydajność bazy zdaje się być kluczowym elementem w związku z czym baza ta została odrzucona.
+\item sqLite --- RDBMS będący w zasadzie bibliotką języka C++ --- nie wymaga dodatkowego serwera. Jego wadą jest znacząca mniejsza wydajność. W przypadku tego projektu wydajność bazy zdaje się być kluczowym elementem (co potwierdziły późniejsze badania) w związku z czym baza ta została odrzucona.
 \end{itemize}
 Mając powyższe na względzie wybór RDBMSa padł na PostreSQL.
 }
 
 \subsection{Wybór technologii tworzenia interfejsu}
 \par{
-Wybór technologii interfejsu nie był kluczowy dla projektu, dlatego autor wybrał w zasadzie jedyną dobrze znaną sobie bibliotekę umożliwiającą tworzenie przenośnych interfejsów graficznych --- bibliotekę Qt. Biblioteka zdawała się być wystarczająco dobrym rozwiązaniem w związku z czym poszukiwanie alternatywnych rozwiązań wydawało się bezzasadne zwłaszcza, że prezentowanie wyników symulacji nie jest kluczowe z punktu widzenia celu pracy.
+Wybór technologii interfejsu nie był kluczowy dla projektu, dlatego autor wybrał w zasadzie jedyną dobrze znaną sobie bibliotekę umożliwiającą tworzenie przenośnych interfejsów graficznych --- bibliotekę Qt. Biblioteka zdawała się być wystarczająco dobrym rozwiązaniem w związku z czym poszukiwanie alternatywnych rozwiązań wydawało się bezzasadne, zwłaszcza że prezentowanie wyników symulacji nie jest kluczowe z punktu widzenia celu pracy.
 }
 
 \section[Projekt bazy danych][Projekt bazy danych]{Projekt bazy danych}
 \par{
-W ramach symulatora wykorzystywane są dwie odrębne bazy danych. Jedna (baza danych dynamicznych) stanowi główne wyjście aplikacji i służy do zapisu odczytów z czujników umieszczonych wewnątrz symulacji. Druga z baz - baza statyczna - służy do opisywania środowiska miejskiego a w zasadzie jego statycznych elementów.
+W ramach symulatora wykorzystywane są dwie odrębne bazy danych. Jedna (baza danych dynamicznych) stanowi główne wyjście aplikacji i służy do zapisu odczytów z czujników umieszczonych wewnątrz symulacji. Druga z baz --- baza statyczna --- służy do opisywania środowiska miejskiego, a w zasadzie jego statycznych elementów.
 }
 
 \subsection{Baza danych statycznych}
@@ -197,57 +193,53 @@ Kwestią dyskusyjną było umieszczenie w bazie danych statycznych umiejscowieni
 \par{
 Baza danych statycznych zawiera więc:
 \begin{itemize}
-\item Układ ulic - rozumiany jako graf geometryczny
-\item Umiejscowienie i kształt budynków - traktowanych jako graniastosłupy
+\item układ ulic --- rozumiany jako graf geometryczny
+\item umiejscowienie i kształt budynków --- traktowanych jako graniastosłupy
 \end{itemize}
-Szczegóły bazy można zobaczyć na diagramie ER poniżej.
+Szczegóły bazy można zobaczyć na diagramie ER przedstawionym na rysunku \ref{static_db}.
 }
-
-\par{
-\begin{center}
-\includegraphics[width=25em]{img/static_db}
-\end{center}
-}
-\par{
-\begin{center}
-\textit{Diagram ER bazy danych statycznych.}
-\end{center}
-}
+\begin{figure}[htb]
+    \begin{center}
+	\includegraphics[width=25em]{img/static_db}
+	\caption{Diagram ER bazy danych statycznych.}
+	\label{static_db}
+    \end{center}
+\end{figure}
 
 \subsection{Baza danych dynamicznych}
 \par{
-Baza danych dynamicznych ma za zadanie zbierać informacje z czujników i stanowić element komunikujący symulator z dalszymi systemami bazującymi na jego wyjściu. Struktura tej bazy musi być w związku z tym możliwie elastyczna - by nie ograniczać przyszłego rozwoju całego ciągu narzędzi. Struktura ta została zaprojektowana we współpracy z twórcą oprogramowania korzystającego z wyników symulatora.
+Baza danych dynamicznych ma za zadanie zbierać informacje z czujników i stanowić element komunikujący symulator z dalszymi systemami bazującymi na jego wyjściu. Struktura tej bazy musi być w związku z tym możliwie elastyczna --- by nie ograniczać przyszłego rozwoju całego ciągu narzędzi. Struktura ta została zaprojektowana we współpracy z twórcą oprogramowania korzystającego z wyników symulatora.
 }
+\par{
+Diagram ER bazy danych dynamicznych przedstawiono na rysunku \ref{dynamic_db}.
+}
+\begin{figure}[htb]
+    \begin{center}
+	\includegraphics[width=\textwidth,keepaspectratio]{img/dynamic_db}
+	\caption{Diagram ER bazy danych dynamicznych.}
+	\label{dynamic_db}
+    \end{center}
+\end{figure}
+
 \subsubsection{Raport wykrycia}
 \par{
 Podstawowym pojęciem w przypadku bazy danych dynamicznych to \textit{raport o zauważeniu obiektu} (\textit{Detection Report}). Raport taki, zawiera w minimalnym przypadku współrzędne dokonanej obserwacji oraz jej czas. Jednakże, należy zwrócić uwagę, że ogólny projekt symulatora i całego ciągu narzędziowego dopuszcza możliwość dodawania do takiego raportu dodatkowych informacji w związku z czym baza musi posiadać dynamiczną strukturę, która umożliwia zapisanie tego rodzaju danych.
 }
 \par{
-Zaproponowana struktura pozwala na łączenie każdego raportu wykrycia z dowolną ilością \textit{wartości dodatkowych} (\textit{Feature Value}). Wartość dodatkowa  zapisywana jest w postaci ciągu znaków którego interpretacja zależy od aplikacji, która dodatkowo może posiłkować się informacjami dotyczącymi typu danej - możliwej do uzyskania z opisu konkretnej wartości dodatkowej.
+Zaproponowana struktura pozwala na łączenie każdego raportu wykrycia z dowolną ilością \textit{wartości dodatkowych} (\textit{Feature Value}). Wartość dodatkowa  zapisywana jest w postaci ciągu znaków którego interpretacja zależy od aplikacji, która dodatkowo może posiłkować się informacjami dotyczącymi typu danej --- możliwej do uzyskania z opisu konkretnej wartości dodatkowej.
 }
 \par{
 Każda wartość dodatkowa odnosi się bowiem do \textit{definicji wartości dodatkowej} (\textit{Feature for Sensor}). Tabela ta opisuje każdą klasę wartości dodatkowych typem informacji jaką za sobą ta klasa niesie oraz jej nazwą. Interpretacja znaczenia typu, który jest opisywany ciągiem znaków zależy od narzędzia docelowego, zakłada się jednak, że w typowym wypadku ciągi znaków będą zawierały nazwy typów zgodne z odpowiadającymi im typami w języku C++.
 }
 \subsubsection{Czujnik}
 \par{
-Innym elementem, który musi być opisany przez dynamiczną bazę danych by uniknąć niepotrzebnej zależności od bazy danych statycznych są czujniki. Każdy raport o zauważeniu obiektu musi posiadać informację na temat czujnika, z którego pochodzi - jest to kluczowa informacja dla analizy danych.
-}
-\par{
-Podstawową informacją dotyczącą każdego czujnika jest jego położenie w przestrzeni oraz maksymalny zasięg. Maksymalny zasięg to odległość z jakiej dany czujnik może przy idealnych warunkach zebrać jakiekolwiek informacje.
+Innym elementem, który musi być opisany przez dynamiczną bazę danych, by uniknąć niepotrzebnej zależności od bazy danych statycznych jest czujnik. Każdy raport o zauważeniu obiektu musi posiadać informację na temat czujnika, z którego pochodzi. Podstawową informacją dotyczącą każdego czujnika jest jego położenie w przestrzeni oraz maksymalny zasięg. Maksymalny zasięg to odległość z jakiej dany czujnik może przy idealnych warunkach zebrać jakiekolwiek informacje.
 }
 \par{
 Poza podstawowymi informacjami każdy czujnik może mieć swoją charakterystykę opisującą jego działanie (np. pole widzenia wyrażone w stopniach). Ponieważ typowo czujniki tego samego typu charakteryzują się podobnymi atrybutami, wprowadzono pojęcie typu opisywanego opcjonalnie nazwą. Każdy typ posiada zestaw atrybutów charakterystycznych dla siebie. Każdy atrybut posiada typ i opcjonalnie nazwę. Wiele czujników może wymagać takich samych informacji.
 }
 \par{
 Dokładną strukturę bazy dynamicznej przedstawia poniższy diagram ER.
-}
-
-
-\par{
-\begin{center}
-\includegraphics[width=\textwidth,keepaspectratio]{img/dynamic_db}
-\textit{Diagram ER bazy danych dynamicznych.}
-\end{center}
 }
 
 
@@ -263,31 +255,32 @@ Model MVC (Model-View-Controller, z ang. Model-Widok-Kontroler) został zapropon
 \par{
 Model MVC dzieli aplikację lub jej część na trzy warstwy:
 \begin{itemize}
-\item \textbf{Model} - Model w założeniu stanowi element odpowiadający za przechowywanie i obróbkę danych na jakich pracuje dane oprogramowanie. Model posiada interfejs umożliwiający wykonywanie akcji na danych oraz dostęp do nich. Może, choć nie musi wykonywać akacje na danych niezależnie od wywołań z zewnątrz.
-\item \textbf{Kontroler} - Zadaniem kontrolera jest przechowywanie kontekstu aplikacji, oraz przekazywanie zadań sterowania z widoku do modelu a także pobieranie z modelu informacji, których zażąda widok.
-\item \textbf{Widok} - Widok odpowiada za prezentację danych użytkownikowi. Nie ma on świadomości procesów zachodzących na danych, zna jedynie sposób ich prezentacji oraz akcje jakie można na nich wykonać. Nie jest jednak świadom jak owe akcje wpłyną na te dane.
+\item \textbf{Model} --- w założeniu stanowi element odpowiadający za przechowywanie i obróbkę danych na jakich pracuje dane oprogramowanie. Model posiada interfejs umożliwiający wykonywanie akcji na danych oraz dostęp do nich. Może, choć nie musi wykonywać akacje na danych niezależnie od wywołań z zewnątrz.
+\item \textbf{Kontroler} --- jego zadaniem jest przechowywanie kontekstu aplikacji, oraz przekazywanie zadań sterowania z widoku do modelu a także pobieranie z modelu informacji, których zażąda widok.
+\item \textbf{Widok} --- odpowiada za prezentację danych użytkownikowi. Nie ma on świadomości procesów zachodzących na danych, zna jedynie sposób ich prezentacji oraz akcje jakie można na nich wykonać. Nie jest jednak świadom jak owe akcje wpłyną na te dane.
 \end{itemize}
 }
 \par{
-Podział taki zapewnia separację danych od sposobu ich prezentację co pozwala zbudować aplikacje o jednej funkcjonalności na wiele różnych sposobów z wieloma różnymi interfejsami utrzymując tylko jeden moduł odpowiedzialny za logikę aplikacji (model).
+Podział taki zapewnia separację danych od sposobu ich prezentacji, co pozwala zbudować aplikacje o jednej funkcjonalności na wiele różnych sposobów z wieloma różnymi interfejsami utrzymując tylko jeden moduł odpowiedzialny za logikę aplikacji (model).
 }
 \subsubsection{Zastosowanie w aplikacji}
 \par{
-Model MVC zdawał się idealnie pasować do prezentowanego w pracy symulatora - posiada on bowiem całą funkcjonalność symulacji oraz zapisu danych, która jest całkowicie niezależna od sposobu prezentowania danych użytkownikowi. Brak jawnej separacji między modelem a interfejsem użytkownika zapewne doprowadził by do wymieszania tych warstw co mogło by spowodować między innymi następujące problemy:
+Model MVC zdawał się idealnie pasować do prezentowanego w pracy symulatora --- posiada on bowiem całą funkcjonalność symulacji oraz zapisu danych, która jest całkowicie niezależna od sposobu prezentowania danych użytkownikowi. Brak jawnej separacji między modelem a interfejsem użytkownika zapewne doprowadził by do wymieszania tych warstw co mogło by spowodować między innymi następujące problemy:
 \begin{itemize}
-\item \textbf{Utworzenie zależności symulacji od działania intefrejsu - co prowadzi do braku możliwości prostej zamiany interfejsu w przyszłości.}
-\item Rozsynchronizowanie stanu modelu z widokiem
+\renewcommand{\labelitemi}{$\bullet$}
+\item Utworzenie zależności symulacji od działania intefrejsu --- co prowadzi do braku możliwości prostej zamiany interfejsu w przyszłości.
+\item Rozsynchronizowanie stanu modelu z widokiem.
 \item Nieczytelność kodu spowodowana przeplataniem się kodu odpowiedzialnego za wyświetlanie danych i ich obsługę.
 \end{itemize}
 }
 \subsection{Wielowątkowość}
 \par{
 Opisywany symulator został zaprojektowany by funkcjonować z wykorzystaniem trzech wątków:
-\begin{itemize}
+\begin{enumerate}
 \item Odpowiedzialnego za obsługę modelu --- uruchamianego na początku symulacji i zmieniającego model wraz z upływem czasu.
 \item Odpowiedzialnego za widok --- wątek główny przekazany jest we władanie biblioteki Qt, która uruchamia własną kolejkę komunikatów i w jej ramach obsługuje interfejs użytkownika.
-\item Odpowiedzialnego za kontroler --- odpowiedzialny za przekazywanie informacji między widokiem a modelem.
-\end{itemize} 
+\item Odpowiedzialnego za kontroler --- odpowiada on za przekazywanie informacji między widokiem a modelem.
+\end{enumerate}
 }
 \subsubsection{Biblioteka boost::thread}
 \par{
@@ -302,59 +295,67 @@ Biblioteka boost::thread została wybrana ponieważ jest dostępna dla wielu pla
 Za każdym razem gdy aplikacja pracuje z wykorzystaniem więcej niż jednego wątku a między wątkami istnieje jakakolwiek forma komunikacji mamy do czynienia z problemami synchronizacji.
 }
 \par{
-W przypadku opisywanego symulatora rozwiązaniem wszystkich problemów zdaje się być zwężenie wszelkiej komunikacji między-wątkowej do bezpiecznych wątkowo  kolejek komunikatów pozwalających na zawieszenie wątku w oczekiwaniu oczekiwanie na pojawienie się wiadomości. Dzięki ich zastosowaniu każdy wątek odbiera wiadomości w dogodnym dla siebie momencie i sam zmienia swoje dane --- jego dane zmieniane są tylko przez jeden wątek więc nie ma możliwości ich rozsynchronizowania.
+W przypadku opisywanego symulatora rozwiązaniem wszystkich problemów zdaje się być zwężenie wszelkiej komunikacji między-wątkowej do bezpiecznych wątkowo  kolejek komunikatów pozwalających na zawieszenie wątku w oczekiwaniu na pojawienie się wiadomości. Dzięki ich zastosowaniu każdy wątek odbiera wiadomości w dogodnym dla siebie momencie i sam zmienia swoje dane --- jego dane zmieniane są tylko przez jeden wątek więc nie ma możliwości ich rozsynchronizowania.
 \par{
-Wadą takiego rozwiązania zdaje się być zwiększenia złożoności kodu ponieważ zamiast prostych wołań metod mamy do czynienia z dodawaniem wiadomości do kolejek. Z drugiej jednak strony dzięki temu wyraźnie widać w kodzie miejsca gdzie następuje komunikacja miedzy kluczowymi modułami aplikacji co ułatwia jego zrozumienie.
+Wadą takiego rozwiązania zdaje się być zwiększona złożoności kodu ponieważ zamiast prostych wołań metod mamy do czynienia z dodawaniem wiadomości do kolejek. Z drugiej jednak strony, dzięki temu wyraźnie widać w kodzie miejsca, gdzie następuje komunikacja między kluczowymi modułami aplikacji, co ułatwia jego zrozumienie.
 }
 
 
 \section[Architektura modelu][Architektura modelu]{Architektura modelu}
 \par{
-Zaprojektowanie właściwej architektury modelu jest kluczowe dla celu tej pracy. Poprawnie zaprojektowany model powinien być możliwie elastyczny a jednocześnie pozwalać na szybkie zaimplementowanie minimalnego podzbioru funkcjonalności pozwalającego na uruchomienie symulacji.
+Zaprojektowanie właściwej architektury modelu jest kluczowe dla celu tej pracy. Poprawnie zaprojektowany model powinien być możliwie elastyczny, a jednocześnie pozwalać na szybkie zaimplementowanie minimalnego podzbioru funkcjonalności pozwalającego na uruchomienie symulacji.
 }
+\par{
+Kompletny diagram klas modelu przedstawiono na rysunku \ref{model_cd}.
+}
+\begin{figure}[htb]
+    \begin{center}
+	\includegraphics[width=\textwidth,keepaspectratio]{img/model_cd}
+	\caption{Kompletny diagram klas modelu.}
+	\label{model_cd}
+    \end{center}
+\end{figure}
+
 \subsection{Obiekty świata}
 \par{
-Świat sam w sobie zna zasady fizyki opisane w wyżej wspomnianym modelu, nie wpływa jednak bezpośrednio na stan obiektów, które tym zasadom podlegają.
+Podstawowym elementem symulowanego środowiska jest \textit{świat}, będący obiektem obsługującym zasady fizyki opisane w wyżej wspomnianym modelu. \textit{Obiekt świata} nie wpływa jednak bezpośrednio na stan obiektów, które tym zasadom podlegają.
 }
 \par{
-Obiekty wewnątrz modelu zdają się z łatwością dzielić na trzy grupy:
-\begin{itemize}
-\item Obiekty posiadające reprezentację fizyczną - np. budynki
-\item Obiekty odbierające informacje o otoczeniu - np. czujniki
-\item Obiekty posiadający obie powyższe właściwości - np. pojazdy
-\end{itemize}
-Z tego rodzaju podziału wyraźnie wynika możliwość podziału obiektów występującym w świecie na klasy - obserwatorów i obiekty o reprezentacji fizycznej, a także dziedziczące po obu obiekty żywe. Podział ten jest przedstawiony na poniższym fragmencie diagramu klas aplikacji.
+Obiekty wewnątrz modelu dzielą się na trzy grupy:
+\begin{enumerate}
+\item Obiekty posiadające reprezentację fizyczną, np. budynki
+\item Obiekty odbierające informacje o otoczeniu, np. czujniki
+\item Obiekty posiadający obie powyższe właściwości, np. pojazdy
+\end{enumerate}
+Z tego rodzaju podziału wynika możliwość wyodrębnienia klasy obserwator (\textit{Observer}), klasy reprezentującej obiekty posiadające reprezentacje fizyczną (\textit{Object}) oraz klasy posiadającej reprezetnację fizyczną i możliwość odbierania informacji o otoczeniu (\textit{LiveObject}). Podział ten przedawia rysunek \ref{obj_obs_cd}.
 }
+\begin{figure}[htb]
+    \begin{center}
+	\includegraphics[width=30em]{img/obj_obs_cd}
+	\caption{Podział obiektów na obserwatorów i fizyczne obiekty.}
+	\label{obj_obs_cd}
+    \end{center}
+\end{figure}
 
 \par{
-\begin{center}
-\includegraphics[width=30em]{img/obj_obs_cd}
-\end{center}
+Do zadań \textit{obserwatorów} należy obsługa reakcji na zdarzenia nadchodzące z zewnątrz. Klasa \textit{Object} natomiast ma za zadanie udostępniać wielkości fizyczne jakimi manipuluje autonomicznie obiekt --- siłę i masę.
 }
 \par{
-\begin{center}
-\textit{Podział obiektów na obserwatorów i fizyczne obiekty.}
-\end{center}
+Tylko obserwator jest świadom upływu czasu symulacji --- może on zmieniać swój stan wraz z jego upływem. Obiekt nie posiada takiej możliwości --- obsługa zmian jego stanu musi się odbywać przez interfejs obserwatora. W ten sposób obiekty statyczne nie będące obserwatorami automatycznie nie mogą zmieniać swojego stanu w czasie.
 }
 \par{
-Do zadań obserwatorów należy obsługa reakcji na zdarzenia nadchodzące z zewnątrz, obiekt natomiast ma za zadanie udostępniać wielkości fizyczne jakimi manipuluje autonomicznie obiekt --- siłę i masę.
-}
-\par{
-Tylko obserwator jest świadom upływu czasu symulacji - może on zmieniać swój stan wraz z jego upływem. Obiekt nie posiada takiej możliwości - obsługa zmian jego stanu musi się odbywać przez interfejs obserwatora. W ten sposób obiekty statyczne nie będące obserwatorami automatycznie nie mogą zmieniać swojego stanu w czasie.
-}
-\par{
-Obserwator otrzymuje wszelkie informacje w formie zrzutów z obiektów fizycznych. Zrzut zawiera nie więcej informacji niż posiada na temat obiektu świat (ponieważ jest przez świat tworzony), ale może zawierać ich mniej --- świat dobiera informacje przeznaczone dla poszczególnych obserwatorów.
+Obserwator otrzymuje wszelkie informacje w formie \textit{zrzutów} z obiektów fizycznych (czyli podzbioru informacji posiadanych na temat obiektów klasy \textit{Object} przez \textit{obiekt świata}). Zrzut zawiera nie więcej informacji niż posiada na temat obiektu \textit{świat} (ponieważ jest przezeń tworzony), ale może zawierać ich mniej --- \textit{świat} dobiera informacje przeznaczone dla poszczególnych obserwatorów.
 }
 
 \subsubsection{Wzorzec wizytatora}
 \par{
-Z punktu widzenia implementacji istotnym zdaje się być sposób zapewnienia obserwatorom możliwości obsługi poszczególnych rodzajów (typów) zrzutów z obiektów. Każdy z typów może być przecież traktowany osobno a sam typ jest już dla obserwatora rozpoznawalną informacją --- jeśli świat nie chciał by takiej informacji dostarczać nie tworzył by danego podtypu zrzutu.
+Z punktu widzenia implementacji istotnym zdaje się być sposób zapewnienia obserwatorom możliwości obsługi poszczególnych rodzajów (typów) \textit{zrzutów} z obiektów. Każdy z typów może być przecież traktowany osobno, a sam typ jest już dla obserwatora rozpoznawalną informacją --- jeśli świat nie chciał by takiej informacji dostarczać, nie tworzył by danego podtypu zrzutu.
 }
 \par{
 Z pomocą w tej sytuacji przychodzi wzorzec wizytatora pozwalający obiektowi wchodzić w interakcje z obiektami z określonej hierarchii dziedziczenia w taki sposób by musiał on zapewnić specyficzną obsługę dla każdego jej podtypu.
 }
 \par{
-W tym konkretnym zastosowaniu Obserwatorzy wizytują zrzuty i w ten sposób mogą ustawiać swój wewnętrzny stan i podejmować konkretne decyzje. W zależności od potrzeb Obserwator może albo reagować na kolejne wizytowane zrzuty lub podczas wizytacji zbierać informacje by podjąć decyzję po przejrzeniu wszystkich dostarczonych do niego danych.
+W tym konkretnym zastosowaniu \textit{obserwatorzy} wizytują \textit{zrzuty} i w ten sposób mogą ustawiać swój wewnętrzny stan i podejmować konkretne decyzje. W zależności od potrzeb \textit{obserwator} może albo reagować na kolejne wizytowane \textit{zrzuty} lub podczas wizytacji zbierać informacje by podjąć decyzję po przejrzeniu wszystkich dostarczonych do niego danych.
 }
 
 \subsection{Upływ czasu}
@@ -372,10 +373,10 @@ Biblioteka ta pozwala na wykonywanie wszelkich operacji związanych z czasem z u
 }
 \subsubsection{Wzorzec obserwatora}
 \par{
-Odrębną sprawą od samego przeliczania czasu jest fakt, że wiele obiektów w systemie powinno być w stanie reagować na upływ czasu w symulacji. Stworzono do tego celu interfejs SimulationPart (\textit{Element Symulacji} --- każdy element symulacji jest informowany gdy w symulacja posuwa się o kolejny krok.
+Odrębną sprawą od samego przeliczania czasu jest fakt, że wiele obiektów w systemie powinno być w stanie reagować na upływ czasu w symulacji. Stworzono do tego celu interfejs \textit{SimulationPart}, dzięki czemu każdy element symulacji jest informowany gdy w symulacja posuwa się o kolejny krok.
 }
 \par{
-Zastosowano to wzorzec obserwatora, gdzie wszystkie elementy symulacji (w tym w szczególności Obserwatorzy, którzy są elementami symulacji) obserwują symulację - symulacja powiadamia ich gdy upływa w niej pewien czas.
+Zastosowano to wzorzec obserwatora, gdzie wszystkie elementy symulacji (w tym w szczególności \textit{obserwatorzy}, którzy są elementami symulacji) obserwują \textit{symulację}. \textit{Symulacja} powiadamia ich gdy upływa pewien czas.
 }
 
 \subsection{Połączenie z bazą danych}
@@ -384,62 +385,56 @@ Istotnym elementem modelu symulatora jest komunikacja z bazą danych --- jest on
 }
 \subsubsection{Biblioteka pqxx}
 \par{
-Ponieważ wybrano silnik bazy danych postgreSQL należało odnaleźć możliwie obiektową bibliotekę z interfejsem w języku C++ pozwalającą na komuniakcję z taką bazą. Typowym rozwiązaniem jest zastosowanie biblioteki pqxx [22].
+Ponieważ jako silnik bazy danych wybrano \textit{PostgreSQL} należało odnaleźć możliwie obiektową bibliotekę z interfejsem w języku C++ pozwalającą na komuniakcję z taką bazą. Typowym rozwiązaniem jest zastosowanie biblioteki \textit{pqxx} [22].
 }
 \par{
-Biblioteka pqxx zapewnia spójny interfejs pozwalający na pełny dostęp do bazy postgreSQL na poziomie klienckim (tj. przy użyciu zapytań). Jest to funkcjonalność oczekiwana przez bibliotekę mającą zapewniać komunikację bazą w symulatorze.
+Biblioteka \textit{pqxx} zapewnia spójny interfejs pozwalający na pełny dostęp do bazy \textit{PostgreSQL} na poziomie klienckim (tj. przy użyciu zapytań). Jest to funkcjonalność oczekiwana przez bibliotekę mającą zapewniać komunikację z bazą w symulatorze.
 }
 \subsubsection{ORM}
 \par{
-ORM (ang. \textit{Object-Relational Mapping}, \textit{Mapowanie Obiektowo-Relacyjne}), to proces zamiany danych relacyjnych na dane obiektowe - typowy gdy chcemy wykorzystać relacyjną bazę danych do przechowywania danych na potrzeby aplikacji obiektowych.
+ORM (ang. \textit{Object-Relational Mapping}, \textit{Mapowanie Obiektowo-Relacyjne}), to proces zamiany danych relacyjnych na dane obiektowe --- typowy gdy chcemy wykorzystać relacyjną bazę danych do przechowywania danych na potrzeby aplikacji obiektowych.
 }
 \par{
-Najprostsza zamiana krotek na obiekty polega na stworzeniu obiektów o strukturze identycznej ze strukturą krotki i przepisanie w odpowiednie atrybuty obiektu wartości pobranych z krotki. Również relacje typowo przekładalne są na wskaźniki lub referencje do odpowiednich obiektów klas powiązanych relacjami w bazie relacyjnej.
+Najprostsza zamiana krotek na obiekty polega na stworzeniu obiektów o strukturze identycznej ze strukturą krotki i przepisaniu w odpowiednie atrybuty obiektu wartości pobranych z krotki. Również relacje typowo przekładalne są na wskaźniki lub referencje do odpowiednich obiektów klas powiązanych relacjami w bazie relacyjnej.
 }
 \par{
-W przypadku opisywanej aplikacji takie mapowanie zdawało się być wystarczająco w związku z czym zbudowano bibliotekę pozwalającą na uzyskiwanie danych z RDBMS przy użyciu metod wykonujących odpowiednie zapytania a zwracających gotowe do dalszej pracy obiekty oczekiwane w pozostałych częściach aplikacji.
+W przypadku opisywanej aplikacji takie mapowanie zdawało się być wystarczające, w związku z czym zbudowano bibliotekę pozwalającą na uzyskiwanie danych z RDBMS przy użyciu metod wykonujących odpowiednie zapytania, a zwracających gotowe do dalszej pracy obiekty oczekiwane w pozostałych częściach aplikacji.
 }
 
 \subsection{Zarządzanie elementami symulacji}
 \par{
-Istotnym elementem symulacji jest tworzenie i usuwanie nowych obiektów --- elementów tejże symulacji. Do tego celu powołano klasę będącą podklasą elementu symulacji, mającą dostęp do wszystkich danych świata - który decyduje arbitralnie  wg. znanych sobie reguł o tworzeniu lub usuwaniu obiektów.
+Istotnym elementem symulacji jest tworzenie i usuwanie nowych obiektów --- elementów tejże symulacji. Do tego celu powołano klasę będącą podklasą elementu symulacji, mającą dostęp do wszystkich danych \textit{świata} - który decyduje arbitralnie  wg. znanych sobie reguł o tworzeniu lub usuwaniu obiektów.
 }
 \par{
-W przypadku przykładowej implementacji zarządca obiektów dodaje obiekty i usuwa je losowo gdy ich ilość w świecie jest różna od zadanej. Implementacja ta jest możliwie prosta - ponieważ pozwalała ona na szybkie uzyskanie działającej symulacji a dodanie do zarządcy większej logiki wymaga jedynie opisania właśnie tej logiki --- architektura pozwala na jego swobodną rozbudowę.
+W przypadku przykładowej implementacji zarządca obiektów dodaje obiekty (lub usuwa je) losowo gdy ich ilość w świecie jest różna od zadanej. Implementacja ta jest możliwie prosta --- ponieważ pozwalała ona na szybkie uzyskanie działającej symulacji a dodanie do zarządcy większej logiki wymaga jedynie opisania właśnie tej logiki --- architektura pozwala na jego swobodną rozbudowę.
 }
 
 \subsection{Obsługa fizyki}
 \par{
-Świat jest klasą, która odpowiada za przekładnie akcji elementów symulacji na ich stan w świecie. Świat odbiera informacje o sile i masie od obiektów i na ich podstawie wyznacza ich przyśpieszenie a w konsekwencji chwilową prędkość.
+\textit{Świat} jest klasą, która odpowiada za przekładnie akcji elementów symulacji na ich stan w symulowanym świecie. \textit{Świat} odbiera informacje o sile i masie od obiektów i na ich podstawie wyznacza ich przyśpieszenie, a w konsekwencji chwilową prędkość.
 }
 \par{
-Zadaniem świata jest również obsługa mapy jako że może ona wpływać na reakcje elementów symulacji.
+Zadaniem \textit{świata} jest również obsługa mapy, jako że może ona wpływać na reakcje elementów symulacji.
 }
 
 \subsection{Komunikacja ze światem (API)}
 \par{
-Zadaniem głównej klasy modelu jest obsługa komunikacji z kontrolerem. W implementacji stanowiącej załącznik do tej pracy model udostępnia zewnętrznym modułom następujące operacje:
+Zadaniem głównej klasy modelu jest obsługa komunikacji z kontrolerem. W implementacji realizowanej w ramach tej pracy, model udostępnia zewnętrznym modułom następujące operacje:
 \begin{itemize}
-\item Wystartuj symulację
-\item Wstrzymaj symulację
-\item Zatrzymaj symulację
-\item Pobierz bieżący stan symulacji (zrzut)
-\item Pobierz bieżący stan mapy (zrzut)
-\item Pobierz bieżącą szybkość symulacji
-\item Zmień szybkość symulacji na zadaną
-\item Zarejestruj obserwatora stanu
-\item Wyrejestruj obserwatora stanu
+\item wystartuj symulację,
+\item wstrzymaj symulację,
+\item zatrzymaj symulację,
+\item pobierz bieżący stan symulacji (zrzut),
+\item pobierz bieżący stan mapy (zrzut),
+\item pobierz bieżącą szybkość symulacji,
+\item zmień szybkość symulacji na zadaną,
+\item zarejestruj obserwatora stanu,
+\item wyrejestruj obserwatora stanu.
 \end{itemize}
 }
 \subsubsection{Obserwacja stanu symulacji}
 \par{
 Zewnętrzne moduły mogą rejestrować się wewnątrz modelu jako obserwatorzy (w rozumieniu wzorca obserwatora) by być informowanymi o zmianach w modelu. Obserwator jest informowany za każdym razem, gdy model zmienia swój stan i tworzy nowe zrzuty mapy bądź obiektów w świecie. W typowym wypadku reakcją na taką notyfikację jest pobranie nowego stanu i jego wykorzystanie do swoich celów przez obserwatora.
-}
-\subsection{Kompletny diagram klas modelu}
-\par{
-\begin{center}
-\includegraphics[width=\textwidth,keepaspectratio]{img/model_cd}
-\end{center}
 }
 
 \section[Architektura widoku][Architektura widoku]{Architektura widoku}
@@ -447,25 +442,25 @@ Zewnętrzne moduły mogą rejestrować się wewnątrz modelu jako obserwatorzy (
 Zadaniem widoku jest prezentowanie bieżącego stanu symulacji jak i udostępnienie odpowiednich kontrolek pozwalających sterować modelem.
 }
 \par{
-Realizacja takiego zadania wymaga od biblioteki dwojakich możliwości - po pierwsze prezentacji w formie graficznej układu brył, czyli udostępnienie sceny dla wizualizacji 3D lub płótna dla wizualizacji 2D. Po drugie natomiast udostępnienia interaktywnych kontrolek pozwalających na wysyłanie do modelu określonych rozkazów. Biblioteka Qt zdaje się odpowiadać na obydwa te wymagania.
+Realizacja takiego zadania wymaga od biblioteki dwojakich możliwości --- po pierwsze prezentacji w formie graficznej układu brył, czyli udostępnienie sceny dla wizualizacji 3D lub płótna dla wizualizacji 2D. Po drugie udostępnienia interaktywnych kontrolek pozwalających na wysyłanie do modelu określonych rozkazów. Biblioteka Qt zdaje się odpowiadać na obydwa te wymagania.
 }
 \subsection{Biblioteka Qt}
 \par{
-Podstawowym elementem biblioteki Qt jest zapewnienie synchronicznej i asynchronicznej komunikacji między wątkami jak i w ich obrębie za pomocą kolejki komunikatów obsługiwanej poza świadomością użytkownika.
+Podstawowym elementem biblioteki \textit{Qt} jest zapewnienie synchronicznej i asynchronicznej komunikacji między wątkami jak i w ich obrębie za pomocą kolejki komunikatów obsługiwanej poza świadomością użytkownika.
 }
 \par{
 Biblioteka ta, udostępnia mechanizm sygnałów i slotów jako interfejs pozwalający na łatwe korzystanie wyżej wspomnianego mechanizmu. Niestety ponieważ składniowo opis tego mechanizmu jest szerszy niż składnia języka C++, do jego tłumaczenia wykorzystywane jest dodatkowe narzędzie --- MOC (\textit{Meta-Object Compiler}).
 }
 \par{
-Mechanizm ten pozwala jednak na szybkie definiowanie luźnych wiązań w obrębie modułów kontrolowanych przez bibliotekę Qt --- co jest niewątpliwie użyteczną cechą w przypadku interfejsów graficznych.
+Mechanizm ten pozwala jednak na szybkie definiowanie luźnych wiązań w obrębie modułów kontrolowanych przez bibliotekę \textit{Qt} --- co jest niewątpliwie użyteczną cechą w przypadku interfejsów graficznych.
 }
 \subsubsection{QtGui}
 \par{
-Biblioteka QtGui pozwala na tworzenie interaktywnych formularzy z wykorzystaniem odpowiednich dla danej platformy metod --- typowo z wykorzystaniem natywnych kontrolek platformy. Głównym zadaniem tej biblioteki zdaje się być odcięcie logiki działania interfejsów graficznych od ich konkretnej implementacji. Dlatego ten sam kod wykorzystujący bibliotekę Qt skompilowany na różnych platformach daje inny kod wynikowy ale jednocześnie podobne odczucia użytkownika odnośnie interfejsu.
+Biblioteka \textit{QtGui} pozwala na tworzenie interaktywnych formularzy z wykorzystaniem odpowiednich dla danej platformy metod --- typowo z wykorzystaniem natywnych kontrolek platformy. Głównym zadaniem tej biblioteki zdaje się być odcięcie logiki działania interfejsów graficznych od ich konkretnej implementacji. Dlatego ten sam kod wykorzystujący bibliotekę \textit{Qt} skompilowany na różnych platformach daje inny kod wynikowy ale jednocześnie podobne odczucia użytkownika odnośnie interfejsu.
 }
 \subsubsection{QGraphicsLibrary}
 \par{
-QGraphicsLibary to biblioteka pozwalająca na definiowane 2.5 wymiarowych scen i wykonywanie na nich akcji logicznych a jednocześnie na bezpośrednie prezentowanie ich na ekranie w obrębie kontrolek biblioteki QtGui. Funkcjonalność ta zdawała się idealnie odpowiadać potrzebom wizualizacyjnym prezentowanej aplikacji i w związku z tym została ona wykorzystana do prezentowania użytkownikowi bieżącego stanu aplikacji.
+\textit{QGraphicsLibary} to biblioteka pozwalająca między innymi na definiowane 2 wymiarowych scen i wykonywanie na nich akcji logicznych a jednocześnie na bezpośrednie prezentowanie ich na ekranie w obrębie kontrolek biblioteki \textit{QtGui}. Funkcjonalność ta zdawała się idealnie odpowiadać potrzebom wizualizacyjnym prezentowanej aplikacji i w związku z tym została ona wykorzystana do prezentowania użytkownikowi bieżącego stanu aplikacji.
 }
 \par{
 Ponieważ widok jest obserwatorem stanu modelu, otrzymuje on informacje o jego nowym stanie i żąda nowych zrzutów kiedy uzna to za konieczne. Zrzut zawiera informacje na temat położenia, typu oraz innych atrybutów obiektu. W związku z tym, stosując ponownie wzorzec wizytora odpowiedni komponent widoku jest w stanie zmienić tę reprezentacje na odpowiadającą jej reprezentacje graficzną. Pozwala to na zachowanie kluczowej z punktu widzenia architektury aplikacji separacji między warstwami -- model nie ma żadnej informacji na temat sposobu prezentowania swojego stanu.
@@ -476,11 +471,11 @@ Ponieważ widok jest obserwatorem stanu modelu, otrzymuje on informacje o jego n
 Ostatnią warstwą modelu MVC, jest kontroler. Jego zadanie to przede wszystkim przekładanie zapytań widoku na operacje modelu oraz utrzymywanie stanu aplikacji.
 }
 \par{
-Ponieważ zdecydowano się na uniknięcie integracji modelu z biblioteką Qt by nie wprowadzać trudnej do usunięcia zależności mechanizm sygnałów i slotów, choć pozwalający na niejawne budowanie bezpiecznych wątkowo kolejek komunikatów musiał zostać na etapie kontrolera zamieniony na typowe wołania języka C++.
+Ponieważ zdecydowano się na rozdzielenie modelu z biblioteką \textit{Qt} by nie wprowadzać trudnej do usunięcia zależności, mechanizm sygnałów i slotów, musiał zostać zamieniony na typowe dla języka C++ wołania metod.
 }
 \par{
-Dodatkowym argumentem, który sugerował by tak postąpić był fakt, że praktyka pokazuje, że zastosowanie mechanizmów sygnałów i slotów, ze względu na brak jakichkolwiek ograniczeń w kwestii dodawania zdarzeń z dowolnego miejsca aplikacji - powoduje, że aplikacja przestaje bronić się przed próbami niezgodnego z architekturą przepływu informacji. Ponadto sygnały i sloty nie mają mechanizmów wykrywania błędów w czasie kompilacji - weryfikacja ich działania odbywa się dopiero w czasie działania aplikacji.
+Dodatkowym argumentem, który sugerował by tak postąpić był fakt, że praktyka pokazuje, że zastosowanie mechanizmów sygnałów i slotów, ze względu na brak jakichkolwiek ograniczeń w kwestii dodawania zdarzeń z dowolnego miejsca aplikacji, powoduje, że aplikacja przestaje bronić się przed próbami niezgodnego z architekturą przepływu informacji. Ponadto sygnały i sloty nie mają mechanizmów wykrywania błędów w czasie kompilacji --- weryfikacja ich działania odbywa się dopiero w czasie działania aplikacji.
 }
 \par{
-Odcięcie od mechanizmów Qt wykonano z wykorzystaniem prostego mechanizmu przekładania zdarzeń Qt na wiadomości pojawiającej się w kolejce komunikatów. Ostatnia klasa posiadająca zależność od biblioteki Qt, udostępnia odpowiednie dla wszystkich akcji możliwych do przekazania poza widok sloty. Obsługa każdego ze slotów tworzy na podstawie otrzymanych parametrów odpowiedni typ wiadomości i umieszcza tę wiadomość w kolejce komunikatów. Wątek kontrolera będący już niezależnym od biblioteki Qt wyjmuje kolejne wiadomości z tej kolejki i zapewnia im odpowiednią obsługę.
+Odcięcie od mechanizmów \textit{Qt} wykonano z wykorzystaniem prostego mechanizmu przekładania zdarzeń \textit{Qt} na wiadomości pojawiającej się w kolejce komunikatów. Obsługa każdego ze slotów tworzy na podstawie otrzymanych parametrów odpowiedni typ wiadomości i umieszcza tę wiadomość w kolejce komunikatów. Wątek kontrolera będący już niezależnym od biblioteki Qt wyjmuje kolejne wiadomości z tej kolejki i zapewnia im odpowiednią obsługę.
 }
