@@ -3,7 +3,7 @@
 
 \subsection{Wstęp}
 \par{
-Ludzkość od zarania dziejów stara się analizować otaczający ją świat. Nie bez powodu. Zrozumienie zasad wg. funkcjonuje otaczająca nas rzeczywistość zdaje się znacząco ułatwiać naszą egzystencję co w prostej linii prowadzi do tego, że samo dążenie do zgłębienia prawideł świata da się wytłumaczyć odwołując się bezpośrednio do ewolucji --- osobniki lepiej rozumiejące otaczający świat potrafią lepiej się mierzyć z pojawiającymi się w nim przeciwnościami.
+Ludzkość od zarania dziejów stara się analizować otaczający ją świat. Nie bez powodu. Zrozumienie zasad, według których funkcjonuje otaczająca nas rzeczywistość zdaje się znacząco ułatwiać naszą egzystencję co w prostej linii prowadzi do tego, że samo dążenie do zgłębienia prawideł świata da się wytłumaczyć odwołując się bezpośrednio do ewolucji --- osobniki lepiej rozumiejące otaczający świat potrafią lepiej się mierzyć z pojawiającymi się w nim przeciwnościami.
 }
 
 \par{
@@ -28,22 +28,25 @@ Mamy więc do czynienia z pozornym rozłamem nauki --- z jednej strony formalizm
 }
 
 \par{
-Symulacja komputerowa, zdaje się być odpowiedzią na drugą metodykę, która jednakowoż ściśle wykorzystuje specyficzny aparat matematyczny. Stosując ją wykorzystujemy bowiem teorie w pewnej skali, by odtworzyć zachowania i obserwować ich skutki w innej (zwykle większej), np. symulując ruch cząsteczek cieczy wg. określonych fizyką zasad by obserwować zachowanie cieczy jako całości w określonych warunkach.
+Symulacja komputerowa jest narzędziem badań empirycznych, choć ściśle wykorzystuje specyficzny aparat matematyczny. Stosując ją wykorzystujemy bowiem teorie w pewnej skali, by odtworzyć zachowania i obserwować ich skutki w innej (zwykle większej), np. symulując ruch cząsteczek cieczy według określonych fizyką zasad by obserwować zachowanie cieczy jako całości w określonych warunkach.
 }
 
 \par{
-Czym jest więc symulacja komputerowa? Symulacja to proces, który pozwala przy użyciu reguł jednej skali obserwować zjawiska w innej. Słowo komputerowa odnosi się do konkretnej realizacji --- z wykorzystaniem maszyn cyfrowych. Dobrym podsumowaniem ukazującym funkcję symulacji komputerowej zdaje się być poniższy schemat przedstawiający trzy filary współczesnej nauki wg. prof. Michała Kleibera.
-\begin{center}
-\includegraphics[width=\textwidth,keepaspectratio]{img/triada_poznania}
-\textit{Trzy filary poznawcze współczesnej nauki [5].}
-\end{center}
+Czym jest więc symulacja komputerowa? Symulacja to proces, który pozwala przy użyciu reguł jednej skali obserwować zjawiska w innej. Słowo komputerowa odnosi się do konkretnej realizacji --- z wykorzystaniem maszyn cyfrowych. Dobrym podsumowaniem ukazującym funkcję symulacji komputerowej zdaje się być schemat przedstawiający trzy filary współczesnej nauki wg. prof. Michała Kleibera [5] widoczny na rysunku \ref{filaryNauki}
+\begin{figure}[htb]
+    \begin{center}
+	\includegraphics[angle=0,scale=0.4]{img/triada_poznania.png}
+	\caption{Trzy filary poznawcze współczesnej nauki.}
+	\label{filaryNauki}
+    \end{center}
+\end{figure}
 }
 
 \subsection{Filozofia symulacji komputerowej}
 
 \subsubsection{Postulat Laplace'a}
 \par{
-W roku 1814 Pierre Simon Laplace opublikował \textit{Essai philosophique sur les probabilites} (fran. \textit{Filozoficzny esej na temat prawdopodobieństwa}), w którym wysunął następujący postulat [1]:
+W roku 1814 Pierre Simon Laplace opublikował artykuł pod tytułem: \textit{Filozoficzny esej na temat prawdopodobieństwa} (fran. \textit{Essai philosophique sur les probabilites}) \cite{Laplace}, w którym wysunął następujący postulat:
 }
 \par{
 \textit{Umysł, który by znał siły działające w danej chwili w przyrodzie oraz wzajemne położenie wszystkich istotności, z których ona się składa, gdyby zdołał ująć je i poddać analizie --- w jednym wzorze zawarłby ruchy największych ciał niebieskich i najdrobniejszych atomów. Nie byłoby dla niego nic niepewnego i zarówno przyszłość, jak i przeszłość świata byłyby obecne dla jego oka ...
@@ -82,14 +85,14 @@ co oznacza, że aby zapisać na komputerze dokładne położenie obiektu w trój
 W praktyce, wyżej wymienione ograniczenia nie są zwykle krytyczne. Zazwyczaj bowiem symulacja ma za zadanie upraszczać wygląd rzeczywistości, a więc nadmierna precyzja jest w wręcz niewskazana.
 }
 \par{
-Warto jednak zdawać sobie sprawę, że symulacja komputerowa jest jedynie pewnym przybliżeniem rzeczywistości i z samej swojej natury obarczona jest zasadniczym błędem --- i właśnie \textbf{znalezienie takiego sposobu symulacji by błąd w możliwie małym stopniu wpływał na aspekty istotne z punktu widzenia celu symulacji zdaje się być istotą jej projektowania.}
+Warto jednak zdawać sobie sprawę, że symulacja komputerowa jest jedynie pewnym przybliżeniem rzeczywistości i z samej swojej natury obarczona jest zasadniczym błędem --- i właśnie znalezienie takiego sposobu symulacji by błąd w możliwie małym stopniu wpływał na aspekty istotne z punktu widzenia celu symulacji zdaje się być istotą jej projektowania.
 }
 
 \subsection{Zastosowanie symulacji}
 
 \subsubsection{Przewidywanie zdarzeń}
 \par{
-Podstawowym zdaniem stawianym przed symulacjami komputerowymi zdaje się być przewidywanie różnego rodzaju zdarzeń. Znając zasady wg. których funkcjonują pewne zjawiska, jesteśmy w stanie do pewnego stopnia określić jak będą rozwijały się te zjawiska w przyszłości.
+Podstawowym zdaniem stawianym przed symulacjami komputerowymi zdaje się być przewidywanie różnego rodzaju zdarzeń. Znając zasady według których funkcjonują pewne zjawiska, jesteśmy w stanie do pewnego stopnia określić jak będą rozwijały się te zjawiska w przyszłości.
 }
 \par{
 Niektóre z tych zjawisk potrafiliśmy przewidywać już przed erą symulacji komputerowej --- albo przy użyciu klasycznego aparatu matematycznego albo przy użyciu własnej intuicji i doświadczenia. Jednak symulowanie zjawisk w celu przewidywania ich rozwoju przenosi przewidywanie przyszłości na zupełnie nowy poziom.
@@ -108,7 +111,7 @@ Drugi typ zastosowań ma ścisły związek z badaniami naukowymi.
 Opisując model pewnych zjawisk, przy użyciu symulatora jesteśmy w stanie sprawdzać reakcję całego układu na naszą ingerencję jak i obserwować jego zachowanie w stanie zamkniętym. Tego rodzaju badanie może często uzmysławiać pewne zjawiska w innej skali, niż ta na której rozpatrywany jest układ w modelu symulacji.
 }
 \par{
-Przeprowadzanie niektórych eksperymentów w świecie realnym jest często problematyczne, kosztowne lub wręcz niemożliwe. Symulowanie eksperymentów zdaje się pozwalać w znacznym stopniu usprawniać badania a także wskazywać kierunki dalszego rozwoju. Jednocześnie najbardziej udane eksperymenty często powtarza się w rzeczywistości by uzyskać bardziej precyzyjny i pewny obraz.
+Przeprowadzanie niektórych eksperymentów w świecie realnym jest często problematyczne, kosztowne lub wręcz niemożliwe. Symulowanie eksperymentów zdaje się pozwalać w znacznym stopniu usprawniać badania, a także wskazywać kierunki dalszego rozwoju. Jednocześnie najbardziej udane eksperymenty często powtarza się w rzeczywistości by uzyskać bardziej precyzyjny i pewny obraz.
 }
 \par{
 Przykładem zastosowania w tym sektorze może być np. wspominana już symulacja zbiornika z wodą na poziomie pojedynczych cząsteczek by symulować jej zachowanie w konkretnych sytuacjach (np. uderzenie). Mając do dyspozycji taki symulator możemy zaobserwować jak reaguje tafla wody na uderzenie i np. wysnuć teorię na temat związku długości fali na wodzie z siłą uderzenia.
@@ -123,7 +126,7 @@ Symulator opisywany w niniejszej pracy został stworzony z myślą o właśnie t
 }
 \par{
 Rozwiązanie wykorzystujące symulator jest tańsze, szybsze oraz znacznie prostsze i może w znacznym stopniu wyprzedzać bieżące czasy.
-Zebranie realnych danych na temat pojazdów poruszających się po mieście jest zadaniem nie łatwym. Kamery z funkcją rozpoznawania obiektów są dopiero raczkującą technologią a ich umieszczenie w całym mieście jest bardzo kosztowne. Umieszczenie ludzi spisujących odpowiednie, jest mało precyzyjne, i obarczone innym rodzajem błędów niż odczyty z kamer. Uzyskanie realnych danych potrzebnych do testowania skuteczności systemu śledzenia zdaje się więc być praktycznie niemożliwe.
+Zebranie realnych danych na temat pojazdów poruszających się po mieście jest zadaniem nie łatwym. Kamery z funkcją rozpoznawania obiektów są dopiero raczkującą technologią a ich umieszczenie w całym mieście jest bardzo kosztowne. Uzyskanie realnych danych potrzebnych do testowania skuteczności systemu śledzenia zdaje się więc być praktycznie niemożliwe.
 }
 \par{
 Z pomocą przychodzą symulatory --- za ich pomocą możemy wytworzyć takie dane, jakich powinna nam dostarczyć hipotetyczna kamera. Nałożyć na nie odpowiednie szumy i zapisać razem z o wiele szerszymi danymi realnymi pozwalającymi analizować skuteczność wykorzystanych rozwiązań.
@@ -170,11 +173,15 @@ $Y(t) = H_{t} \times X(t).$
 \subsubsection{Oczekiwane cechy modelu}
 \par{
 Przed modelami do symulacji najczęściej stawiane są trzy wymagania [2,4]:
-\begin{itemize}
-\item Wymaganie jednoznaczności --- oznacza to, że operator modelu jest zależnością funkcyjną tzn. że jeden zbiór danych wejściowych daje dokładnie jedną odpowiedź.
+\begin{enumerate}
+\item Wymaganie jednoznaczności --- oznacza to, że operator modelu jest zależnością funkcyjną, tzn. że jeden zbiór danych wejściowych daje dokładnie jedną odpowiedź.
 \item Wymaganie spójności (rozwiązywalności) --- oznacza to, że elementy modelu nie przeczą sobie nawzajem (są matematycznie spójne).
-\item Wymaganie stabilności --- wymaganie to, oznacza, że niewielkie zmiany danych wejściowych nie powinny pociągać za sobą gwałtownych zmian w danych wyjściowych. Należy jednak zwrócić uwagę, iż niekiedy symulowany system posiada właściwości przeczące tej zasadzie --- nietrudno wyobrazić sobie na przykład symulację nacisku na jakiś obiekt, który po przekroczeniu pewnej krytycznej wartości siły nacisku łamie się, powodując diametralną zmianę wyglądu całego systemu (w wyniku reakcji łańcuchowej). 
-\end{itemize}
+\item Wymaganie stabilności --- wymaganie to, oznacza, że niewielkie zmiany danych wejściowych nie powinny pociągać za sobą gwałtownych zmian w danych wyjściowych.
+\end{enumerate}
+}
+
+\par{
+Należy jednak zwrócić uwagę, iż niekiedy symulowany system posiada właściwości przeczące tej zasadzie --- nietrudno wyobrazić sobie na przykład symulację nacisku na jakiś obiekt, który po przekroczeniu pewnej krytycznej wartości siły nacisku łamie się, powodując diametralną zmianę wyglądu całego systemu (w wyniku reakcji łańcuchowej). 
 }
 
 \subsection{Taksonomia modeli}
@@ -236,34 +243,29 @@ Warto mieć na względzie, że modele niedeterministyczne niejako stoją w sprze
 
 \subsection{Modelowanie}
 \par{
-Proces tworzenia modeli pewnych zjawisk (np. na potrzeby symulacji komputerowej) nazywany jest modelowaniem. Proces ten, stanowi często wyzwanie dla przystępujących do niego inżynierów ze względu na bardzo wysokość złożoność zagadnień jak i konieczność dobierania miejsc, które model będzie upraszczał względem rzeczywistości, tak by zachować zasadność tworzenia modelu.
+Proces tworzenia modeli pewnych zjawisk (np. na potrzeby symulacji komputerowej) nazywany jest modelowaniem. Proces ten, stanowi często wyzwanie dla przystępujących do niego inżynierów ze względu na bardzo wysoką złożoność zagadnień jak i konieczność dobierania miejsc, które model będzie upraszczał względem rzeczywistości, tak by zachować zasadność tworzenia modelu.
 }
 
 \subsubsection{Aspekty tworzenie modeli}
 \par{
-Przystępując do modelowania jakichkolwiek zjawisk poprawnym podejściem jest zwrócenie uwagi na następujące aspekty [2]:
+Przystępując do modelowania jakichkolwiek zjawisk poprawnym podejściem jest zwrócenie uwagi na następujące aspekty \cite{KotowskiTronczyk}:
 \begin{itemize}
 \item \textbf{cel} --- celowi tworzenia modelu powinny być podporządkowane wszystkie związane z nim działania. Należy pamiętać, że to model istnieje dla celu a nie odwrotnie. Cel symulacji stanowi punkt odniesienia, do którego należy często powracać i podporządkowywać mu decyzje podejmowane podczas modelowania.
-\item \textbf{poziom uproszczenia} --- model z samej swojej natury musi być pewnym uproszczonym odpowiednikiem wycinka rzeczywistości. Jego stopień skomplikowania nie może być zbyt wysoki, przez wzgląd na dostępne metody praktycznej implementacji symulacji oń opartej. Z drugiej strony wybranie modelu nadmiernie uproszczonego może prowadzić do zagubienia pewnych specyficznych zachowań symulowanego zjawiska --- co może fałszować obraz symulacji. Dobrym określeniem porządanego stopnia uproszczenia modelu mogą być słowa Alberta Einsteina: \textit{Wszystko powinno być tak proste, jak to tylko możliwe, ale nie prostsze.}
-\item \textbf{potrzeby eksperymentu} --- niezwykle często zdarza się, że zjawisko modelowane jest z zamiarem wykorzystania do ściśle określonego eksperymentu. Mając taką świadomość, jesteśmy w stanie łatwiej dobrać możliwe uproszczenia, a co ważniejsze pozbyć się wielu niepotrzebnych zależności z proponowanego modelu.
-\item \textbf{poprawność} --- model uznaje się za poprawny, jeśli poddany każdemu możliwemu wejściu zachowa się wystarczająco podobnie do realnego zjawiska poddanego bodźcom odpowiadającym temu wejściu. Określenie, czy dane wyjście jest wystarczająco podobne do wyjścia realnego jest decyzją jaką podejmuje modelujący mając na względnie różne aspekty modelu a w szczególności cel jego tworzenia. Zależności jakie powinny zachodzić w poprawnym modelu przedstawia poniższy rysunek.
-\par{
-\begin{center}
-\includegraphics[width=\textwidth,keepaspectratio]{img/poprawnosc_modelu}
-\textit{Poprawność modelu względem modelowanego zjawiska [2].}
-\end{center}
-}
-\item \textbf{przydatność} --- model uznawany jest za przydatny gdy jego złożoność rośnie wolniej niż wykładniczo względem ilości zmiennych wykorzystywanych do jego opisu [2]. Modele zagadnień o złożoności wykładniczej mogą być poprawne, jednak ich precyzyjny opis jest często nieprzydatny i wymagane jest ich uproszczenie, by rozwiązywać symulowane zagadnienie z mniejszą dokładnością (np. heurystycznie) ale ciągle wystarczająco dobrze z punktu widzenia symulacji a jednocześnie w realnie dostępnym czasie.
+\item \textbf{poziom uproszczenia} --- model z samej swojej natury musi być pewnym uproszczonym odpowiednikiem wycinka rzeczywistości. Jego stopień skomplikowania nie może być zbyt wysoki, przez wzgląd na ograniczenia dostępnych metod jego praktycznej implementacji. Z drugiej strony wybranie modelu nadmiernie uproszczonego może prowadzić do zagubienia pewnych specyficznych zachowań symulowanego zjawiska --- co może fałszować obraz symulacji. Dobrym określeniem porządanego stopnia uproszczenia modelu mogą być słowa Alberta Einsteina [24]: \textit{Wszystko powinno zostać uproszczone tak bardzo, jak to tylko możliwe, ale nie bardziej.}
+\item \textbf{potrzeby eksperymentu} --- niezwykle często zdarza się, że zjawisko modelowane jest z zamiarem przeprowadzenia ściśle określonego eksperymentu. Mając taką świadomość, jesteśmy w stanie łatwiej dobrać możliwe uproszczenia, a co ważniejsze pozbyć się wielu niepotrzebnych zależności z proponowanego modelu.
+\item \textbf{poprawność} --- model uznaje się za poprawny, jeśli poddany każdemu możliwemu wejściu zachowa się wystarczająco podobnie do realnego zjawiska poddanego bodźcom odpowiadającym temu wejściu. Określenie, czy dane wyjście jest wystarczająco podobne do wyjścia realnego jest decyzją jaką podejmuje modelujący, mając na względnie różne aspekty modelu a w szczególności cel jego tworzenia.
+\item \textbf{przydatność} --- model uznawany jest za przydatny gdy jego złożoność rośnie wolniej niż wykładniczo względem ilości zmiennych wykorzystywanych do jego opisu \cite{KotowskiTronczyk}. Modele zagadnień o złożoności wykładniczej mogą być poprawne, jednak ich precyzyjny opis jest często nieprzydatny i wymagane jest ich uproszczenie, by rozwiązywać symulowane zagadnienie z mniejszą dokładnością (np. heurystycznie) ale ciągle wystarczająco dobrze z punktu widzenia symulacji, a jednocześnie w realnie dostępnym czasie.
 \item \textbf{wiarygodność} --- wiarygodność modelu określa na ile użytkownik jest przekonany o jego poprawności, szczególnie bazując na obserwacji wyników jego działania i organoleptycznym porównaniu tych wyników z realnym zjawiskiem. Wiarygodność modelu jest szczególnie istotna w przypadku symulacji przeznaczonych do wizualizacji określonych zjawisk.
 \end{itemize}
 }
 
 \subsubsection{Zasadność modelu}
 \par{
-Model jako taki musi posiadać pewne cechy by był przydatny do jakichkolwiek zastosowań. Zastosowanie wyżej sformułowanych kryteriów doboru, powinno zapewnić, że model będzie właściwie sformułowany, jednak warto mieć dodatkowo na względzie dwa aspekty, wedle których można ocenić zasadność istnienia zaproponowanego przez nas modelu [4].
+Model jako taki musi posiadać pewne cechy by był przydatny do jakichkolwiek zastosowań. Zastosowanie wyżej sformułowanych kryteriów doboru, powinno zapewnić, że model będzie właściwie sformułowany, jednak warto mieć dodatkowo na względzie  aspekty, wedle których można ocenić zasadność istnienia zaproponowanego przez nas modelu [4].
 \begin{itemize}
+\renewcommand{\labelitemi}{$\bullet$}
 \item Badanie modelu nie powinno być bardziej złożone od badanie właściwego zjawiska.
-\item Model powinien (zwłaszcza w kwestiach związanych ze swoim celem) zachowywać się w sposób zbliżony do modelowanego zjawiska.
+\item Model powinien zachowywać się w sposób zbliżony do modelowanego zjawiska (zwłaszcza w kwestiach związanych ze swoim celem).
 \end{itemize}
 }
 
@@ -271,7 +273,7 @@ Model jako taki musi posiadać pewne cechy by był przydatny do jakichkolwiek za
 \section[Fizyczne modele dynamiki Newtona][Fizyczne modele dynamiki Newtona]{Fizyczne modele dynamiki Newtona}
 
 \par{
-Do stworzenia odpowiedniego modelu symulacji komputerowej, oprócz znajomości metodyki modelowania wymagana jest znajomość teorii stojącej za modelowanym zjawiskiem oraz aparatu matematycznego dla niej odpowiedniego. Nie wydaje się jednak koniecznym by w ramach pracy tego rodzaju przybliżać podstawy fizyki klasycznej w postaci zasad dynamiki Newtona stanowiących w dzisiejszym świecie wiedzę powszechną.
+Do stworzenia odpowiedniego modelu symulacji komputerowej, oprócz znajomości metodyki modelowania, wymagana jest znajomość teorii stojącej za modelowanym zjawiskiem oraz aparatu matematycznego dla niej odpowiedniego. Nie wydaje się jednak koniecznym by w ramach pracy tego rodzaju przybliżać podstawy fizyki klasycznej w postaci zasad dynamiki Newtona stanowiących w dzisiejszym świecie wiedzę powszechną.
 }
 \par{
 Jednakże, zasady dynamiki Newtona operują na dwóch podstawowych modelach reprezentacji obiektów, z pośród których dla celów symulacji należy wybrać jeden mając świadomość związanych z tym konsekwencji. W związku z tym podstawowe cechy tych modeli zostaną omówione w tej pracy.
@@ -284,32 +286,31 @@ Model bryły sztywnej uwzględnia kształt i wymiary obiektu poruszającego się
 \par{
 W związku z tym, że model bryły sztywnej zakłada wymiarowość obiektów, posiadają one w tym modelu sześć stopni swobody, które określają ich położenie w trójwymiarowej przestrzeni:
 \begin{itemize}
-\item Trzy związane z ruchem postępowym
+\item trzy związane z ruchem postępowym
+\renewcommand{\labelitemi}{$\bullet$}
 	\begin{itemize}
 	\item szerokość (położenie na osi X)
 	\item wysokość (położenie na osi Y)
 	\item głębokość (położenie na osi Z)
 	\end{itemize}
-\item Trzy związane z ruchem obrotowym
+\item trzy związane z ruchem obrotowym
 	\begin{itemize}
-	\item Kąt roll (obrót wokół osi X)
-	\item Kąt yaw (obrót wokół osi Y)
-	\item Kąt pitch (obrót wokół osi Z)
+	\item kąt \textit{roll} (obrót wokół osi X)
+	\item kąt \textit{yaw} (obrót wokół osi Y)
+	\item kąt \textit{pitch} (obrót wokół osi Z)
 	\end{itemize}
 \end{itemize}
+Wymienione stopnie swobody zobrazowano na rysunku \ref{ryp}
+\begin{figure}[htb]
+    \begin{center}
+	\includegraphics[]{img/xyz_ryp.jpg}
+	\caption{Stopnie swobody bryły sztywnej [25]}
+	\label{ryp}
+    \end{center}
+\end{figure}
 }
 \par{
-\begin{center}
-\includegraphics[]{img/xyz_ryp}
-\end{center}
-}
-\par{
-\begin{center}
-\textit{Stopnie swobody bryły sztywnej, źródło: $http://www.projectrho.com/public\_html/rocket/controldeck.php$}
-\end{center}
-}
-\par{
-Podstawową cechą jaką rzuca się w oczy przy opisywaniu tego modelu jest fakt, że opisuje on nie tylko pozycję ale i obrót obiektu (uwzględniając jego bryłę). Jest to więc model pozwalający na bezpośredni przekład wartości modelu fizycznego na obserwowalne przy użyciu zmysłów właściwości jak kształt. Konsekwencją tego jest także możliwość naturalnego z punktu widzenia modelu fizycznego symulowania zderzeń niesprężystych. Ewentualne zderzenia sprężyste muszą być rozpatrywane poza  modelem fizycznym.
+Podstawową cechą jaką rzuca się w oczy przy opisywaniu tego modelu jest fakt, że opisuje on nie tylko pozycję ale i obrót obiektu (uwzględniając jego bryłę). Jest to więc model pozwalający na bezpośredni przekład wartości modelu fizycznego na obserwowalne przy użyciu zmysłów właściwości. Konsekwencją tego jest także możliwość naturalnego z punktu widzenia modelu fizycznego symulowania zderzeń niesprężystych. Ewentualne zderzenia sprężyste muszą być rozpatrywane poza  modelem fizycznym.
 }
 \par{
 Jednocześnie wymaganie jednolitości całej bryły w tym modelu sprawia, że jej częściowa parametryzacja (np. wydzielenie oddzielnych właściwości szyby samochodu od jego karoserii) może być utrudniona i będzie musiała być najprawdopodobniej dokonana poza samym modelem fizycznym.
@@ -326,9 +327,9 @@ Model punktu materialnego nie uwzględnia kształtu i fizycznego charakteru poru
 \par{
 Ponieważ punkt materialny nie ma wymiarów, posiada zaledwie trzy stopnie swobody, związane z położeniem, nie jest natomiast opisywany przez obroty (jak bryła sztywna):
 \begin{itemize}
-\item szerokość (położenie na osi X)
-\item wysokość (położenie na osi Y)
-\item głębokość (położenie na osi Z)
+\item szerokość (położenie na osi X),
+\item wysokość (położenie na osi Y),
+\item głębokość (położenie na osi Z).
 \end{itemize}
 }
 
@@ -344,7 +345,7 @@ Choć powyższe porównanie wyraźnie wskazuje, że zastosowanie modelu bryły s
 
 \section[Systemy fuzji danych][Systemy fuzji danych]{Systemy fuzji danych}
 \par{
-\textit{Fuzją danych} nazywa się [14] \textit{proces łączący dane w celu oczyszczenia estymaty i predykcji stanu}, co jest uogólnieniem wcześniejszej definicji [13] mówiącej, że \textit{Fuzja danych to proces obsługujący asocjację, korelację i wiązanie ze sobą danych i informacji z jednego lub wielu źródeł w celu uzyskania lepszej pozycji i tożsamości obiektu oraz możliwie trafnej i precyzyjnej ocenie sytuacji i zagrożenia.}.
+\textit{Fuzją danych} nazywa się \textit{proces łączący dane w celu oczyszczenia estymaty i predykcji stanu} [14], co jest uogólnieniem wcześniejszej definicji [13] mówiącej, że \textit{Fuzja danych to proces obsługujący asocjację, korelację i wiązanie ze sobą danych i informacji z jednego lub wielu źródeł w celu uzyskania lepszej pozycji i tożsamości obiektu oraz możliwie trafnej i precyzyjnej ocenie sytuacji i zagrożenia.}
 }
 \par{
 Obie powyższe definicje zdają się oddawać kwintesencję fuzji danych, którą jest zbieranie wielu danych o niedużej wartości jednostkowej w celu uzyskania szerokiego obrazu o dużej wartości końcowej.
@@ -352,16 +353,13 @@ Obie powyższe definicje zdają się oddawać kwintesencję fuzji danych, któr�
 
 \subsection{Rodzaje fuzji}
 \par{
-Systemy fuzji danych dzieli się ze względu na charakter danych poddawanych obróbce. Fuzją \textbf{danych} nazywa się procesy wykorzystujące dane pozbawione wstępnej obróbki lub ograniczające wstępną obróbkę do wyrównania dziedzin danych pochodzących z różnych źródeł. Systemy fuzji danych operują na danych nieprzetworzonych np. właściwościach fizycznych sygnałów analogowych.
+Systemy fuzji danych dzieli się ze względu na charakter danych poddawanych obróbce. Fuzją \textbf{danych} nazywa się procesy wykorzystujące dane pozbawione wstępnej obróbki lub ograniczające wstępną obróbkę do wyrównania dziedzin danych pochodzących z różnych źródeł. Systemy fuzji danych operują na danych nieprzetworzonych, np. właściwościach fizycznych sygnałów analogowych.
 }
 \par{
 Bardziej rozpowszechniona od fuzji danych jest fuzja \textbf{informacji} nazywana również fuzją \textbf{cech} lub fuzją \textbf{właściwości} --- operująca na danych obrobionych, mających znaczenie na wyższym poziomie abstrakcji. Przykładem tego rodzaju systemu może być system operujący na danych dostarczanych z inteligentnych kamer w środowisku miejskim --- analizujący konkretne informacje o znanym charakterze (np. położenie obiektu) w celu uzyskania szerszych informacji na jego temat (np. śledzenie jego pozycji w czasie).
 }
 \par{
-Rzadziej spotykanymi ale także wymienianymi w literaturze [15] są systemy fuzji \textbf{decyzji}. O tym przypadku mówi się, kiedy przetwarzanie danych przed samą fuzją dochodzi jeszcze o krok dalej --- tzn. na podstawie danych przed fuzją wypracowywana jest pewna decyzja. W takim przypadku dopiero niezależne decyzje z wielu źródeł są łączone w celu wypracowania rozwiązania ogólnego. Oznacza to, że daną w takim rozumieniu jest jakaś zmienna o charakterze sterującym sama sobie będąca wnioskiem z dostarczonych informacji, natomiast zadaniem systemu fuzji jest wybranie sumarycznej decyzji systemu nie wnikając w wewnętrzne funkcjonowanie poszczególnych swoich części a jedynie w poddecyzje.
-}
-\par{
-Kolejne stopnie przetworzenia danych o których mowa powyżej można by przedstawić na podstawie systemu fuzji danych mającego dawać werdykt w kwestii zwycięscy wyborów prezydenckich w Stanach Zjednoczonych Ameryki. System, dla którego danymi wejściowymi były by zdjęcia wypełnionych kart do głosowania byłby w takim ujęciu systemem fuzji danych. Wstępne przetworzenie danych, np. przez odczytanie informacji z kart do głosowania lub wręcz dostarczenia sum wyników z poszczególnych lokali wyborczych zaprowadziło by nas do systemu, mogącego zakrawać na system fuzji informacji. Jeśli jednak poszli byśmy krok dalej i zebrali tego rodzaju informacje dla każdego stanu z osobna i na tej podstawie wyznaczyli decyzję w postaci preferowanego przez dany stan prezydenta, a następnie przesłali tę decyzję do systemu, który decydował by o końcowym wyborze, mieli byśmy do czynienia z syntezą decyzji. W rzeczywistości system głosowania w Stanach Zjednoczonych jest właśnie złożeniem tych trzech warstw.
+Rzadziej spotykanymi ale także wymienianymi w literaturze [15] są systemy fuzji \textbf{decyzji}. O tym przypadku mówi się, kiedy przetwarzanie danych przed samą fuzją idzie jeszcze o krok dalej --- tzn. na podstawie danych przed fuzją wypracowywana jest pewna decyzja. W takim przypadku dopiero niezależne decyzje z wielu źródeł są łączone w celu wypracowania rozwiązania ogólnego. Oznacza to, że daną w takim rozumieniu jest jakaś zmienna o charakterze sterującym sama sobie będąca wnioskiem z dostarczonych informacji, natomiast zadaniem systemu fuzji jest wybranie sumarycznej decyzji systemu nie wnikając w wewnętrzne funkcjonowanie poszczególnych swoich części a jedynie w poddecyzje.
 }
 \par{
 Da się wyraźnie dostrzec, że poszczególne typy fuzji różnią się stopniem obróbki danych przed wejściem do systemu. W związku z tym systemy fuzji danych wydają się być bardziej złożone ale jednocześnie tracące najmniejszą ilość informacji. Zastosowane konkretnego rodzaju fuzji zależy ściśle od dziedziny zastosowania i intencji twórcy systemu --- nie sposób jest poszeregować wyników poszczególnych typów systemów w kategorii lepszy-gorszy.
@@ -371,27 +369,28 @@ Da się wyraźnie dostrzec, że poszczególne typy fuzji różnią się stopniem
 Lata doświadczeń nad systemami fuzji danych pozwoliły na wypracowanie pewnych wzorców ich funkcjonowania stanowiących swoiste ramy dla wszystkich nowych systemów. Ilość modeli powstałych w czasie badań jest zauważalnie duża, jednak większość z nich zdaje się być jedynie szczególnym przypadkiem modelu zwanego modelem JDL.
 }
 \par{
+Model ten ma pochodzenie militarno-wojskowe. Został on opracowany przez \textit{Data Fusion Subpanel of the Joint Directors of Laboratories} (JDL) w 1985 roku [16]. W związku z tym nomenklatura używana do jego opisu jak i cele jakie stawia się przed tym modelem są ściśle związane z potrzebami wojskowymi. Nic jednak nie stało na przeszkodzie żeby wykorzystać tę metodykę w zastosowaniach cywilnych czego przykładem może system DAFNE implementujący dwa pierwsze poziomy modelu JDL [17].
+}
+\par{
 Model JDL dzieli proces fuzji danych na pięć poziomów:
 \begin{itemize}
+\renewcommand{\labelitemi}{}
 \item \textbf{Poziom 0, preprocessing} --- na tym poziomie dokonuje się wstępnego przygotowania danych otrzymanych z zewnątrz systemu. Dane mogą być wyrównane do spójnej dziedziny czy jednostek, zagregowane względem określonych cech itd. Każda obróbka tego rodzaju może następować również poza systemem więc zasadność występowania tego poziomu zależy od tego jak bardzo pożądany przez nas rodzaj wejścia różni się od tego dostarczanego do systemu.
 \item \textbf{Poziom 1, asocjacja} --- faza ta odpowiada za łączenie ze sobą danych pochodzących z różnych źródeł. Uwzględnia ona modele dotyczące obiektów w systemie pozwalając na estymację stanu obiektów na podstawie połączonych danych z wielu źródeł.
 \item \textbf{Poziom 2, ocena sytuacji} --- na tym poziomie na podstawie ogólnych zasad funkcjonowania znanych już w momencie tworzenia systemu wyciągane są wnioski dotyczące jego bieżącego stanu.
 \item \textbf{Poziom 3, ocena wpływu} --- na podstawie wyników poprzednich poziomów, zarówno bieżących jak i historycznych poziom ten stara się estymować przyszły stan obiektów. Poziom ten odpowiada również za interpretację wyników estymacji w szczególności wykrywając pewne scenariusze jako potencjalnie nietypowe, niebezpieczne lub po prostu wymagające reakcji.
 \item \textbf{Poziom 4, decyzje} --- zadaniem ostatniej fazy jest reagowanie na określone zdarzenia w systemie fuzji obserwowalne przez pryzmat poprzednich poziomów. Zapewnia to sprzężenie zwrotne, tzn. sam system fuzji danych zaczyna wpływać na obserwowane zjawiska a jednocześnie stanowi swoistą kwintesencję sensu istnienia tego rodzaju systemów zwłaszcza w ich pierwotnym znaczeniu.
 \end{itemize}
+Schemat działania systemu fuzji danych według modelu JDL przedstawiono na rysunku \ref{jdl}
 }
-\par{
-Model JDL ma pochodzenie militarno-wojskowe. Został on opracowany przez \textit{Data Fusion Subpanel of the Joint Directors of Laboratories} (JDL) w 1985 roku [16]. W związku z tym nomenklatura używana do jego opisu jak i cele jakie stawia się przed tym modelem są ściśle związane z potrzebami wojskowymi. Nic jednak nie stało na przeszkodzie żeby wykorzystać tę metodykę w zastosowaniach cywilnych czego przykładem może system DAFNE implementujący dwa pierwsze poziomy modelu JDL [17]).
-}
-\par{
-\begin{center}
-\includegraphics[width=15em,keepaspectratio]{img/jdl}
-\end{center}
-}
-\par{
-\begin{center}
-\textit{Działanie systemu fuzji danych w modelu JDL}
-\end{center}
+
+\begin{figure}[htb]
+    \begin{center}
+	\includegraphics[width=15em,keepaspectratio]{img/jdl}
+	\caption{Działanie systemu fuzji danych w modelu JDL}
+	\label{jdl}
+    \end{center}
+\end{figure}
 
 \subsection{System śledzenia}
 \par{
@@ -401,37 +400,36 @@ Opis modelu JDL stanowi jedynie podstawę dla dalszych rozważań dotyczących k
 System śledzenia, dla celów którego tworzony jest opisywany w pracy symulator, jest typowym systemem fuzji informacji. Ma on za zadanie zbierać informacje z wielu czujników rozmieszczonych w środowisku miejskim i na ich podstawie wyznaczać trasy poszczególnych obiektów a także przewidywać dalsze kierunki ich poruszania się.
 }
 \par{
-Z punktu widzenia takiego systemu podstawową informacje dotyczącą obiektów i poddawaną fuzji stanowi położenie obiektu, jednakże system ten zakłada możliwość dostarczania przez czujniki większej ilości informacji i może w przyszłości wykorzystywać je by zwiększać swoją skuteczność.
+Z punktu widzenia takiego systemu podstawową informacją dotyczącą obiektów poddawaną fuzji stanowi położenie obiektu, jednakże system ten zakłada możliwość dostarczania przez czujniki większej ilości informacji i może w przyszłości wykorzystywać je by zwiększać swoją skuteczność.
 }
 \par{
-Takie wymagania systemu ciągną za sobą faktyczne znaczenie postawienia pracy w kontekście systemów fuzji. Oznacza to bowiem, że system ten \textbf{musi} dostarczać dla docelowego systemu informacji w formie wstępnie przetworzonej dotyczącej położenia obiektów obserwowanych przez inteligentne czujniki oraz, że te czujniki \textbf{mogą} dostarczać większej ilości informacji.
+Takie wymagania co do systemu oznaczają, że symulator \textbf{musi} dostarczać do docelowego systemu informace o położeniu obiektów w formie wstępnie przetworzonej. Zakłada się, że obserwacje wykonywane są przez inteligentne czujniki oraz, że czujniki te \textbf{mogą} dostarczać większej ilości informacji.
 }
 \par{
-Ponieważ wyżej zaprezentowany ogólny wstęp dotyczący systemów fuzji danych pozwolił na sformułowanie tego zagadnienia w kontekście pracy a same systemy fuzji nie są przedmiotem tej pracy, nie będą one bardziej szczegółowo opisywane.
+Ponieważ wyżej zaprezentowany ogólny wstęp dotyczący systemów fuzji danych pozwolił na sformułowanie tego zagadnienia w kontekście pracy, a same systemy fuzji nie są przedmiotem tej pracy, nie będą one bardziej szczegółowo opisywane.
 }
 
 \section[Elementy symulowanego środowiska][Elementy symulowanego środowiska]{Elementy symulowanego środowiska}
 \par{
-Środowiskiem miejskim nazywa się tu ogół obiektów znajdującej się w czterowymiarowej przestrzeni w otoczeniu ludzkich miast, powiązanych wzajemnymi relacjami. Elementami środowiska miejskiego są więc piesi i chodniki, pojazdy i ulice, budynki i ich mieszkańcy, parki wraz z lokalną fauną i florą czy post industrialne ruiny ozdobione dzikimi wysypiskami śmieci.
+Środowiskiem miejskim nazywa się tu ogół obiektów znajdującej się w czterowymiarowej przestrzeni w otoczeniu ludzkich miast, powiązanych wzajemnymi relacjami. Elementami środowiska miejskiego są więc piesi i chodniki, pojazdy i ulice, budynki i ich mieszkańcy, parki wraz z lokalną fauną i florą czy post industrialne ruiny ,,ozdobione'' dzikimi wysypiskami śmieci.
 }
 \par{
-Środowisko miejskie rysuje się więc jako bardzo kompleksowe pojęcie, które nie sposób modelować w całej rozciągłości. Jednakże, z punktu widzenia systemów dozoru czy też śledzenia wystarczającym wydaje się być przedstawienia całego środowiska miejskiego jako zbioru obiektów niżej wymienionych typów. Należy pamiętać, że poniżej zaproponowany podział nie jest jedynym możliwym, a został wybrany do omówienia ponieważ pozwalał na jednocześnie na zaprezentowanie samego środowiska jak i płynne przejście do jego modelowania w dalszej części pracy.
+Środowisko miejskie rysuje się więc jako bardzo kompleksowe pojęcie, które nie sposób modelować w całej rozciągłości. Jednakże, z punktu widzenia systemów dozoru, czy też śledzenia, wystarczającym wydaje się być przedstawienie całego środowiska miejskiego jako zbioru obiektów niżej wymienionych typów. Należy pamiętać, że poniżej zaproponowany podział nie jest jedynym możliwym, a został wybrany do omówienia ponieważ pozwalał na jednoczesne zaprezentowanie samego środowiska jak i płynne przejście do jego modelowania w dalszej części pracy.
 }
 \subsection{Obiekty statyczne}
 \par{
 Obiektami statycznymi w środowisku miejskim nazywamy wszystkie elementy krajobrazu niezmienne w czasie ale posiadające fizyczną reprezentację, mogącą wchodzić w pośrednią lub bezpośrednią interakcję z innymi obiektami.
 }
 \par{
-W wypadku przestrzeni czterowymiarowej, jaką jest środowisko miejskie, każdy obiekt posiadający fizyczną reprezentację w naturalny sposób opisywany jest bryłą potencjalnie zmienną w czasie. Jako że obiekty statyczne z samej swojej natury są niezmienne w czasie są one opisywane trójwymiarową bryłą o określonej pozycji w trzech wymiarach i znajdująca się w tej pozycji w każdym punkcie wymiaru czwartego (czasu).
+W wypadku przestrzeni czterowymiarowej, jaką jest środowisko miejskie, każdy obiekt posiadający fizyczną reprezentację w naturalny sposób opisywany jest bryłą potencjalnie zmienną w czasie. Jako że obiekty statyczne z samej swojej natury są niezmienne w czasie, są one opisywane trójwymiarową bryłą o określonej pozycji w trzech wymiarach i znajdująca się w tej pozycji w każdym punkcie wymiaru czwartego (czasu).
 }
 \par{
 Poza reprezentacją w formie bryły każdy element tego rodzaju może być opisywany w całości lub częściami rozmaitymi parametrami mającymi fizyczny wpływ na inne obiekty z otoczenia jak np.
 \begin{itemize}
-\item Gęstość lub komplementarna masa
-\item Przepuszczalność światła
-\item Współczynnik odbicia
-\item Współczynnik tarcia
-\item itd.
+\item gęstość lub masa,
+\item przepuszczalność światła,
+\item współczynnik odbicia,
+\item współczynnik tarcia;
 \end{itemize}
 }
 \par{
@@ -440,10 +438,10 @@ Ilość uwzględnianych właściwości obiektów statycznych zależy od potrzeb 
 \par{
 Przykładami obiektów statycznych są:
 \begin{itemize}
-\item Budynki
-\item Roślinność
-\item Znaki drogowe
-\item Ulice, chodniki
+\item budynki
+\item roślinność
+\item znaki drogowe
+\item ulice, chodniki
 \end{itemize}
 }
 \subsection{Ścieżki}
@@ -451,7 +449,7 @@ Przykładami obiektów statycznych są:
 Ulice, chodniki czy inne szlaki po których typowo poruszają się obiekty w środowisku miejskim są określane wspólnym mianem ścieżek. Choć ścieżki same w sobie mają zwykle niezmienną w czasie reprezentacje fizyczną, czyli są obiektami statycznymi, to mają one dodatkowe charakterystyczne znaczenie semantyczne.
 }
 \par{
-Ścieżka wyznacza parametryzowalny szlak, po którym mogą poruszać się obiekty pewnego rodzaju. Wyznaczenie tego rodzaju ścieżek zdaje się być typowe dla obserwatorów rzeczywistego świata stąd też specjalne wyróżnienie tego bytu w specjalną grupę.
+Ścieżka wyznacza parametryzowalny szlak, po którym mogą poruszać się obiekty pewnego rodzaju. Wyznaczenie tego rodzaju ścieżek zdaje się być typowe dla obserwatorów rzeczywistego świata stąd też wyróżnienie tego bytu w specjalną grupę.
 }
 \par{
 Wyróżnienie ścieżek ma również praktyczne znaczenie w badaniach --- ścieżki wraz z ich semantyką można bowiem w prosty sposób badać pod względem cech związanych z przepływem i umiejscowieniem na nich obiektów.
@@ -463,7 +461,7 @@ Jednym z najistotniejszych elementów opisywanego środowiska jest zdolność ob
 
 \subsubsection{Obserwacja środowiska}
 \par{
-Środowisko miejskie niezależnie od zastosowanego modelu można potraktować jako zbiór informacji (stan) wraz z opisem zasad jego zmian w czasie. Cały stan układu jest maksymalną informacją niesioną przez system. Choć fakt, ten wydaje się naturalny rozpatrując podzbiór informacji dostarczany do poszczególnych czujników warto mieć na względzie, że zawsze będzie on jedynie podzbiorem lub wynikową podzbioru stanu układu.
+Środowisko miejskie niezależnie od zastosowanego modelu można potraktować jako zbiór informacji (stan) wraz z opisem zasad jego zmian w czasie. Cały stan układu jest maksymalną informacją niesioną przez system. Choć fakt ten wydaje się naturalny, rozpatrując podzbiór informacji dostarczany do poszczególnych czujników warto mieć na względzie, że zawsze będzie on jedynie podzbiorem lub wynikową podzbioru stanu układu.
 }
 
 \subsubsection{Stopień przetworzenia danych}
@@ -473,14 +471,14 @@ Rozpatrując charakter czujników należy przede wszystkim skupić się na uwzgl
 \item Bezpośredni --- czujniki odbierają bezpośrednio wielkości znane z modelu środowiska. Tego rodzaju czujniki są zawsze uproszczeniem, ponieważ sam model jest jedynie przybliżeniem rzeczywistości, ale jednocześnie pozwalają na szybkie uzyskanie określonych informacji o określonych cechach systemu, kiedy sam sposób ich pozyskania nie jest przedmiotem badań. Przykładem takiego czujnika może być inteligentna kamera, która dostarcza bezpośrednio odczytów dotyczących pozycji zaobserwowanych obiektów.
 \item Fuzyjny --- czujniki odbierają informację jako wynik analizy określonych czujników stanowiący syntezę wielu elementów modelu. Zwykła kamera obserwująca kolejne obrazy będące wypadkową kolejnych stanów modelu jest właśnie takim czujnikiem.
 \end{itemize}
-W przypadku systemu mającego służyć generowaniu konkretnych informacji jakim jest opisywany w tej pracy symulator typowym zdaje się być zastosowanie czujników o charakterze bezpośrednim, co jednakowoż nie przekreśla szansy zastąpienia ich czujnikami fuzyjnym wraz analizatorem ich obserwacji by uzyskać podobne informacje wynikowe w sposób bardziej zbliżony do rzeczywistego.
+W przypadku systemu mającego służyć generowaniu konkretnych informacji, jakim jest opisywany w tej pracy symulator, typowym zdaje się być zastosowanie czujników o charakterze bezpośrednim, co jednakowoż nie przekreśla szansy zastąpienia ich czujnikami fuzyjnym wraz analizatorem ich obserwacji by uzyskać podobne informacje wynikowe w sposób bardziej zbliżony do rzeczywistego.
 
 \subsubsection{Dokładność pomiarów}
 \par{
 Wszystkie rzeczywiste obserwacje obarczone są pewnym nieredukowalnym błędem [7]. Naturalnie wymuszony błąd wynikający z praw fizyki nie jest kluczowy z punktu widzenia realnych obserwacji w makroskali, jednak narzędzia do obserwacji w makroskali są obarczone licznymi błędami wynikającymi z ich konstrukcji, szumów analogowych, losowych zdarzeń, które same w sobie nie muszą być modelowane itp.
 }
 \par{
-Centralne twierdzenie graniczne [?], mówi, że suma zmiennych o rozkładach charakteryzujących się taką samą wartością oczekiwaną i wariancją upodabnia się do rozkładu normalnego o takich właśnie parametrach. Praktycznym wnioskiem wynikającym z tego twierdzenia, jest fakt, że stosowanie rozkładu normalnego przy sztucznym generowaniu błędów jest statystycznie poprawną metodą zapewniającą dla dużej ilości zaszumionych pomiarów zbliżenie do realnych błędów, które zwykle mają cechy wymagane przez twierdzenie. Wydaje się być to poprawne podejście zarówno w przypadku zastosowania obserwacji bezpośredniej jak i fuzyjnej.
+Centralne twierdzenie graniczne, mówi, że suma zmiennych o rozkładach charakteryzujących się taką samą wartością oczekiwaną i wariancją upodabnia się do rozkładu normalnego o takich właśnie parametrach. Praktycznym wnioskiem wynikającym z tego twierdzenia, jest fakt, że stosowanie rozkładu normalnego przy sztucznym generowaniu błędów jest statystycznie poprawną metodą zapewniającą dla dużej ilości zaszumionych pomiarów zbliżenie do realnych błędów, które zwykle mają cechy wymagane przez twierdzenie. Wydaje się być to poprawne podejście zarówno w przypadku zastosowania obserwacji bezpośredniej jak i fuzyjnej.
 }
 
 \subsection{Obiekty dynamiczne}
@@ -505,30 +503,29 @@ Pojazd w rozumieniu ruchu drogowego definiowany jest jako obiekt fizyczno-psychi
 Zadaniem kierowcy w tandemie pojazd-kierowca jest podejmowanie decyzji na podstawie obserwowalnych przez niego właściwości otoczenia. W tym znaczeniu, kierowca jest charakterystycznym rodzajem czujnika, który nie tylko obserwuje pewne własności otocznia ale także podejmuje na ich podstawie decyzje.
 }
 \par{
-Do kierowcy docierają pewne obarczone błędami informacje z zewnątrz (podobnie jak do czujnika), z których na podstawie reguł decyzyjnych wyprowadzane są bieżące akcje polegające na obsłudze interfejsu samochodu (kierownica, pedały itd.). Stworzenie samych reguł decyzyjnych jest zagadnieniem związanym z tworzeniem sztucznej inteligencji znacznie przewyższającym złożonością zakres tej pracy, i w związku z tym nie będzie tu poruszane. Jednakże, pewne istotne właściwości zachowań ludzkiego kierowcy zostaną tu omówione by wskazać jakie cechy powinny posiadać systemy decyzyjne mające modelować jego działanie.
+Do kierowcy docierają pewne obarczone błędami informacje z zewnątrz (podobnie jak do czujnika), z których na podstawie reguł decyzyjnych wyprowadzane są bieżące akcje polegające na obsłudze interfejsu samochodu (kierownica, pedały, itd.). Stworzenie samych reguł decyzyjnych jest zagadnieniem związanym z tworzeniem sztucznej inteligencji znacznie przewyższającym złożonością zakres tej pracy, i w związku z tym nie będzie tu poruszane. Jednakże, pewne istotne właściwości zachowań ludzkiego kierowcy zostaną tu omówione by wskazać jakie cechy powinny posiadać systemy decyzyjne mające modelować jego działanie.
 }
 \par{
 Podstawowym elementem związanym z reakcjami ludzkimi jest \textbf{czas reakcji}. Czas reakcji składa się z dwóch elementów składowych. Czasu od zdarzenia do rozpoznania konieczności reakcji oraz refleksu czyli czasu jaki upłynie od rozpoznania konieczności reakcji do reakcji mięśniowej [9].
 }
 \par{
-Pierwszy z tych czasów wynosi statystycznie około $0.7s$ [9]. Drugi natomiast ok. $0.25-0.3s$ [9,10] (bardziej precyzyjny rozkład na wykresie poniżej).
+Pierwszy z tych czasów wynosi statystycznie około $0.7s$ [9]. Drugi natomiast ok. $0.25-0.3s$ [9,10] (bardziej precyzyjny rozkład na wykresie \ref{reaction}).
 }
-\par{
-\begin{center}
-\includegraphics[]{img/reaction_times}
-\end{center}
-}
-\par{
-\begin{center}
-\textit{Rozkład czasu refleksu (ms) [10].}
-\end{center}
-}
+\begin{figure}[htb]
+    \begin{center}
+	\includegraphics[]{img/reaction_times}
+	\caption{Rozkład czasu refleksu (ms) w próbie 6309827 testów zebranych wśród internautów [10]}
+	\label{reaction}
+    \end{center}
+\end{figure}
+
 \par{
 Sumaryczny czas reakcji wynoszący ok. $1s$ oznacza w przypadku samochodu poruszającego się z prędkością $50km/h$ przejechanie ok. $14m$. Jest to wielkość obserwowalna i istotna w makroskali w związku z tym wydaje się, że w większości wypadków nie należy zaniedbywać czasu reakcji kierowcy przy budowaniu jego modelu.
 }
 \par{
 Innym istotnym aspektem służącym budowie realnego modelu, choć nie koniecznie niezbędnym do statystycznych badań w typowym przypadku są \textbf{błędy kierowcy}, które zdają się być nieuniknione gdy mamy do czynienia z czynnikiem ludzkim. Błędy kierowcy to przede wszystkim:
 \begin{itemize}
+\renewcommand{\labelitemi}{$\bullet$}
 \item Błędna ocena sytuacji --- np. błędna estymacja czasu dojazdu do skrzyżowania.
 \item Błędna reakcja --- np. zbyt mocne skręcenie kierownicy.
 \item Rozproszenie --- np. niedostrzeżenie zagrożenia.
@@ -561,21 +558,23 @@ Zupełnie odrębnym od kierowcy samochodu elementem DVE posiadającym własną s
 Podobnie jak człowiek reaguje z pewnym opóźnieniem, podobnie przeniesienie akcji interfejsu na reakcję elementów roboczych zajmuje pewien czas. Ponieważ jednak czas ten rzędy wielkości niższy od czasu reakcji kierowcy, wydaje być się on pomijalny dla większości zastosowań przy obserwowaniu układu w skali makro.
 }
 \par{
-Pojazdy posiadają pewną charakterystykę przyśpieszenia różną dla różnych ich typów. Przyśpieszenie do $100km/h$ dla nowoczesnego niesportowego samochodu zajmuje ok. $8-12s$, co daje średnie przyśpieszenie ok. $~2.8m/s^2$. Analogiczny zakres dla motocykla to $4-8s$. co daje średnie przyśpieszenie $~4.7m/s^2$. Są to stałe, które można by przyjąć w bardzo uproszczonym modelu zachowując minimalny poziom realizmu w rzeczywistości należało by się posługiwać charakterystykami przyśpieszenia w zależności od prędkości by ustalać konkretne wartości przyśpieszenia. 
+Pojazdy posiadają pewną charakterystykę przyśpieszenia różną dla różnych ich typów. Przyśpieszenie do $100km/h$ dla nowoczesnego niesportowego samochodu zajmuje ok. $8-12s$, co daje średnie przyśpieszenie ok. $~2.8m/s^2$. Analogiczny zakres dla motocykla to $4-8s$, co daje średnie przyśpieszenie $~4.7m/s^2$. Są to stałe, które można by przyjąć w bardzo uproszczonym modelu zachowując minimalny poziom realizmu. W rzeczywistości należało by się posługiwać charakterystykami przyśpieszenia w zależności od prędkości by ustalać konkretne wartości przyśpieszenia (Rysunek \ref{golf}).
 }
+\begin{figure}[htb]
+    \begin{center}
+    	\includegraphics[width=\textwidth,keepaspectratio]{img/golf_acc}
+	\caption{Przykład charakterystyki przyśpieszenia od prędkości z uwzględnieniem biegów dla Volksvagena Golf IV 1.4. [11].}
+	\label{golf}
+    \end{center}
+\end{figure}
+
 \par{
-\begin{center}
-\includegraphics[width=\textwidth,keepaspectratio]{img/golf_acc}
-\textit{Przukład charakterystyki przyśpieszenia od prędkości z uwzględnieniem biegów dla Volksvagena Golf IV 1.4. [11].}
-\end{center}
-}
-\par{
-Analogicznie sprawa wygląda jeśli chodzi o opóźnienia, które wg. literatury [9] wynoszą $3.0-4.5m/s^2$ dla samochodów w zależności od rodzaju pojazdu jak i stanu nawierzchni. Oraz $6.0-9.8m/s^2$ dla motocykli.
+Analogicznie sprawa wygląda jeśli chodzi o opóźnienia (hamowanie), które wg. literatury [9] wynoszą $3.0-4.5m/s^2$ dla samochodów w zależności od rodzaju pojazdu jak i stanu nawierzchni. Oraz $6.0-9.8m/s^2$ dla motocykli.
 }
 \subsubsection{Piesi}
 \par{
 Charakterystyka pieszych z punktu widzenia ich zewnętrznej obserwacji jest paradoksalnie bardzo zbliżona do charakterystyki DVE. Można bowiem uznać, że świadomość steruje bezpośrednio interfejsem pojazdu, którym staje się ciało ludzkie --- wtedy wszystkie złożenia dotyczące DVE zostają aktualne.
 }
 \par{
-Naturalnie piesi mają inną fizyczną dynamikę. I tak przeciętna prędkość pieszego wynosi $~5km/h$ [12] a czas średni czas rozpędzania się do tej prędkości wynosi $~2.25s$ [12]. Oba te parametry stanowią pewne stałe, które mogą być zastosowane dla uproszczenia, jednak źródła [12] podają, iż parametry te zmieniają się w zależności od licznych czynników jak płeć pieszego, dzień tygodnia, rodzaj nawierzchni, pogoda, temperatura itd. Należy uwzględnić istotne z punktu widzenia celu modelowania korelacje.
+Naturalnie piesi mają inną fizyczną dynamikę. I tak przeciętna prędkość pieszego wynosi $~5km/h$ [12], a czas średni czas rozpędzania się do tej prędkości wynosi $~2.25s$ [12]. Oba te parametry stanowią pewne stałe, które mogą być zastosowane dla uproszczenia, jednak źródła [12] podają, iż parametry te zmieniają się w zależności od licznych czynników jak płeć pieszego, dzień tygodnia, rodzaj nawierzchni, pogoda, temperatura, itd. Należy uwzględnić istotne z punktu widzenia celu modelowania korelacje.
 }
