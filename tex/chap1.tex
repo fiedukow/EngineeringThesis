@@ -32,7 +32,7 @@ Symulacja komputerowa jest narzędziem badań empirycznych, choć ściśle wykor
 }
 
 \par{
-Czym jest więc symulacja komputerowa? Symulacja to proces, który pozwala przy użyciu reguł jednej skali obserwować zjawiska w innej. Słowo komputerowa odnosi się do konkretnej realizacji --- z wykorzystaniem maszyn cyfrowych. Dobrym podsumowaniem ukazującym funkcję symulacji komputerowej zdaje się być schemat przedstawiający trzy filary współczesnej nauki wg. prof. Michała Kleibera [5] widoczny na rysunku \ref{filaryNauki}
+Czym jest więc symulacja komputerowa? Symulacja to proces, który pozwala przy użyciu reguł jednej skali obserwować zjawiska w innej. Słowo komputerowa odnosi się do konkretnej realizacji --- z wykorzystaniem maszyn cyfrowych. Dobrym podsumowaniem ukazującym funkcję symulacji komputerowej zdaje się być schemat przedstawiający trzy filary współczesnej nauki wg. prof. Michała Kleibera \cite{Kleiber} widoczny na rysunku \ref{filaryNauki}
 \begin{figure}[htb]
     \begin{center}
 	\includegraphics[angle=0,scale=0.4]{img/triada_poznania.png}
@@ -56,7 +56,7 @@ W roku 1814 Pierre Simon Laplace opublikował artykuł pod tytułem: \textit{Fil
 }
 
 \par{
-Współczesna nauka odsunęła się nieco od tej koncepcji. Po pierwsze przyjmuje się (mając na względzie zasady fizyki kwantowej), że świat nie opiera się o deterministyczne zasady --- co w zasadzie obala postulat Laplace'a. Po drugie natomiast, zgodnie z zasadą nieoznaczoności Heisenberga [7] nie jest możliwe uzyskanie pełnego obrazu świata ponieważ każda jego obserwacja wpływa na jego stan --- co uniemożliwia wykorzystanie postulatu Laplace'a w praktyce.
+Współczesna nauka odsunęła się nieco od tej koncepcji. Po pierwsze przyjmuje się (mając na względzie zasady fizyki kwantowej), że świat nie opiera się o deterministyczne zasady --- co w zasadzie obala postulat Laplace'a. Po drugie natomiast, zgodnie z zasadą nieoznaczoności Heisenberga \cite{Heisenberg} nie jest możliwe uzyskanie pełnego obrazu świata ponieważ każda jego obserwacja wpływa na jego stan --- co uniemożliwia wykorzystanie postulatu Laplace'a w praktyce.
 }
 \par{
 Obalenie teorii Laplace'a nie oznacza bynajmniej, że nie pozostaje ona poza światem nauki --- nadal ma ona bardzo duże znaczenie filozoficzne oraz nadal aktualna pozostaje jej druga część. Ponadto, w wielu sytuacjach zakłada się, że zasada ta nadal obowiązuje --- jednym z takich miejsc jest symulacja komputerowa.
@@ -162,7 +162,7 @@ Wizualizowanie wszelkich zjawisk zdaje się być nierozłącznie związane z ich
 \subsubsection{Definicja modelu}
 Modelem w symulacji komputerowej nazywamy zasady, wedle których funkcjonuje symulacja, uwzględniający wszelkie zmienne wejściowe i wyprowadzający z nich zmienne wyjściowe z uwzględnieniem upływu czasu.
 \par{
-W literaturze [3] można spotkać następującą, nieco bardziej ścisłą definicję:
+W literaturze \cite{PodstawyModelowania} można spotkać następującą, nieco bardziej ścisłą definicję:
 Model \textit{to operator przekształcający zadane zmienne wejściowe X(t) w zmienne wyjściowe Y(t) czyli 
 \begin{center}
 $Y(t) = H_{t} \times X(t).$
@@ -172,7 +172,7 @@ $Y(t) = H_{t} \times X(t).$
 
 \subsubsection{Oczekiwane cechy modelu}
 \par{
-Przed modelami do symulacji najczęściej stawiane są trzy wymagania [2,4]:
+Przed modelami do symulacji najczęściej stawiane są trzy wymagania \cite{KotowskiTronczyk,WykladyJanczewski}:
 \begin{enumerate}
 \item Wymaganie jednoznaczności --- oznacza to, że operator modelu jest zależnością funkcyjną, tzn. że jeden zbiór danych wejściowych daje dokładnie jedną odpowiedź.
 \item Wymaganie spójności (rozwiązywalności) --- oznacza to, że elementy modelu nie przeczą sobie nawzajem (są matematycznie spójne).
@@ -186,7 +186,7 @@ Należy jednak zwrócić uwagę, iż niekiedy symulowany system posiada właści
 
 \subsection{Taksonomia modeli}
 \par{
-Literatura [2,3,4] podaje wiele kryteriów podziału modeli, poniżej zestawiono najbardziej ostre spośród nich.
+Literatura [KotowskiTronczyk,PodstawyModelowania,WykladyJanczewski] podaje wiele kryteriów podziału modeli, poniżej zestawiono najbardziej ostre spośród nich.
 }
 
 \subsubsection{Podział ze względu na istnienie czasu}
@@ -251,7 +251,7 @@ Proces tworzenia modeli pewnych zjawisk (np. na potrzeby symulacji komputerowej)
 Przystępując do modelowania jakichkolwiek zjawisk poprawnym podejściem jest zwrócenie uwagi na następujące aspekty \cite{KotowskiTronczyk}:
 \begin{itemize}
 \item \textbf{cel} --- celowi tworzenia modelu powinny być podporządkowane wszystkie związane z nim działania. Należy pamiętać, że to model istnieje dla celu a nie odwrotnie. Cel symulacji stanowi punkt odniesienia, do którego należy często powracać i podporządkowywać mu decyzje podejmowane podczas modelowania.
-\item \textbf{poziom uproszczenia} --- model z samej swojej natury musi być pewnym uproszczonym odpowiednikiem wycinka rzeczywistości. Jego stopień skomplikowania nie może być zbyt wysoki, przez wzgląd na ograniczenia dostępnych metod jego praktycznej implementacji. Z drugiej strony wybranie modelu nadmiernie uproszczonego może prowadzić do zagubienia pewnych specyficznych zachowań symulowanego zjawiska --- co może fałszować obraz symulacji. Dobrym określeniem porządanego stopnia uproszczenia modelu mogą być słowa Alberta Einsteina [24]: \textit{Wszystko powinno zostać uproszczone tak bardzo, jak to tylko możliwe, ale nie bardziej.}
+\item \textbf{poziom uproszczenia} --- model z samej swojej natury musi być pewnym uproszczonym odpowiednikiem wycinka rzeczywistości. Jego stopień skomplikowania nie może być zbyt wysoki, przez wzgląd na ograniczenia dostępnych metod jego praktycznej implementacji. Z drugiej strony wybranie modelu nadmiernie uproszczonego może prowadzić do zagubienia pewnych specyficznych zachowań symulowanego zjawiska --- co może fałszować obraz symulacji. Dobrym określeniem porządanego stopnia uproszczenia modelu mogą być słowa Alberta Einsteina \cite{Wplyw}: \textit{Wszystko powinno zostać uproszczone tak bardzo, jak to tylko możliwe, ale nie bardziej.}
 \item \textbf{potrzeby eksperymentu} --- niezwykle często zdarza się, że zjawisko modelowane jest z zamiarem przeprowadzenia ściśle określonego eksperymentu. Mając taką świadomość, jesteśmy w stanie łatwiej dobrać możliwe uproszczenia, a co ważniejsze pozbyć się wielu niepotrzebnych zależności z proponowanego modelu.
 \item \textbf{poprawność} --- model uznaje się za poprawny, jeśli poddany każdemu możliwemu wejściu zachowa się wystarczająco podobnie do realnego zjawiska poddanego bodźcom odpowiadającym temu wejściu. Określenie, czy dane wyjście jest wystarczająco podobne do wyjścia realnego jest decyzją jaką podejmuje modelujący, mając na względnie różne aspekty modelu a w szczególności cel jego tworzenia.
 \item \textbf{przydatność} --- model uznawany jest za przydatny gdy jego złożoność rośnie wolniej niż wykładniczo względem ilości zmiennych wykorzystywanych do jego opisu \cite{KotowskiTronczyk}. Modele zagadnień o złożoności wykładniczej mogą być poprawne, jednak ich precyzyjny opis jest często nieprzydatny i wymagane jest ich uproszczenie, by rozwiązywać symulowane zagadnienie z mniejszą dokładnością (np. heurystycznie) ale ciągle wystarczająco dobrze z punktu widzenia symulacji, a jednocześnie w realnie dostępnym czasie.
@@ -261,7 +261,7 @@ Przystępując do modelowania jakichkolwiek zjawisk poprawnym podejściem jest z
 
 \subsubsection{Zasadność modelu}
 \par{
-Model jako taki musi posiadać pewne cechy by był przydatny do jakichkolwiek zastosowań. Zastosowanie wyżej sformułowanych kryteriów doboru, powinno zapewnić, że model będzie właściwie sformułowany, jednak warto mieć dodatkowo na względzie  aspekty, wedle których można ocenić zasadność istnienia zaproponowanego przez nas modelu [4].
+Model jako taki musi posiadać pewne cechy by był przydatny do jakichkolwiek zastosowań. Zastosowanie wyżej sformułowanych kryteriów doboru, powinno zapewnić, że model będzie właściwie sformułowany, jednak warto mieć dodatkowo na względzie  aspekty, wedle których można ocenić zasadność istnienia zaproponowanego przez nas modelu \cite{WykladyJanczewski}.
 \begin{itemize}
 \renewcommand{\labelitemi}{$\bullet$}
 \item Badanie modelu nie powinno być bardziej złożone od badanie właściwego zjawiska.
@@ -304,7 +304,7 @@ Wymienione stopnie swobody zobrazowano na rysunku \ref{ryp}
 \begin{figure}[htb]
     \begin{center}
 	\includegraphics[]{img/xyz_ryp.jpg}
-	\caption{Stopnie swobody bryły sztywnej [25]}
+	\caption{Stopnie swobody bryły sztywnej \cite{Bryla}}
 	\label{ryp}
     \end{center}
 \end{figure}
@@ -345,7 +345,7 @@ Choć powyższe porównanie wyraźnie wskazuje, że zastosowanie modelu bryły s
 
 \section[Systemy fuzji danych][Systemy fuzji danych]{Systemy fuzji danych}
 \par{
-\textit{Fuzją danych} nazywa się \textit{proces łączący dane w celu oczyszczenia estymaty i predykcji stanu} [14], co jest uogólnieniem wcześniejszej definicji [13] mówiącej, że \textit{Fuzja danych to proces obsługujący asocjację, korelację i wiązanie ze sobą danych i informacji z jednego lub wielu źródeł w celu uzyskania lepszej pozycji i tożsamości obiektu oraz możliwie trafnej i precyzyjnej ocenie sytuacji i zagrożenia.}
+\textit{Fuzją danych} nazywa się \textit{proces łączący dane w celu oczyszczenia estymaty i predykcji stanu} \cite{revisionsJDL}, co jest uogólnieniem wcześniejszej definicji \cite{jdl} mówiącej, że \textit{Fuzja danych to proces obsługujący asocjację, korelację i wiązanie ze sobą danych i informacji z jednego lub wielu źródeł w celu uzyskania lepszej pozycji i tożsamości obiektu oraz możliwie trafnej i precyzyjnej ocenie sytuacji i zagrożenia.}
 }
 \par{
 Obie powyższe definicje zdają się oddawać kwintesencję fuzji danych, którą jest zbieranie wielu danych o niedużej wartości jednostkowej w celu uzyskania szerokiego obrazu o dużej wartości końcowej.
@@ -359,7 +359,7 @@ Systemy fuzji danych dzieli się ze względu na charakter danych poddawanych obr
 Bardziej rozpowszechniona od fuzji danych jest fuzja \textbf{informacji} nazywana również fuzją \textbf{cech} lub fuzją \textbf{właściwości} --- operująca na danych obrobionych, mających znaczenie na wyższym poziomie abstrakcji. Przykładem tego rodzaju systemu może być system operujący na danych dostarczanych z inteligentnych kamer w środowisku miejskim --- analizujący konkretne informacje o znanym charakterze (np. położenie obiektu) w celu uzyskania szerszych informacji na jego temat (np. śledzenie jego pozycji w czasie).
 }
 \par{
-Rzadziej spotykanymi ale także wymienianymi w literaturze [15] są systemy fuzji \textbf{decyzji}. O tym przypadku mówi się, kiedy przetwarzanie danych przed samą fuzją idzie jeszcze o krok dalej --- tzn. na podstawie danych przed fuzją wypracowywana jest pewna decyzja. W takim przypadku dopiero niezależne decyzje z wielu źródeł są łączone w celu wypracowania rozwiązania ogólnego. Oznacza to, że daną w takim rozumieniu jest jakaś zmienna o charakterze sterującym sama sobie będąca wnioskiem z dostarczonych informacji, natomiast zadaniem systemu fuzji jest wybranie sumarycznej decyzji systemu nie wnikając w wewnętrzne funkcjonowanie poszczególnych swoich części a jedynie w poddecyzje.
+Rzadziej spotykanymi ale także wymienianymi w literaturze \cite{sroka08} są systemy fuzji \textbf{decyzji}. O tym przypadku mówi się, kiedy przetwarzanie danych przed samą fuzją idzie jeszcze o krok dalej --- tzn. na podstawie danych przed fuzją wypracowywana jest pewna decyzja. W takim przypadku dopiero niezależne decyzje z wielu źródeł są łączone w celu wypracowania rozwiązania ogólnego. Oznacza to, że daną w takim rozumieniu jest jakaś zmienna o charakterze sterującym sama sobie będąca wnioskiem z dostarczonych informacji, natomiast zadaniem systemu fuzji jest wybranie sumarycznej decyzji systemu nie wnikając w wewnętrzne funkcjonowanie poszczególnych swoich części a jedynie w poddecyzje.
 }
 \par{
 Da się wyraźnie dostrzec, że poszczególne typy fuzji różnią się stopniem obróbki danych przed wejściem do systemu. W związku z tym systemy fuzji danych wydają się być bardziej złożone ale jednocześnie tracące najmniejszą ilość informacji. Zastosowane konkretnego rodzaju fuzji zależy ściśle od dziedziny zastosowania i intencji twórcy systemu --- nie sposób jest poszeregować wyników poszczególnych typów systemów w kategorii lepszy-gorszy.
@@ -369,7 +369,7 @@ Da się wyraźnie dostrzec, że poszczególne typy fuzji różnią się stopniem
 Lata doświadczeń nad systemami fuzji danych pozwoliły na wypracowanie pewnych wzorców ich funkcjonowania stanowiących swoiste ramy dla wszystkich nowych systemów. Ilość modeli powstałych w czasie badań jest zauważalnie duża, jednak większość z nich zdaje się być jedynie szczególnym przypadkiem modelu zwanego modelem JDL.
 }
 \par{
-Model ten ma pochodzenie militarno-wojskowe. Został on opracowany przez \textit{Data Fusion Subpanel of the Joint Directors of Laboratories} (JDL) w 1985 roku [16]. W związku z tym nomenklatura używana do jego opisu jak i cele jakie stawia się przed tym modelem są ściśle związane z potrzebami wojskowymi. Nic jednak nie stało na przeszkodzie żeby wykorzystać tę metodykę w zastosowaniach cywilnych czego przykładem może system DAFNE implementujący dwa pierwsze poziomy modelu JDL [17].
+Model ten ma pochodzenie militarno-wojskowe. Został on opracowany przez \textit{Data Fusion Subpanel of the Joint Directors of Laboratories} (JDL) w 1985 roku \cite{jdl}. W związku z tym nomenklatura używana do jego opisu jak i cele jakie stawia się przed tym modelem są ściśle związane z potrzebami wojskowymi. Nic jednak nie stało na przeszkodzie żeby wykorzystać tę metodykę w zastosowaniach cywilnych czego przykładem może system DAFNE implementujący dwa pierwsze poziomy modelu JDL \cite{DAFNEKlasyfikator}.
 }
 \par{
 Model JDL dzieli proces fuzji danych na pięć poziomów:
@@ -475,7 +475,7 @@ W przypadku systemu mającego służyć generowaniu konkretnych informacji, jaki
 
 \subsubsection{Dokładność pomiarów}
 \par{
-Wszystkie rzeczywiste obserwacje obarczone są pewnym nieredukowalnym błędem [7]. Naturalnie wymuszony błąd wynikający z praw fizyki nie jest kluczowy z punktu widzenia realnych obserwacji w makroskali, jednak narzędzia do obserwacji w makroskali są obarczone licznymi błędami wynikającymi z ich konstrukcji, szumów analogowych, losowych zdarzeń, które same w sobie nie muszą być modelowane itp.
+Wszystkie rzeczywiste obserwacje obarczone są pewnym nieredukowalnym błędem \cite{Heisenberg}. Naturalnie wymuszony błąd wynikający z praw fizyki nie jest kluczowy z punktu widzenia realnych obserwacji w makroskali, jednak narzędzia do obserwacji w makroskali są obarczone licznymi błędami wynikającymi z ich konstrukcji, szumów analogowych, losowych zdarzeń, które same w sobie nie muszą być modelowane itp.
 }
 \par{
 Centralne twierdzenie graniczne, mówi, że suma zmiennych o rozkładach charakteryzujących się taką samą wartością oczekiwaną i wariancją upodabnia się do rozkładu normalnego o takich właśnie parametrach. Praktycznym wnioskiem wynikającym z tego twierdzenia, jest fakt, że stosowanie rozkładu normalnego przy sztucznym generowaniu błędów jest statystycznie poprawną metodą zapewniającą dla dużej ilości zaszumionych pomiarów zbliżenie do realnych błędów, które zwykle mają cechy wymagane przez twierdzenie. Wydaje się być to poprawne podejście zarówno w przypadku zastosowania obserwacji bezpośredniej jak i fuzyjnej.
@@ -493,7 +493,7 @@ W środowisku miejskim wyróżnia się dwie najważniejsze grupy obiektów dynam
 }
 \subsubsection{Pojazdy}
 \par{
-Pojazd w rozumieniu ruchu drogowego definiowany jest jako obiekt fizyczno-psychiczny [6]. W praktyce bowiem pojazd traktuje się jako tandem pojazd-kierowca (ang. Driver-Vehicle-Element DVE [6]). Tak jak sam pojazd jest faktycznie odzwierciedleniem fizycznej egzystencji DVE w przestrzeni, tak kierowca odpowiada za jego bieżący stan.
+Pojazd w rozumieniu ruchu drogowego definiowany jest jako obiekt fizyczno-psychiczny \cite{TrafficSimulation}. W praktyce bowiem pojazd traktuje się jako tandem pojazd-kierowca (ang. Driver-Vehicle-Element DVE \cite{TrafficSimulation}). Tak jak sam pojazd jest faktycznie odzwierciedleniem fizycznej egzystencji DVE w przestrzeni, tak kierowca odpowiada za jego bieżący stan.
 }
 \par{ }
 \par{
@@ -506,15 +506,15 @@ Zadaniem kierowcy w tandemie pojazd-kierowca jest podejmowanie decyzji na podsta
 Do kierowcy docierają pewne obarczone błędami informacje z zewnątrz (podobnie jak do czujnika), z których na podstawie reguł decyzyjnych wyprowadzane są bieżące akcje polegające na obsłudze interfejsu samochodu (kierownica, pedały, itd.). Stworzenie samych reguł decyzyjnych jest zagadnieniem związanym z tworzeniem sztucznej inteligencji znacznie przewyższającym złożonością zakres tej pracy, i w związku z tym nie będzie tu poruszane. Jednakże, pewne istotne właściwości zachowań ludzkiego kierowcy zostaną tu omówione by wskazać jakie cechy powinny posiadać systemy decyzyjne mające modelować jego działanie.
 }
 \par{
-Podstawowym elementem związanym z reakcjami ludzkimi jest \textbf{czas reakcji}. Czas reakcji składa się z dwóch elementów składowych. Czasu od zdarzenia do rozpoznania konieczności reakcji oraz refleksu czyli czasu jaki upłynie od rozpoznania konieczności reakcji do reakcji mięśniowej [9].
+Podstawowym elementem związanym z reakcjami ludzkimi jest \textbf{czas reakcji}. Czas reakcji składa się z dwóch elementów składowych. Czasu od zdarzenia do rozpoznania konieczności reakcji oraz refleksu czyli czasu jaki upłynie od rozpoznania konieczności reakcji do reakcji mięśniowej \cite{Zatrzymac}.
 }
 \par{
-Pierwszy z tych czasów wynosi statystycznie około $0.7s$ [9]. Drugi natomiast ok. $0.25-0.3s$ [9,10] (bardziej precyzyjny rozkład na wykresie \ref{reaction}).
+Pierwszy z tych czasów wynosi statystycznie około $0.7s$ \cite{Zatrzymac}. Drugi natomiast ok. $0.25-0.3s$ \cite{Zatrzymac, ReactionTime} (bardziej precyzyjny rozkład na wykresie \ref{reaction}).
 }
 \begin{figure}[htb]
     \begin{center}
 	\includegraphics[]{img/reaction_times}
-	\caption{Rozkład czasu refleksu (ms) w próbie 6309827 testów zebranych wśród internautów [10]}
+	\caption{Rozkład czasu refleksu (ms) w próbie 6309827 testów zebranych wśród internautów \cite{ReactionTime}}
 	\label{reaction}
     \end{center}
 \end{figure}
@@ -563,18 +563,18 @@ Pojazdy posiadają pewną charakterystykę przyśpieszenia różną dla różnyc
 \begin{figure}[htb]
     \begin{center}
     	\includegraphics[width=\textwidth,keepaspectratio]{img/golf_acc}
-	\caption{Przykład charakterystyki przyśpieszenia od prędkości z uwzględnieniem biegów dla Volksvagena Golf IV 1.4. [11].}
+	\caption{Przykład charakterystyki przyśpieszenia od prędkości z uwzględnieniem biegów dla Volksvagena Golf IV 1.4. \cite{Autokult}.}
 	\label{golf}
     \end{center}
 \end{figure}
 
 \par{
-Analogicznie sprawa wygląda jeśli chodzi o opóźnienia (hamowanie), które wg. literatury [9] wynoszą $3.0-4.5m/s^2$ dla samochodów w zależności od rodzaju pojazdu jak i stanu nawierzchni. Oraz $6.0-9.8m/s^2$ dla motocykli.
+Analogicznie sprawa wygląda jeśli chodzi o opóźnienia (hamowanie), które wg. literatury \cite{Zatrzymac} wynoszą $3.0-4.5m/s^2$ dla samochodów w zależności od rodzaju pojazdu jak i stanu nawierzchni. Oraz $6.0-9.8m/s^2$ dla motocykli.
 }
 \subsubsection{Piesi}
 \par{
 Charakterystyka pieszych z punktu widzenia ich zewnętrznej obserwacji jest paradoksalnie bardzo zbliżona do charakterystyki DVE. Można bowiem uznać, że świadomość steruje bezpośrednio interfejsem pojazdu, którym staje się ciało ludzkie --- wtedy wszystkie złożenia dotyczące DVE zostają aktualne.
 }
 \par{
-Naturalnie piesi mają inną fizyczną dynamikę. I tak przeciętna prędkość pieszego wynosi $~5km/h$ [12], a czas średni czas rozpędzania się do tej prędkości wynosi $~2.25s$ [12]. Oba te parametry stanowią pewne stałe, które mogą być zastosowane dla uproszczenia, jednak źródła [12] podają, iż parametry te zmieniają się w zależności od licznych czynników jak płeć pieszego, dzień tygodnia, rodzaj nawierzchni, pogoda, temperatura, itd. Należy uwzględnić istotne z punktu widzenia celu modelowania korelacje.
+Naturalnie piesi mają inną fizyczną dynamikę. I tak przeciętna prędkość pieszego wynosi $~5km/h$ \cite{Pedestrians}, a czas średni czas rozpędzania się do tej prędkości wynosi $~2.25s$ \cite{Pedestrians}. Oba te parametry stanowią pewne stałe, które mogą być zastosowane dla uproszczenia, jednak źródła \cite{Pedestrians} podają, iż parametry te zmieniają się w zależności od licznych czynników jak płeć pieszego, dzień tygodnia, rodzaj nawierzchni, pogoda, temperatura, itd. Należy uwzględnić istotne z punktu widzenia celu modelowania korelacje.
 }

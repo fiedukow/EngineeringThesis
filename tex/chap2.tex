@@ -2,7 +2,7 @@
 \section[Wymagania funkcjonalne][Wymagania funkcjonalne]{Wymagania funkcjonalne}
 
 \par{
-Implementowany w ramach tej pracy symulator środowiska miejskiego musi spełniać pewne wymagania, wynikające z możliwości jego późniejszego zastosowania do badań naukowych, a w szczególności do współpracy z systemem fuzji danych obecnie realizowanym przez pana Macieja Grzybka (temat pracy inżynierskiej: \textit{Implementacja algorytmu śledzenia obiektów w systemie fuzji danych} [26]).
+Implementowany w ramach tej pracy symulator środowiska miejskiego musi spełniać pewne wymagania, wynikające z możliwości jego późniejszego zastosowania do badań naukowych, a w szczególności do współpracy z systemem fuzji danych obecnie realizowanym przez pana Macieja Grzybka (temat pracy inżynierskiej: \textit{Implementacja algorytmu śledzenia obiektów w systemie fuzji danych} \cite{Grzybek}).
 }
 \par{
 Symulator musi:
@@ -154,7 +154,7 @@ Naturalną rzeczą związaną nieodłącznie z wytwarzaniem jakiegokolwiek oprog
 Zarówno język Java jak i język C++ są językami silnie typowanymi. Oznacza to, że za błąd w ich kontekście uważa się zachowania powszechnie uznawane za nielogiczne - stawianie obiektów złych klas w nieokreślonych dla nich kontekstach.
 }
 \par{
-Aspektem typowym dla języka C++, który został wyeliminowany w języku Java jest ręczne zarządzanie pamięcią, które uznawane jest powszechnie za najbardziej błędogenny element tworzenia oprogramowania. W związku z tym, należy zwrócić uwagę, że w tej kwestii język Java, który sam obsługuje zarządzanie pamięcią [18] nie obciążając tym programisty wydaje się być zauważalnie lepszy. Z drugiej strony w standardzie C++11 wprowadzono do języka C++ sprytne wskaźniki znacząco upraszczające proces zarządzania pamięcią.
+Aspektem typowym dla języka C++, który został wyeliminowany w języku Java jest ręczne zarządzanie pamięcią, które uznawane jest powszechnie za najbardziej błędogenny element tworzenia oprogramowania. W związku z tym, należy zwrócić uwagę, że w tej kwestii język Java, który sam obsługuje zarządzanie pamięcią \cite{Java} nie obciążając tym programisty wydaje się być zauważalnie lepszy. Z drugiej strony w standardzie C++11 wprowadzono do języka C++ sprytne wskaźniki znacząco upraszczające proces zarządzania pamięcią \cite{isoCPP}.
 }
 \subsubsection{Wybór}
 \par{
@@ -175,7 +175,7 @@ Mając powyższe na względzie wybór RDBMSa padł na PostreSQL.
 
 \subsection{Wybór technologii tworzenia interfejsu}
 \par{
-Wybór technologii interfejsu nie był kluczowy dla projektu, dlatego autor wybrał w zasadzie jedyną dobrze znaną sobie bibliotekę umożliwiającą tworzenie przenośnych interfejsów graficznych --- bibliotekę Qt. Biblioteka zdawała się być wystarczająco dobrym rozwiązaniem w związku z czym poszukiwanie alternatywnych rozwiązań wydawało się bezzasadne, zwłaszcza że prezentowanie wyników symulacji nie jest kluczowe z punktu widzenia celu pracy.
+Wybór technologii interfejsu nie był kluczowy dla projektu, dlatego autor wybrał w zasadzie jedyną dobrze znaną sobie bibliotekę umożliwiającą tworzenie przenośnych interfejsów graficznych --- bibliotekę Qt \cite{Qt}. Biblioteka zdawała się być wystarczająco dobrym rozwiązaniem w związku z czym poszukiwanie alternatywnych rozwiązań wydawało się bezzasadne, zwłaszcza że prezentowanie wyników symulacji nie jest kluczowe z punktu widzenia celu pracy.
 }
 
 \section[Projekt bazy danych][Projekt bazy danych]{Projekt bazy danych}
@@ -250,7 +250,7 @@ Zastosowanie poprawnej struktury architektonicznej całej aplikacji zdaje się m
 \subsection{Model MVC}
 \subsubsection{O modelu}
 \par{
-Model MVC (Model-View-Controller, z ang. Model-Widok-Kontroler) został zaproponowany jako całość w 1979 przez Trygve Reenskaug [19], choć --- co jest typowe dla wzorców projektowych --- był on wykorzystywany wcześniej niż został opisany. 
+Model MVC (Model-View-Controller, z ang. Model-Widok-Kontroler) został zaproponowany jako całość w 1979 przez Trygve Reenskaug \cite{MVC}, choć --- co jest typowe dla wzorców projektowych --- był on wykorzystywany wcześniej niż został opisany. 
 }
 \par{
 Model MVC dzieli aplikację lub jej część na trzy warstwy:
@@ -284,7 +284,7 @@ Opisywany symulator został zaprojektowany by funkcjonować z wykorzystaniem trz
 }
 \subsubsection{Biblioteka boost::thread}
 \par{
-Do uruchamiania wątków wykorzystano przenośną bibliotkę boost::thread [20] umożliwiającą zaawansowane zarządzanie i synchronizację wątków. Biblioteka ta pozwoliła na łatwe uruchomienie wątków i zsynchronizowanie ich zakończenia. Pozwala ona bowiem na uruchomienie nowego wątku w oparciu o zadany obiekt-funktor [20] oraz zawieszenie dowolnego wątku posiadającego referencję do wątku na zawieszenie się w oczekiwaniu na jego zakończenie (join) [20]. Te funkcjonalności były wystarczające dla zastosowań projektu.
+Do uruchamiania wątków wykorzystano przenośną bibliotkę boost::thread \cite{Boost} umożliwiającą zaawansowane zarządzanie i synchronizację wątków. Biblioteka ta pozwoliła na łatwe uruchomienie wątków i zsynchronizowanie ich zakończenia. Pozwala ona bowiem na uruchomienie nowego wątku w oparciu o zadany obiekt-funktor \cite{Boost} oraz zawieszenie dowolnego wątku posiadającego referencję do wątku na zawieszenie się w oczekiwaniu na jego zakończenie (join) \cite{Boost}. Te funkcjonalności były wystarczające dla zastosowań projektu.
 }
 \par{
 Biblioteka boost::thread została wybrana ponieważ jest dostępna dla wielu platform oraz nie wprowadza dodatkowych zależności (z tego powodu nie wybrano wątków dostarczanych przez bibliotekę Qt).
@@ -364,7 +364,7 @@ W przypadku implementacji symulatora z modelem dynamicznym kluczowe jest poprawn
 }
 \subsubsection{Biblioteka boost::chrono}
 \par{
-Inną od samej architektury kwestią jest zapewnienie spójnego systemu przeliczania czasu, szczególnie w kontekście czasu względnego względem realnego. Z pomocą przychodzi biblioteka boost::chrono [20] z zestawu bibliotek boost.
+Inną od samej architektury kwestią jest zapewnienie spójnego systemu przeliczania czasu, szczególnie w kontekście czasu względnego względem realnego. Z pomocą przychodzi biblioteka boost::chrono \cite{Boost} z zestawu bibliotek boost.
 \par{
 W chwili bieżącej biblioteka chrono jest elementem biblioteki standardowej języka C++, jednak w momencie rozpoczynania pracy nad aplikacją nie była ona jeszcze zbyt szeroko zaimplementowana w związku z tym zdecydowano się na jej pierwowzór - boost::chrono.
 }
@@ -385,7 +385,7 @@ Istotnym elementem modelu symulatora jest komunikacja z bazą danych --- jest on
 }
 \subsubsection{Biblioteka pqxx}
 \par{
-Ponieważ jako silnik bazy danych wybrano \textit{PostgreSQL} należało odnaleźć możliwie obiektową bibliotekę z interfejsem w języku C++ pozwalającą na komuniakcję z taką bazą. Typowym rozwiązaniem jest zastosowanie biblioteki \textit{pqxx} [22].
+Ponieważ jako silnik bazy danych wybrano \textit{PostgreSQL} należało odnaleźć możliwie obiektową bibliotekę z interfejsem w języku C++ pozwalającą na komuniakcję z taką bazą. Typowym rozwiązaniem jest zastosowanie biblioteki \textit{pqxx} \cite{pqxx}.
 }
 \par{
 Biblioteka \textit{pqxx} zapewnia spójny interfejs pozwalający na pełny dostęp do bazy \textit{PostgreSQL} na poziomie klienckim (tj. przy użyciu zapytań). Jest to funkcjonalność oczekiwana przez bibliotekę mającą zapewniać komunikację z bazą w symulatorze.
