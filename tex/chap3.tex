@@ -67,7 +67,7 @@ Przy planowaniu badań zauważono, że jeśli postawiona hipoteza była by prawd
 \end{table}
 }
 
-\begin{figure}[htb]
+\begin{figure}[!ht]
     \begin{center}
 	\includegraphics[width=\textwidth,keepaspectratio]{img/wykres_1}
 	\caption{Liczba obiektów a średni czas obiegu pętli.}
@@ -76,7 +76,7 @@ Przy planowaniu badań zauważono, że jeśli postawiona hipoteza była by prawd
 \end{figure}
 
 \par{
-Na wykresie wyraźnie widać, zależnosć liczby zapisów od ilości obiektów ma charakter liniowy w dwóch przedziałach z wyraźnym przesunięciem w okolicach 120 obiektów. Powodem tego załamania zdaje się być fakt przekroczenia przez czas jednego obiegu pętli zadanego jako stała minimalnego czasu przetwarzania.  Powoduje to, że kolejny obieg pętli będzie odpowiadał dłuższemu odcinkowi symulowanego czasu a więc średnio będzie nań przypadało więcej odczytów z kamer (jako, że kamera odczytuje stan okolicy periodycznie). Zależnie od prawdziwości wyżej wspomnianej hipotezy powinna nastąpić w tym miejscu mniej lub bardziej gwałtowna reakcja lawinowa prowadząca do stanu, w którym każda kamera będzie dokonywała odczytu w każdym obiegu pętli - to właśnie obserwujemy jako załamanie na \ref{ex_1_chart}.
+Na wykresie wyraźnie widać, zależnosć liczby zapisów od ilości obiektów ma charakter liniowy w dwóch przedziałach z wyraźnym przesunięciem w okolicach 120 obiektów. Powodem tego załamania zdaje się być fakt przekroczenia przez czas jednego obiegu pętli zadanego jako stała minimalnego czasu przetwarzania.  Powoduje to, że kolejny obieg pętli będzie odpowiadał dłuższemu odcinkowi symulowanego czasu a więc średnio będzie nań przypadało więcej odczytów z kamer (jako, że kamera odczytuje stan okolicy periodycznie). Zależnie od prawdziwości wyżej wspomnianej hipotezy powinna nastąpić w tym miejscu mniej lub bardziej gwałtowna reakcja lawinowa prowadząca do stanu, w którym każda kamera będzie dokonywała odczytu w każdym obiegu pętli --- to właśnie obserwujemy jako załamanie na rysunku \ref{ex_1_chart}.
 }
 \par{
 Ze względu na dualny charakter tej charakterystyki zdecydowano się przenieść ją do celów badań do jej górnej części, by to załamanie --- nieistotne z punktu widzenia celu badan --- nie zaciemniało obrazu. W związku z tym zdecydowano się obniżć czas między wyzwoleniami każdej z kamer do zera co powoduje, że każda kamera w każdym obiegu pętli wykona zrzut swojego otoczenia, ponieważ spełniony będzie warunek:
@@ -89,7 +89,7 @@ $\Delta T_{wyzwolenia kamer} < \Delta T_{kroku}$
 
 \section{Wyniki badań}
 \par{
-W wyniku badań otrzymano rezultaty zaprezentowane w tabeli \ref{ex_2} oraz na wykresie \ref{ex_2_chart}.
+W wyniku badań otrzymano rezultaty zaprezentowane w tablicy \ref{ex_2} oraz na wykresie \ref{ex_2_chart}.
 }
 
 \par{
@@ -114,7 +114,7 @@ W wyniku badań otrzymano rezultaty zaprezentowane w tabeli \ref{ex_2} oraz na w
 \end{table}
 }
 
-\begin{figure}[htb]
+\begin{figure}[!ht]
     \begin{center}
 	\includegraphics[width=\textwidth,keepaspectratio]{img/wykres_2}
 	\caption{Liczba obiektów a średni czas obiegu pętli dla $\Delta T_{wyzwolenia kamer} = 0$.}
@@ -132,18 +132,26 @@ Na wykresie w skali logarytmicznej widać też jednak, że w przypadku zapisów 
 \par{
 Wnioskiem z tej obserwacji zdaje się być potwierdzenie hipotezy, że kluczowym elementem z punktu widzenia wydajności projektowanej aplikacji jest wydajność bazy danych natomiast wydajność obliczeń samej symulacji ma marginalne znaczenie. W oparciu o proste obliczenia, można oszacować, że czas operacji wejścia wyjścia to około $99.7\%$ całkowitego czasu działania symulacji.
 }
-\section{Wnioski z badań}
 \par{
 Ze względu na całkowite zdominowanie czasu pracy symulacji przez czas operacji wejścia-wyjścia optymalizowanie czasu obliczeń na tym etapie prac nie jest racjonalne z punktu widzenia realnego wzrostu wydajności symulacji.
 }
 
 \chapter{Podsumowanie}
 \par{
-W ramach pracy zaprojektowano model dla symulatora ruchu obiektów w środowisku miejskim o modularnym i warstwowym charakterze pozwalającym na opisywanie logiki symulacji na różnych poziomach abstrakcji.
+W ramach pracy zaprojektowano model ruchu obiketów dla symulatora ruchu obiektów w środowisku miejskim o modularnym i warstwowym charakterze pozwalającym na opisywanie logiki symulacji na różnych poziomach abstrakcji.
 }
 \par{
-Zaprojektowany, zaimplementowany oraz przebadany został referencyjny symulator a zatem reazlizowano cel tej pracy.
+Zaprojektowany, zaimplementowany oraz przebadany został referencyjny symulator a zatem zreazlizowano cel tej pracy.
 }
 \par{
-Pokazano, że kluczowa z punktu widzenia wydajności tego rodzaju symulatora, jest optymalizacja czasu operacji wejścia-wyjścia (zapisów do bazy), natomiast optymalizacja czasu obliczeń nie daje żadnych realnych wzrostów wydajności.
+Pokazano, że kluczowa z punktu widzenia wydajności tego rodzaju symulatora, jest optymalizacja czasu operacji wejścia-wyjścia (zapisów do bazy), natomiast optymalizacja czasu obliczeń nie daje realnych wzrostów wydajności.
+}
+\par{
+Właściwym kierunkiem dalszego rozwoju symulatora zdaje się być stworzenie bardziej właściwych systemów decyzyjnych odpowiadających za zachowanie pojedyńczych autonomicznych obiektów w symulacji. Tego rodzaju rozwój powinien znacząco poprawić realizm symulacji co może prowadzić do wzrostu przydatności i trafności badań wykonanych przy jego użyciu.
+}
+\par{
+Innym kierunkiem rozwoju, zwłaszcza w przypadku potrzeby przeprowadzania symulacji dużych systemów miejskich zdaje się być optymalizacja operacji dyskowych i struktury przechowywanych danych.
+}
+\par{
+Stworzony symulator stanowił realne wejście dla systemu opisywanego w pracy Pana Macieja Grzybka \cite{Grzybek}, toteż można przyjąć, że uzyskano aplikację użyteczną i zdatną do zastosowań, do których została przewidziana.
 }

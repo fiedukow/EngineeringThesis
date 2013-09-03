@@ -126,7 +126,7 @@ Symulator opisywany w niniejszej pracy został stworzony z myślą o właśnie t
 }
 \par{
 Rozwiązanie wykorzystujące symulator jest tańsze, szybsze oraz znacznie prostsze i może w znacznym stopniu wyprzedzać bieżące czasy.
-Zebranie realnych danych na temat pojazdów poruszających się po mieście jest zadaniem nie łatwym. Kamery z funkcją rozpoznawania obiektów są dopiero raczkującą technologią a ich umieszczenie w całym mieście jest bardzo kosztowne. Uzyskanie realnych danych potrzebnych do testowania skuteczności systemu śledzenia zdaje się więc być praktycznie niemożliwe.
+Zebranie realnych danych na temat pojazdów poruszających się po mieście jest zadaniem niełatwym. Kamery z funkcją rozpoznawania obiektów są dopiero raczkującą technologią a ich umieszczenie w całym mieście jest bardzo kosztowne. Uzyskanie realnych danych potrzebnych do testowania skuteczności systemu śledzenia zdaje się więc być praktycznie niemożliwe.
 }
 \par{
 Z pomocą przychodzą symulatory --- za ich pomocą możemy wytworzyć takie dane, jakich powinna nam dostarczyć hipotetyczna kamera. Nałożyć na nie odpowiednie szumy i zapisać razem z o wiele szerszymi danymi realnymi pozwalającymi analizować skuteczność wykorzystanych rozwiązań.
@@ -140,10 +140,10 @@ Wykorzystanie symulatorów do testowania zdaje się pozwalać na oszczędzanie d
 
 \subsubsection{Wizualizacja (także interaktywna)}
 \par{
-Ostatnim, acz nie najmniej istotnym z zastosowań symulatorów jest tworzenie wizualizacji w tym wizualizacji interaktywnych.
+Ostatnim, acz nie najmniej istotnym, z zastosowań symulatorów jest tworzenie wizualizacji w tym wizualizacji interaktywnych.
 }
 \par{
-Organoleptyczne przekazywanie informacji jest bardzo istotne z punktu widzenia funkcjonowania człowieka --- dane dostarczone w sposób nieprzetworzony są zwykle niezrozumiałe lub wymagają dużych nakładów czasu by wyciągnąć z nich potrzebne informację. Ponieważ często symulator ma za zadanie zaprezentować ogólny pogląd na symulowane zjawisko, typowo wraz z symulatorem dostarczany jest system pozwalający zwizualizować jego pracę.
+Organoleptyczne przekazywanie informacji jest bardzo istotne z punktu widzenia funkcjonowania człowieka --- dane dostarczone w sposób nieprzetworzony są zwykle niezrozumiałe lub wymagają dużych nakładów czasu by wyciągnąć z nich potrzebne informacje. Ponieważ często symulator ma za zadanie zaprezentować ogólny pogląd na symulowane zjawisko, typowo wraz z symulatorem dostarczany jest system pozwalający zwizualizować jego pracę.
 }
 \par{
 Praktyczne zastosowanie tego rodzaju tandemu zdaje się być bardzo szerokie. Pozwala to na prezentowanie sedna złożonych zjawisk, ułatwia przekazywania informacji, pozwala na obserwowanie zjawisk, do których odruchowej analizy człowiek jest całe życie przyzwyczajany. Dzięki temu często w sposób heurystyczny jesteśmy w stanie wyznaczyć pewne prawidłowości, których zasadność często sprawdzana jest dokładnie albo analitycznie albo z wykorzystaniem tego samego symulatora i dołączonego do niego modułu analizującego dane.
@@ -186,7 +186,7 @@ Należy jednak zwrócić uwagę, iż niekiedy symulowany system posiada właści
 
 \subsection{Taksonomia modeli}
 \par{
-Literatura [KotowskiTronczyk,PodstawyModelowania,WykladyJanczewski] podaje wiele kryteriów podziału modeli, poniżej zestawiono najbardziej ostre spośród nich.
+Literatura \cite{KotowskiTronczyk,PodstawyModelowania,WykladyJanczewski} podaje wiele kryteriów podziału modeli, poniżej zestawiono najbardziej ostre spośród nich.
 }
 
 \subsubsection{Podział ze względu na istnienie czasu}
@@ -286,8 +286,8 @@ Model bryły sztywnej uwzględnia kształt i wymiary obiektu poruszającego się
 \par{
 W związku z tym, że model bryły sztywnej zakłada wymiarowość obiektów, posiadają one w tym modelu sześć stopni swobody, które określają ich położenie w trójwymiarowej przestrzeni:
 \begin{itemize}
-\item trzy związane z ruchem postępowym
 \renewcommand{\labelitemi}{$\bullet$}
+\item Trzy związane z ruchem postępowym
 	\begin{itemize}
 	\item szerokość (położenie na osi X)
 	\item wysokość (położenie na osi Y)
@@ -369,7 +369,7 @@ Da się wyraźnie dostrzec, że poszczególne typy fuzji różnią się stopniem
 Lata doświadczeń nad systemami fuzji danych pozwoliły na wypracowanie pewnych wzorców ich funkcjonowania stanowiących swoiste ramy dla wszystkich nowych systemów. Ilość modeli powstałych w czasie badań jest zauważalnie duża, jednak większość z nich zdaje się być jedynie szczególnym przypadkiem modelu zwanego modelem JDL.
 }
 \par{
-Model ten ma pochodzenie militarno-wojskowe. Został on opracowany przez \textit{Data Fusion Subpanel of the Joint Directors of Laboratories} (JDL) w 1985 roku \cite{jdl}. W związku z tym nomenklatura używana do jego opisu jak i cele jakie stawia się przed tym modelem są ściśle związane z potrzebami wojskowymi. Nic jednak nie stało na przeszkodzie żeby wykorzystać tę metodykę w zastosowaniach cywilnych czego przykładem może system DAFNE implementujący dwa pierwsze poziomy modelu JDL \cite{DAFNEKlasyfikator}.
+Model ten ma pochodzenie wojskowe. Został on opracowany przez \textit{Data Fusion Subpanel of the Joint Directors of Laboratories} (JDL) w 1985 roku \cite{jdl}. W związku z tym nomenklatura używana do jego opisu jak i cele jakie stawia się przed tym modelem są ściśle związane z potrzebami wojskowymi. Nic jednak nie stało na przeszkodzie żeby wykorzystać tę metodykę w zastosowaniach cywilnych czego przykładem może system DAFNE implementujący dwa pierwsze poziomy modelu JDL \cite{DAFNEKlasyfikator}.
 }
 \par{
 Model JDL dzieli proces fuzji danych na pięć poziomów:
@@ -513,7 +513,7 @@ Pierwszy z tych czasów wynosi statystycznie około $0.7s$ \cite{Zatrzymac}. Dru
 }
 \begin{figure}[htb]
     \begin{center}
-	\includegraphics[]{img/reaction_times}
+	\includegraphics[width=35em,keepaspectratio]{img/reaction_times}
 	\caption{Rozkład czasu refleksu (ms) w próbie 6309827 testów zebranych wśród internautów \cite{ReactionTime}}
 	\label{reaction}
     \end{center}

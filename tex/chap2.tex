@@ -170,7 +170,7 @@ Pod uwagę brano następujące silniki baz danych:
 \item MySQL --- przejęta przez firmę ORACLE alternatywa dla PostgreSQL. Ze względu na wspomniane przejęcie praw do bazy przez firmę ORACLE została odrzucona ponieważ nie do końca znana jest jeszcze polityka firmy względem tej bazy.
 \item sqLite --- RDBMS będący w zasadzie bibliotką języka C++ --- nie wymaga dodatkowego serwera. Jego wadą jest znacząca mniejsza wydajność. W przypadku tego projektu wydajność bazy zdaje się być kluczowym elementem (co potwierdziły późniejsze badania) w związku z czym baza ta została odrzucona.
 \end{itemize}
-Mając powyższe na względzie wybór RDBMSa padł na PostreSQL.
+Mając powyższe na względzie wybrano PostreSQL.
 }
 
 \subsection{Wybór technologii tworzenia interfejsu}
@@ -188,13 +188,13 @@ W ramach symulatora wykorzystywane są dwie odrębne bazy danych. Jedna (baza da
 Zadaniem bazy danych statycznych jest przechowywanie układu ulic i obiektów statycznych w symulowanym środowisku miejskim. Symulator w pierwszej fazie swojego działania (inicjalizacji) będzie wczytywał tego rodzaju dane by pracować na nich przez cały czas symulacji.
 }
 \par{
-Kwestią dyskusyjną było umieszczenie w bazie danych statycznych umiejscowienia czujników, ponieważ mają one charakter odpowiadający jej specyfice (są niezmienne przez cały czas symulacji). Jednakże, ze względu na to, że do danych tych odnosi się baza dynamiczna, by uniknąć niepotrzebnej zależności jednej bazy od drugiej zdecydowano by umiejscowienie czujników przenieść do bazy danych dynamicznych.
+Kwestią dyskusyjną było umieszczenie w bazie danych statycznych danych o położeniu czujników, ponieważ mają one charakter odpowiadający jej specyfice (są niezmienne przez cały czas symulacji). Jednakże, ze względu na to, że do danych tych odnosi się baza dynamiczna, by uniknąć niepotrzebnej zależności jednej bazy od drugiej zdecydowano by dane o położeniu czujników przenieść do bazy danych dynamicznych.
 }
 \par{
 Baza danych statycznych zawiera więc:
 \begin{itemize}
-\item układ ulic --- rozumiany jako graf geometryczny
-\item umiejscowienie i kształt budynków --- traktowanych jako graniastosłupy
+\item układ ulic --- rozumiany jako graf geometryczny;
+\item umiejscowienie i kształt budynków --- traktowanych jako graniastosłupy;
 \end{itemize}
 Szczegóły bazy można zobaczyć na diagramie ER przedstawionym na rysunku \ref{static_db}.
 }
@@ -239,18 +239,18 @@ Innym elementem, który musi być opisany przez dynamiczną bazę danych, by uni
 Poza podstawowymi informacjami każdy czujnik może mieć swoją charakterystykę opisującą jego działanie (np. pole widzenia wyrażone w stopniach). Ponieważ typowo czujniki tego samego typu charakteryzują się podobnymi atrybutami, wprowadzono pojęcie typu opisywanego opcjonalnie nazwą. Każdy typ posiada zestaw atrybutów charakterystycznych dla siebie. Każdy atrybut posiada typ i opcjonalnie nazwę. Wiele czujników może wymagać takich samych informacji.
 }
 \par{
-Dokładną strukturę bazy dynamicznej przedstawia poniższy diagram ER.
+Dokładną strukturę bazy dynamicznej przedstawiono na rysunku \ref{dynamic_db}.
 }
 
 
 \section[Architektura systemu][Architektura systemu]{Architektura systemu}
 \par{
-Zastosowanie poprawnej struktury architektonicznej całej aplikacji zdaje się mieć kluczowe znaczenie dla możliwości jej rozwoju, utrzymania jak i bezbłędnego napisania. Poprawna architektura chroni bowiem programistę przed jego własnymi błędami lub też pozwala na ich łatwe odnajdowanie.
+Zastosowanie poprawnej struktury architektonicznej całej aplikacji zdaje się mieć kluczowe znaczenie dla łatwości jej implementacji, możliwości rozwoju i utrzymania. Architektura może chronić programistę przed jego własnymi błędami lub też pozwalać na ich łatwe odnajdowanie.
 }
 \subsection{Model MVC}
 \subsubsection{O modelu}
 \par{
-Model MVC (Model-View-Controller, z ang. Model-Widok-Kontroler) został zaproponowany jako całość w 1979 przez Trygve Reenskaug \cite{MVC}, choć --- co jest typowe dla wzorców projektowych --- był on wykorzystywany wcześniej niż został opisany. 
+Model MVC (ang. \textit{Model-View-Controller}) został zaproponowany jako całość w 1979 przez Trygve Reenskaug \cite{MVC}, choć --- co jest typowe dla wzorców projektowych --- był on wykorzystywany wcześniej niż został opisany. 
 }
 \par{
 Model MVC dzieli aplikację lub jej część na trzy warstwy:
@@ -265,7 +265,7 @@ Podział taki zapewnia separację danych od sposobu ich prezentacji, co pozwala 
 }
 \subsubsection{Zastosowanie w aplikacji}
 \par{
-Model MVC zdawał się idealnie pasować do prezentowanego w pracy symulatora --- posiada on bowiem całą funkcjonalność symulacji oraz zapisu danych, która jest całkowicie niezależna od sposobu prezentowania danych użytkownikowi. Brak jawnej separacji między modelem a interfejsem użytkownika zapewne doprowadził by do wymieszania tych warstw co mogło by spowodować między innymi następujące problemy:
+Model MVC pasuje do prezentowanego w pracy symulatora. Funkcjonalność symulacji oraz zapisu danych jest całkowicie niezależna od sposobu prezentowania danych użytkownikowi. Brak jawnej separacji między modelem a interfejsem użytkownika zapewne doprowadził by do wymieszania tych warstw co mogło by spowodować między innymi następujące problemy:
 \begin{itemize}
 \renewcommand{\labelitemi}{$\bullet$}
 \item Utworzenie zależności symulacji od działania intefrejsu --- co prowadzi do braku możliwości prostej zamiany interfejsu w przyszłości.
@@ -284,7 +284,7 @@ Opisywany symulator został zaprojektowany by funkcjonować z wykorzystaniem trz
 }
 \subsubsection{Biblioteka boost::thread}
 \par{
-Do uruchamiania wątków wykorzystano przenośną bibliotkę boost::thread \cite{Boost} umożliwiającą zaawansowane zarządzanie i synchronizację wątków. Biblioteka ta pozwoliła na łatwe uruchomienie wątków i zsynchronizowanie ich zakończenia. Pozwala ona bowiem na uruchomienie nowego wątku w oparciu o zadany obiekt-funktor \cite{Boost} oraz zawieszenie dowolnego wątku posiadającego referencję do wątku na zawieszenie się w oczekiwaniu na jego zakończenie (join) \cite{Boost}. Te funkcjonalności były wystarczające dla zastosowań projektu.
+Do uruchamiania wątków wykorzystano przenośną bibliotkę boost::thread \cite{Boost} umożliwiającą zaawansowane zarządzanie i synchronizację wątków. Biblioteka ta pozwoliła na łatwe uruchomienie wątków i zsynchronizowanie ich zakończenia. Pozwala ona bowiem na uruchomienie nowego wątku w oparciu o zadany obiekt-funktor \cite{Boost} oraz zawieszenie dowolnego wątku posiadającego referencję do wątku na zawieszenie się w oczekiwaniu na jego zakończenie (join) \cite{Boost}. Te funkcjonalności były wystarczające dla zastosowań w tym projekcie.
 }
 \par{
 Biblioteka boost::thread została wybrana ponieważ jest dostępna dla wielu platform oraz nie wprowadza dodatkowych zależności (z tego powodu nie wybrano wątków dostarczanych przez bibliotekę Qt).
@@ -308,7 +308,7 @@ Zaprojektowanie właściwej architektury modelu jest kluczowe dla celu tej pracy
 \par{
 Kompletny diagram klas modelu przedstawiono na rysunku \ref{model_cd}.
 }
-\begin{figure}[htb]
+\begin{figure}[!ht]
     \begin{center}
 	\includegraphics[width=\textwidth,keepaspectratio]{img/model_cd}
 	\caption{Kompletny diagram klas modelu.}
@@ -328,15 +328,14 @@ Obiekty wewnątrz modelu dzielą się na trzy grupy:
 \item Obiekty posiadający obie powyższe właściwości, np. pojazdy
 \end{enumerate}
 Z tego rodzaju podziału wynika możliwość wyodrębnienia klasy obserwator (\textit{Observer}), klasy reprezentującej obiekty posiadające reprezentacje fizyczną (\textit{Object}) oraz klasy posiadającej reprezetnację fizyczną i możliwość odbierania informacji o otoczeniu (\textit{LiveObject}). Podział ten przedawia rysunek \ref{obj_obs_cd}.
-}
-\begin{figure}[htb]
+\begin{figure}[!ht]
     \begin{center}
-	\includegraphics[width=30em]{img/obj_obs_cd}
+	\includegraphics[width=25em]{img/obj_obs_cd}
 	\caption{Podział obiektów na obserwatorów i fizyczne obiekty.}
 	\label{obj_obs_cd}
     \end{center}
 \end{figure}
-
+}
 \par{
 Do zadań \textit{obserwatorów} należy obsługa reakcji na zdarzenia nadchodzące z zewnątrz. Klasa \textit{Object} natomiast ma za zadanie udostępniać wielkości fizyczne jakimi manipuluje autonomicznie obiekt --- siłę i masę.
 }
