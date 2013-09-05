@@ -76,10 +76,10 @@ Przy planowaniu badań zauważono, że jeśli postawiona hipoteza była by prawd
 \end{figure}
 
 \par{
-Na wykresie wyraźnie widać, zależnosć liczby zapisów od ilości obiektów ma charakter liniowy w dwóch przedziałach z wyraźnym przesunięciem w okolicach 120 obiektów. Powodem tego załamania zdaje się być fakt przekroczenia przez czas jednego obiegu pętli zadanego jako stała minimalnego czasu przetwarzania.  Powoduje to, że kolejny obieg pętli będzie odpowiadał dłuższemu odcinkowi symulowanego czasu a więc średnio będzie nań przypadało więcej odczytów z kamer (jako, że kamera odczytuje stan okolicy periodycznie). Zależnie od prawdziwości wyżej wspomnianej hipotezy powinna nastąpić w tym miejscu mniej lub bardziej gwałtowna reakcja lawinowa prowadząca do stanu, w którym każda kamera będzie dokonywała odczytu w każdym obiegu pętli --- to właśnie obserwujemy jako załamanie na rysunku \ref{ex_1_chart}.
+Na wykresie wyraźnie widać, zależność liczby zapisów od ilości obiektów ma charakter liniowy w dwóch przedziałach z wyraźnym przesunięciem w okolicach 120 obiektów. Powodem tego załamania zdaje się być fakt przekroczenia przez czas jednego obiegu pętli zadanego jako stała minimalnego czasu przetwarzania.  Powoduje to, że kolejny obieg pętli będzie odpowiadał dłuższemu odcinkowi symulowanego czasu a więc średnio będzie nań przypadało więcej odczytów z kamer (jako, że kamera odczytuje stan okolicy periodycznie). Zależnie od prawdziwości wyżej wspomnianej hipotezy powinna nastąpić w tym miejscu mniej lub bardziej gwałtowna reakcja lawinowa prowadząca do stanu, w którym każda kamera będzie dokonywała odczytu w każdym obiegu pętli --- to właśnie obserwujemy jako załamanie na rysunku \ref{ex_1_chart}.
 }
 \par{
-Ze względu na dualny charakter tej charakterystyki zdecydowano się przenieść ją do celów badań do jej górnej części, by to załamanie --- nieistotne z punktu widzenia celu badan --- nie zaciemniało obrazu. W związku z tym zdecydowano się obniżć czas między wyzwoleniami każdej z kamer do zera co powoduje, że każda kamera w każdym obiegu pętli wykona zrzut swojego otoczenia, ponieważ spełniony będzie warunek:
+Ze względu na dualny charakter tej charakterystyki zdecydowano się przenieść ją do celów badań do jej górnej części, by to załamanie --- nieistotne z punktu widzenia celu badan --- nie zaciemniało obrazu. W związku z tym zdecydowano się obniżyć czas między wyzwoleniami każdej z kamer do zera co powoduje, że każda kamera w każdym obiegu pętli wykona zrzut swojego otoczenia, ponieważ spełniony będzie warunek:
 }
 \par{
 \begin{center}
@@ -124,7 +124,7 @@ W wyniku badań otrzymano rezultaty zaprezentowane w tablicy \ref{ex_2} oraz na 
 
 
 \par{
-Na wykresie \ref{ex_2_chart} (skala logartymiczna) wyraźnie widać, że zarówno w przypadku zapisu do bazy danych jak i gdy zapis ten zostanie wyłączony czas trwania pojedynczego obiegu pętli zależy liniowo od ilości obiektów w symulacji.
+Na wykresie \ref{ex_2_chart} (skala logarytmiczna) wyraźnie widać, że zarówno w przypadku zapisu do bazy danych jak i gdy zapis ten zostanie wyłączony czas trwania pojedynczego obiegu pętli zależy liniowo od ilości obiektów w symulacji.
 }
 \par{
 Na wykresie w skali logarytmicznej widać też jednak, że w przypadku zapisów do bazy cały wykres przeniesiony jest o rzędy wielkości wyżej - na wykresie w zwykłej skali wariant bez zapisu byłby w ogóle nie widoczny i zredukowany do płaskiego odcinka na dole wykresu.

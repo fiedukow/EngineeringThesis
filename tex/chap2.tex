@@ -54,12 +54,12 @@ Dla ciał objętych symulacją również należało znaleźć odpowiedni model f
 }
 \par{
 Podejście do obiektów symulowanych jak do bryły sztywnej wydaje się być intuicyjne. W naturalny sposób blokuje to możliwość ingerencji w wewnętrzną fizykę ciała, jednocześnie zapewniając wysoki realizm w skali makro.
-Takie podejście pozwala na łatwe zasymulowanie wszelkiego rodzaju zdarzeń niesprężystych, także związanych z obrotami, w sposób naturalny ułatwia wykrywanie kolizji i pozwala przewidywać ich przebieg z dużą dokładnością i z zachowaniem wysokiego realizmu.
+Takie podejście pozwala na łatwe symulowanie wszelkiego rodzaju zdarzeń niesprężystych, także związanych z obrotami, w sposób naturalny ułatwia wykrywanie kolizji i pozwala przewidywać ich przebieg z dużą dokładnością i z zachowaniem wysokiego realizmu.
 Niestety model ten ze względu na stopień kompilacji został odrzucony a wybrany został model prostszy --- model punktu materialnego.
 \par{
 Model punktu materialnego pozwala na wykonywanie wszelkich obliczeń na obiektach, które nie nawiązują między sobą interakcji równie dobrze jak model bryły sztywnej. Jego niewątpliwą wadą jest to, że w razie pojawienia się potrzeby symulowania zderzeń między obiektami pojawił by się spory narzut na dość sztucznej warstwie abstrakcji, która musiała by powstać by obsłużyć zderzenia w sposób realistyczny (dodać do modelu odpowiednie siły, itp.).
 Ponadto model ten nie uwzględnia obrotów, ponieważ z jego punktu widzenia obiekty w świecie stają się niematerialnymi punktami bez wymiarów.
-Największą i przeważającą zaletą tego modelu była jego prostota, która pozwoliła na szybką implemetację wersji symulatora zdolnej spełniać podstawowe powierzone jej zadania. 
+Największą i przeważającą zaletą tego modelu była jego prostota, która pozwoliła na szybką implementację wersji symulatora zdolnej spełniać podstawowe powierzone jej zadania. 
 }
 \par{
 W ramach modelu fizyki punktu materialnego przyjęto, że każdy obiekt w świecie stanowi jeden punkt materialny, który w każdej chwili czasu charakteryzuje się następującymi wartościami:
@@ -141,7 +141,7 @@ Przewaga języka C++ nad Javą jest niezaprzeczalna, jednakże wydajność nie j
 }
 \subsubsection{Doświadczenie}
 \par{
-Istotne z punktu widzenia tworzenia aplikacji jest doświadczenie programistyczne w danej technologii. Programista doświadczoniem w danej technologii ma większą szansę na szybkie stworzenie bezawaryjnego i utrzymywalnego oprogramowania.
+Istotne z punktu widzenia tworzenia aplikacji jest doświadczenie programistyczne w danej technologii. Programista z doświadczeniem w danej technologii ma większą szansę na szybkie stworzenie bezawaryjnego i utrzymywalnego oprogramowania.
 }
 \par{
 Doświadczenie autora jest zdecydowanie po stronie języka C++, który jest dla niego naturalnym narzędziem pracy. Język Java znany jest mu tylko pobieżnie i w związku z tym zdaje się on być w tym kontekście mniej rozsądnym wyborem.
@@ -168,7 +168,7 @@ Pod uwagę brano następujące silniki baz danych:
 \item ORACLE DB --- został odrzucony ze względu na komercyjny charakter, który z przyczyn ideologicznych wydaje się nieodpowiednią bazą dla mogących mieć coraz bardziej rozległy charakter badań naukowych.
 \item PostgreSQL --- posiadający zaawansowane funkcje i zbudowany poprawnie przyzwoity RDBMS --- stale rozwijający się i darmowy projekt o otwartym kodzie źródłowym.
 \item MySQL --- przejęta przez firmę ORACLE alternatywa dla PostgreSQL. Ze względu na wspomniane przejęcie praw do bazy przez firmę ORACLE została odrzucona ponieważ nie do końca znana jest jeszcze polityka firmy względem tej bazy.
-\item sqLite --- RDBMS będący w zasadzie bibliotką języka C++ --- nie wymaga dodatkowego serwera. Jego wadą jest znacząca mniejsza wydajność. W przypadku tego projektu wydajność bazy zdaje się być kluczowym elementem (co potwierdziły późniejsze badania) w związku z czym baza ta została odrzucona.
+\item sqLite --- RDBMS będący w zasadzie biblioteką języka C++ --- nie wymaga dodatkowego serwera. Jego wadą jest znacząca mniejsza wydajność. W przypadku tego projektu wydajność bazy zdaje się być kluczowym elementem (co potwierdziły późniejsze badania) w związku z czym baza ta została odrzucona.
 \end{itemize}
 Mając powyższe na względzie wybrano PostreSQL.
 }
@@ -268,7 +268,7 @@ Podział taki zapewnia separację danych od sposobu ich prezentacji, co pozwala 
 Model MVC pasuje do prezentowanego w pracy symulatora. Funkcjonalność symulacji oraz zapisu danych jest całkowicie niezależna od sposobu prezentowania danych użytkownikowi. Brak jawnej separacji między modelem a interfejsem użytkownika zapewne doprowadził by do wymieszania tych warstw co mogło by spowodować między innymi następujące problemy:
 \begin{itemize}
 \renewcommand{\labelitemi}{$\bullet$}
-\item Utworzenie zależności symulacji od działania intefrejsu --- co prowadzi do braku możliwości prostej zamiany interfejsu w przyszłości.
+\item Utworzenie zależności symulacji od działania interfejsu --- co prowadzi do braku możliwości prostej zamiany interfejsu w przyszłości.
 \item Rozsynchronizowanie stanu modelu z widokiem.
 \item Nieczytelność kodu spowodowana przeplataniem się kodu odpowiedzialnego za wyświetlanie danych i ich obsługę.
 \end{itemize}
@@ -308,7 +308,7 @@ Zaprojektowanie właściwej architektury modelu jest kluczowe dla celu tej pracy
 \par{
 Kompletny diagram klas modelu przedstawiono na rysunku \ref{model_cd}.
 }
-\begin{figure}[!ht]
+\begin{figure}[p]
     \begin{center}
 	\includegraphics[width=\textwidth,keepaspectratio]{img/model_cd}
 	\caption{Kompletny diagram klas modelu.}
@@ -327,7 +327,7 @@ Obiekty wewnątrz modelu dzielą się na trzy grupy:
 \item Obiekty odbierające informacje o otoczeniu, np. czujniki
 \item Obiekty posiadający obie powyższe właściwości, np. pojazdy
 \end{enumerate}
-Z tego rodzaju podziału wynika możliwość wyodrębnienia klasy obserwator (\textit{Observer}), klasy reprezentującej obiekty posiadające reprezentacje fizyczną (\textit{Object}) oraz klasy posiadającej reprezetnację fizyczną i możliwość odbierania informacji o otoczeniu (\textit{LiveObject}). Podział ten przedawia rysunek \ref{obj_obs_cd}.
+Z tego rodzaju podziału wynika możliwość wyodrębnienia klasy obserwator (\textit{Observer}), klasy reprezentującej obiekty posiadające reprezentacje fizyczną (\textit{Object}) oraz klasy posiadającej reprezentację fizyczną i możliwość odbierania informacji o otoczeniu (\textit{LiveObject}). Podział ten przedawia rysunek \ref{obj_obs_cd}.
 \begin{figure}[!ht]
     \begin{center}
 	\includegraphics[width=25em]{img/obj_obs_cd}
